@@ -1,5 +1,5 @@
 //9.20update
-//9.21update ÔÚ¶ÁÈëÍ¼hgÊ±Í¨¹ıÁÚ½Ó±íĞÎÊ½£»ÔÚ¼ÆËãpmgÊ±£¬Í¨¹ıÁÚ½Ó±í¼ÆËã£»pmgÖĞÉ¾³ıÁÚ½Ó¾ØÕó£¬ÓÃÁÚ½Ó±í´æ´¢±ßÈ¨
+//9.21update åœ¨è¯»å…¥å›¾hgæ—¶é€šè¿‡é‚»æ¥è¡¨å½¢å¼ï¼›åœ¨è®¡ç®—pmgæ—¶ï¼Œé€šè¿‡é‚»æ¥è¡¨è®¡ç®—ï¼›pmgä¸­åˆ é™¤é‚»æ¥çŸ©é˜µï¼Œç”¨é‚»æ¥è¡¨å­˜å‚¨è¾¹æƒ
 #include<iostream>
 #include<vector>
 #include<map>
@@ -13,16 +13,16 @@ using namespace std;
 
 class hetergraph {
 public:
-	int n_vertexclass;  //¶¥µãÀà±ğÊı
-	map<char, int> vertex_class_index;  //¶¥µãÀà±ğ-¶¥µã±àºÅ
-	vector<int> vertex_num;  //°´¶¥µãË÷ÒıË³Ğò´æ´¢Ã¿Àà¶¥µãÊı
+	int n_vertexclass;  //é¡¶ç‚¹ç±»åˆ«æ•°
+	map<char, int> vertex_class_index;  //é¡¶ç‚¹ç±»åˆ«-é¡¶ç‚¹ç¼–å·
+	vector<int> vertex_num;  //æŒ‰é¡¶ç‚¹ç´¢å¼•é¡ºåºå­˜å‚¨æ¯ç±»é¡¶ç‚¹æ•°
 
-	int n_edgeclass;  //±ßµÄÀà±ğÊı
-	vector<vector<int>> edge_class;  //Ã¿Àà±ßÁ¬½ÓµÄ¶¥µãÀà±ğ£º¶¥µã±àºÅx¡ª¶¥µã±àºÅy
-	vector<int> edge_num;  //Ã¿Àà±ßÊı
+	int n_edgeclass;  //è¾¹çš„ç±»åˆ«æ•°
+	vector<vector<int>> edge_class;  //æ¯ç±»è¾¹è¿æ¥çš„é¡¶ç‚¹ç±»åˆ«ï¼šé¡¶ç‚¹ç¼–å·xâ€”é¡¶ç‚¹ç¼–å·y
+	vector<int> edge_num;  //æ¯ç±»è¾¹æ•°
 
-	//vector<vector<vector<int>>> edge_info;  //3Î¬Êı×é£¬µÚÒ»Î¬edge_num£¬±íÊ¾Ã¿Àà±ß£»µÚ¶şÎ¬ºÍµÚÈıÎ¬±íÊ¾±ßedgeµÄÁÚ½Ó¾ØÕó
-	vector<map<int,map<int,int>>> edge_info;  //3Î¬Êı×é£¬µÚÒ»Î¬edge_num£¬±íÊ¾Ã¿Àà±ß£»µÚ¶şÎ¬ºÍµÚÈıÎ¬±íÊ¾±ßedgeµÄÁÚ½Ó±í
+	//vector<vector<vector<int>>> edge_info;  //3ç»´æ•°ç»„ï¼Œç¬¬ä¸€ç»´edge_numï¼Œè¡¨ç¤ºæ¯ç±»è¾¹ï¼›ç¬¬äºŒç»´å’Œç¬¬ä¸‰ç»´è¡¨ç¤ºè¾¹edgeçš„é‚»æ¥çŸ©é˜µ
+	vector<map<int,map<int,int>>> edge_info;  //3ç»´æ•°ç»„ï¼Œç¬¬ä¸€ç»´edge_numï¼Œè¡¨ç¤ºæ¯ç±»è¾¹ï¼›ç¬¬äºŒç»´å’Œç¬¬ä¸‰ç»´è¡¨ç¤ºè¾¹edgeçš„é‚»æ¥è¡¨
 
 	void read_file();
 	void show_hg();
@@ -32,16 +32,16 @@ public:
 
 class multigraph {
 public:
-	int n_vertex;  //×îĞÂ¶¥µãÊı£¨¼ÓÈëcopyµÄ¹Ø½Ú¶¥µã£©
-	int n_vertex_org;  //Ô­¶¥µãÊı
-	int m_edge;  //±ßÊı£¿
+	int n_vertex;  //æœ€æ–°é¡¶ç‚¹æ•°ï¼ˆåŠ å…¥copyçš„å…³èŠ‚é¡¶ç‚¹ï¼‰
+	int n_vertex_org;  //åŸé¡¶ç‚¹æ•°
+	int m_edge;  //è¾¹æ•°ï¼Ÿ
 	//vector<vector<int> > Mp;
 	vector<map<int,int> > adjlist;
 	void show_mg();
-	void getPmg(vector<char>* P);  //´ÓÒì¹¹Í¼ÖĞ»ñµÃPmg
-	void getPmg_read_file();      //´Ó±£´æµÄÎÄ¼şÖĞ¶ÁÈ¡MplºÍPmg
-	void save_Mpl(vector<vector<int>>* Mpl);  //±£´æMpl
-	void save_Pmg();  //±£´æÕû¸öPmg
+	void getPmg(vector<char>* P);  //ä»å¼‚æ„å›¾ä¸­è·å¾—Pmg
+	void getPmg_read_file();      //ä»ä¿å­˜çš„æ–‡ä»¶ä¸­è¯»å–Mplå’ŒPmg
+	void save_Mpl(vector<vector<int>>* Mpl);  //ä¿å­˜Mpl
+	void save_Pmg();  //ä¿å­˜æ•´ä¸ªPmg
 };
 
 void BBC(int s);
@@ -54,45 +54,45 @@ string file = "data_intro";
 hetergraph hg;
 multigraph Pmg;
 vector<double> bc;
-ofstream out_result(file + "/al1_time_result.txt");  //±íÊ¾Ëã·¨1µÄÊ±¼ä½á¹û
+ofstream out_result(file + "/al1_time_result.txt");  //è¡¨ç¤ºç®—æ³•1çš„æ—¶é—´ç»“æœ
 double timebfs = 0, timeback = 0;
 double pmid;
 
 
 int main() {
-	//Ò»¡¢¸ù¾İÒì¹¹Í¼¼ÆËãPmg
+	//ä¸€ã€æ ¹æ®å¼‚æ„å›¾è®¡ç®—Pmg
 	double ps00, pt00, time00;
 	ps00 = clock();
 	hg.read_file();
 	pt00 = clock();
 	time00 = (double(pt00 - ps00)) / CLOCKS_PER_SEC;
-	out_result << "¶ÁÈëÒì¹¹Í¼ÓÃÊ±£º" << time00 << endl;
+	out_result << "è¯»å…¥å¼‚æ„å›¾ç”¨æ—¶ï¼š" << time00 << endl;
 
 	/*hg.show_hg();*/
 	double ps0, pt0, time0;
 	ps0 = clock();
 	vector<char> P = { 'A','M','D','M','A' };
-	Pmg.getPmg(&P);  //µÃµ½P-multigraph
+	Pmg.getPmg(&P);  //å¾—åˆ°P-multigraph
 	pt0 = clock();
 	time0 = (double)(pt0 - ps0) / CLOCKS_PER_SEC;
-	cout << "µÃµ½PmgÓÃÊ±£º" << time0 << endl;
-	out_result << "µÃµ½PmgÓÃÊ±:" << time0 << endl;
-	cout << "µãÊı£º" << Pmg.n_vertex << endl;
-	out_result << "PmgµãÊı£º" << Pmg.n_vertex << endl;
-	cout << "±ßÊı£º" << Pmg.m_edge << endl;
-	out_result << "Pmg±ßÊı£º" << Pmg.m_edge << endl;
-	//¶ş¡¢ÒÑ¾­±£´æÁËPmg£¬´ÓÎÄ¼şÖĞ¶ÁÈ¡
+	cout << "å¾—åˆ°Pmgç”¨æ—¶ï¼š" << time0 << endl;
+	out_result << "å¾—åˆ°Pmgç”¨æ—¶:" << time0 << endl;
+	cout << "ç‚¹æ•°ï¼š" << Pmg.n_vertex << endl;
+	out_result << "Pmgç‚¹æ•°ï¼š" << Pmg.n_vertex << endl;
+	cout << "è¾¹æ•°ï¼š" << Pmg.m_edge << endl;
+	out_result << "Pmgè¾¹æ•°ï¼š" << Pmg.m_edge << endl;
+	//äºŒã€å·²ç»ä¿å­˜äº†Pmgï¼Œä»æ–‡ä»¶ä¸­è¯»å–
 	/*Pmg.getPmg_read_file();*/
 
-	/*Í³¼Æ×î´óÁ¬Í¨·ÖÁ¿´óĞ¡*/
+	/*ç»Ÿè®¡æœ€å¤§è¿é€šåˆ†é‡å¤§å°*/
 	double pcmps, pcmpt, timecmp;
 	pcmps = clock();
 	int maxComponent=getMaxComponent();
-	cout << "×î´óÁ¬Í¨·ÖÁ¿£º" << maxComponent << endl;
-	out_result << "Pmg×î´óÁ¬Í¨·ÖÁ¿£º" << maxComponent << endl;
+	cout << "æœ€å¤§è¿é€šåˆ†é‡ï¼š" << maxComponent << endl;
+	out_result << "Pmgæœ€å¤§è¿é€šåˆ†é‡ï¼š" << maxComponent << endl;
 	pcmpt = clock();
 	timecmp = (double)(pcmpt - pcmps) / CLOCKS_PER_SEC;
-	out_result << "¼ÆËã×î´óÁ¬Í¨·ÖÁ¿´óĞ¡ÓÃÊ±£º" << timecmp << endl;
+	out_result << "è®¡ç®—æœ€å¤§è¿é€šåˆ†é‡å¤§å°ç”¨æ—¶ï¼š" << timecmp << endl;
 
 
 	bc.resize(Pmg.n_vertex);
@@ -109,19 +109,19 @@ int main() {
 		timeback += (double)(pt1 - pmid) / CLOCKS_PER_SEC;
 		/*cout<<"back:"<< (double)(pt1 - pmid) / CLOCKS_PER_SEC<<endl;*/
 		time1 += (double)(pt1 - ps1) / CLOCKS_PER_SEC;
-		if(count%100==0) cout << count << "¸öµã¼ÆËãĞèÒª" << time1 << endl;
+		if(count%100==0) cout << count << "ä¸ªç‚¹è®¡ç®—éœ€è¦" << time1 << endl;
 	}
-	cout << "Ç°ÏòbfsµÄÊ±¼ä£º" << timebfs << endl;
-	cout << "·´ÏòÀÛ»ıµÄÊ±¼ä£º" << timeback << endl;
-	cout << "¼ÆËãbcÖµµÄÊ±¼ä£º"<<time1 << endl;
-	out_result << "Ç°ÏòbfsµÄÊ±¼ä£º" << timebfs << endl;
-	out_result << "·´ÏòÀÛ»ıµÄÊ±¼ä£º" << timeback << endl;
-	out_result << "¼ÆËãbcÖµµÄÊ±¼ä£º" << time1 << endl;
+	cout << "å‰å‘bfsçš„æ—¶é—´ï¼š" << timebfs << endl;
+	cout << "åå‘ç´¯ç§¯çš„æ—¶é—´ï¼š" << timeback << endl;
+	cout << "è®¡ç®—bcå€¼çš„æ—¶é—´ï¼š"<<time1 << endl;
+	out_result << "å‰å‘bfsçš„æ—¶é—´ï¼š" << timebfs << endl;
+	out_result << "åå‘ç´¯ç§¯çš„æ—¶é—´ï¼š" << timeback << endl;
+	out_result << "è®¡ç®—bcå€¼çš„æ—¶é—´ï¼š" << time1 << endl;
 
 	double time_all = (double)(pt1 - ps00) / CLOCKS_PER_SEC;
-	cout << "×ÜÓÃÊ±£º" << time_all << endl;
-	out_result << "×ÜÓÃÊ±£º" << time_all << endl;
-	cout << "ÔËĞĞÊ±¼äÒÑ´æÈë" << file + "/time_result.txt" << endl;
+	cout << "æ€»ç”¨æ—¶ï¼š" << time_all << endl;
+	out_result << "æ€»ç”¨æ—¶ï¼š" << time_all << endl;
+	cout << "è¿è¡Œæ—¶é—´å·²å­˜å…¥" << file + "/time_result.txt" << endl;
 	save_bc();
 	compare_result();
 	out_result.close();
@@ -129,16 +129,16 @@ int main() {
 }
 
 void compare_result() {
-	string filename = file + "/result.txt";  //baseÖĞ´æ´¢ÎÄ¼şµÄ»ù±¾ĞÅÏ¢£¬¸ù¾İ±ßÀà±ğµÄĞĞ¶ÔÓ¦µÄ±ßµÄË÷Òı£¬ÕÒµ½±ßµÄÎÄ¼ş"x.txt"
-	ifstream input(filename, ios::in);  //ÊäÈëÎÄ¼şÁ÷¶ÔÏóinput
-	//ÅĞ¶ÏÎÄ¼şÊÇ·ñ´æÔÚ
+	string filename = file + "/result.txt";  //baseä¸­å­˜å‚¨æ–‡ä»¶çš„åŸºæœ¬ä¿¡æ¯ï¼Œæ ¹æ®è¾¹ç±»åˆ«çš„è¡Œå¯¹åº”çš„è¾¹çš„ç´¢å¼•ï¼Œæ‰¾åˆ°è¾¹çš„æ–‡ä»¶"x.txt"
+	ifstream input(filename, ios::in);  //è¾“å…¥æ–‡ä»¶æµå¯¹è±¡input
+	//åˆ¤æ–­æ–‡ä»¶æ˜¯å¦å­˜åœ¨
 	if (!input) {
 		cerr << "file error!" << endl;
 		exit(1);
 	}
 
 	vector<double> bc0(Pmg.n_vertex_org);
-	//¶ÁÈëËùÓĞ¶¥µãµÄbcÖµ//±£´æÃ¿¸ö¶¥µãµÄbcÖµµÄÎÄ¼ş
+	//è¯»å…¥æ‰€æœ‰é¡¶ç‚¹çš„bcå€¼//ä¿å­˜æ¯ä¸ªé¡¶ç‚¹çš„bcå€¼çš„æ–‡ä»¶
 	string bc_info;
 	while (getline(input, bc_info)) {
 		istringstream sbc_info(bc_info);
@@ -148,12 +148,12 @@ void compare_result() {
 		bc0[v] = bc;
 	}
 
-	//±È½ÏbcÖµ
+	//æ¯”è¾ƒbcå€¼
 	vector<int> different_v;
 	for (int i = 0; i < Pmg.n_vertex_org; i++) {
 		if (abs(bc[i] - bc0[i]) > 0.000001) different_v.push_back(i);
 	}
-	cout << "bcÖµ²»Í¬µÄ¶¥µãÊı£º" << different_v.size() << endl;
+	cout << "bcå€¼ä¸åŒçš„é¡¶ç‚¹æ•°ï¼š" << different_v.size() << endl;
 	for (int v : different_v) {
 
 		cout << v << ":" << bc[v] << " " << bc0[v] << endl;
@@ -165,15 +165,15 @@ void save_bc() {
 		out << i << " ";
 		out << fixed << setprecision(8) << bc[i] << endl;
 	}
-	cout << "ÓÉbbc¼ÆËã³öµÄbcÖµÒÑ±£´æÖÁ" << file << "/result.txt"<<endl;
+	cout << "ç”±bbcè®¡ç®—å‡ºçš„bcå€¼å·²ä¿å­˜è‡³" << file << "/result.txt"<<endl;
 }
 
 void BBC(int s) {
 	//initialize variable
-	/*cout << "Ô´µã" << s << endl;*/
+	/*cout << "æºç‚¹" << s << endl;*/
 	queue<int> Q;
 	stack<int> S;
-	vector<vector<pair<int,int>>> pred(Pmg.n_vertex);  //»òmap
+	vector<vector<pair<int,int>>> pred(Pmg.n_vertex);  //æˆ–map
 	vector<double> dist(Pmg.n_vertex,DBL_MAX);
 	vector<double> pathnum(Pmg.n_vertex);
 	dist[s] = 0;
@@ -184,12 +184,12 @@ void BBC(int s) {
 		int v = Q.front();
 		Q.pop();
 		S.push(v);
-		for (auto w : Pmg.adjlist[v]){  //·ÃÎÊÁËvµÄËùÓĞÁÚ¾Ó
+		for (auto w : Pmg.adjlist[v]){  //è®¿é—®äº†vçš„æ‰€æœ‰é‚»å±…
 			if (dist[w.first] == DBL_MAX) {  
 				dist[w.first] = dist[v] + 1;
 				Q.push(w.first);
 			}
-			if (dist[w.first] == dist[v] + 1) {  //Í¨¹ı´ËifÌõ¼ş£¬¿ÉÒÔµÃµ½vµÄËùÓĞÏÂ·½µÄÁÚ¾Ów£¬ÔÚ´ËÍ³¼ÆÏÂ·½w·´ÏòÀÛ»ıµ½vÊ±µÄÈ¨Öµ
+			if (dist[w.first] == dist[v] + 1) {  //é€šè¿‡æ­¤ifæ¡ä»¶ï¼Œå¯ä»¥å¾—åˆ°vçš„æ‰€æœ‰ä¸‹æ–¹çš„é‚»å±…wï¼Œåœ¨æ­¤ç»Ÿè®¡ä¸‹æ–¹wåå‘ç´¯ç§¯åˆ°væ—¶çš„æƒå€¼
 				pathnum[w.first] +=pathnum[v] * w.second;
 				pred[w.first].push_back({ v,w.second });
 			}
@@ -249,23 +249,23 @@ int getComponentSize(int i,vector<int> *visited) {
 }
 
 
-/*¶ÁÎÄ¼ş£¬»ñÈ¡Òì¹¹Í¼ĞÅÏ¢*/
+/*è¯»æ–‡ä»¶ï¼Œè·å–å¼‚æ„å›¾ä¿¡æ¯*/
 void hetergraph::read_file() {
-	string filename = file + "/base.txt";  //baseÖĞ´æ´¢ÎÄ¼şµÄ»ù±¾ĞÅÏ¢£¬¸ù¾İ±ßÀà±ğµÄĞĞ¶ÔÓ¦µÄ±ßµÄË÷Òı£¬ÕÒµ½±ßµÄÎÄ¼ş"x.txt"
-	ifstream input(filename, ios::in);  //ÊäÈëÎÄ¼şÁ÷¶ÔÏóinput
-	//ÅĞ¶ÏÎÄ¼şÊÇ·ñ´æÔÚ
+	string filename = file + "/base.txt";  //baseä¸­å­˜å‚¨æ–‡ä»¶çš„åŸºæœ¬ä¿¡æ¯ï¼Œæ ¹æ®è¾¹ç±»åˆ«çš„è¡Œå¯¹åº”çš„è¾¹çš„ç´¢å¼•ï¼Œæ‰¾åˆ°è¾¹çš„æ–‡ä»¶"x.txt"
+	ifstream input(filename, ios::in);  //è¾“å…¥æ–‡ä»¶æµå¯¹è±¡input
+	//åˆ¤æ–­æ–‡ä»¶æ˜¯å¦å­˜åœ¨
 	if (!input) {
 		cerr << "file error!" << endl;
 		exit(1);
 	}
 
-	//µÚÒ»ĞĞ£¬¶¥µãÀà±ğÊı
+	//ç¬¬ä¸€è¡Œï¼Œé¡¶ç‚¹ç±»åˆ«æ•°
 	string vinfo;
 	getline(input, vinfo);
 	istringstream svinfo(vinfo);
 	svinfo >> n_vertexclass;
 
-	//¶¥µãÀà±ğvclass-¶¥µãË÷Òı(i)  iÀà¶¥µãÊıvcnum
+	//é¡¶ç‚¹ç±»åˆ«vclass-é¡¶ç‚¹ç´¢å¼•(i)  iç±»é¡¶ç‚¹æ•°vcnum
 	for (int i = 0; i < n_vertexclass; i++) {
 		string vcinfo;
 		getline(input, vcinfo);
@@ -273,66 +273,66 @@ void hetergraph::read_file() {
 		char vclass;
 		int vcnum;
 		svcinfo >> vclass >> vcnum;
-		vertex_class_index[vclass] = i;  //¶¥µãÀà±ğ-Ë÷ÒıºÅ
-		vertex_num.push_back(vcnum);    //Ã¿Àà¶¥µãÊı
+		vertex_class_index[vclass] = i;  //é¡¶ç‚¹ç±»åˆ«-ç´¢å¼•å·
+		vertex_num.push_back(vcnum);    //æ¯ç±»é¡¶ç‚¹æ•°
 	}
 
-	//±ßµÄÀà±ğÊı
+	//è¾¹çš„ç±»åˆ«æ•°
 	string einfo;
 	getline(input, einfo);
 	istringstream seinfo(einfo);
 	seinfo >> n_edgeclass;
 
-	//±ßµÄÀà±ğµÄĞÅÏ¢
-	for (int i = 0; i < n_edgeclass; i++) {  //µÚiÀà±ß
+	//è¾¹çš„ç±»åˆ«çš„ä¿¡æ¯
+	for (int i = 0; i < n_edgeclass; i++) {  //ç¬¬iç±»è¾¹
 		string eeinfo;
 		getline(input, eeinfo);
 		istringstream seeinfo(eeinfo);
 		int vx, vy, edgenum;
 		seeinfo >> vx >> vy >> edgenum;
-		edge_class.push_back({ vx,vy });  //µÚiÀà±ßÁ¬½ÓµÄ¶¥µãÀà±ğË÷Òı
+		edge_class.push_back({ vx,vy });  //ç¬¬iç±»è¾¹è¿æ¥çš„é¡¶ç‚¹ç±»åˆ«ç´¢å¼•
 		edge_num.push_back(edgenum);
 
-		//»ñµÃ±£´æµÚiÀà±ßĞÅÏ¢µÄÎÄ¼şÃû²¢¶ÁÈëÎÄ¼ş
+		//è·å¾—ä¿å­˜ç¬¬iç±»è¾¹ä¿¡æ¯çš„æ–‡ä»¶åå¹¶è¯»å…¥æ–‡ä»¶
 		stringstream si;
 		si << i;
 		string edge_filename = file + "/edge/" + si.str() + ".txt";
-		cout << "¿ªÊ¼¶ÁÈëÎÄ¼ş" << edge_filename << endl;
-		ifstream edge_input(edge_filename, ios::in);  //ÊäÈëÎÄ¼şÁ÷¶ÔÏóinput
-		//ÅĞ¶ÏÎÄ¼şÊÇ·ñ´æÔÚ
+		cout << "å¼€å§‹è¯»å…¥æ–‡ä»¶" << edge_filename << endl;
+		ifstream edge_input(edge_filename, ios::in);  //è¾“å…¥æ–‡ä»¶æµå¯¹è±¡input
+		//åˆ¤æ–­æ–‡ä»¶æ˜¯å¦å­˜åœ¨
 		if (!edge_input) {
 			cerr << "file error!" << endl;
 			exit(1);
 		}
-		//¶Á±£´æµÚiÀà±ßĞÅÏ¢µÄÎÄ¼ş£¬²¢µÃµ½¸ÃÀà±ßµÄÁÚ½Ó¾ØÕó
+		//è¯»ä¿å­˜ç¬¬iç±»è¾¹ä¿¡æ¯çš„æ–‡ä»¶ï¼Œå¹¶å¾—åˆ°è¯¥ç±»è¾¹çš„é‚»æ¥çŸ©é˜µ
 		string edgeinformation;
-		getline(edge_input, edgeinformation);/***edgeÎÄ¼şµÚÒ»ĞĞÊÇ·ñÓĞ±íÊ¾±ßµÄĞÅÏ¢***/
-		int nx = vertex_num[vx], ny = vertex_num[vy];  //nx£ºĞĞÊı ny£ºÁĞÊı
+		getline(edge_input, edgeinformation);/***edgeæ–‡ä»¶ç¬¬ä¸€è¡Œæ˜¯å¦æœ‰è¡¨ç¤ºè¾¹çš„ä¿¡æ¯***/
+		int nx = vertex_num[vx], ny = vertex_num[vy];  //nxï¼šè¡Œæ•° nyï¼šåˆ—æ•°
 		map<int, map<int, int>> edge_matrix;
 		string edgedata;
 		while (getline(edge_input, edgedata)) {
 			istringstream sedgedata(edgedata);
 			int x, y;  
 			sedgedata >> x >> y;
-			//µÚxĞĞ µÚyÁĞÎª1
-			auto iterx = edge_matrix.find(x);  //xÊÇ·ñÒÑ¾­¼ÓÈë
-			if (iterx == edge_matrix.end()) {  //ÉĞÎ´¼ÓÈë
+			//ç¬¬xè¡Œ ç¬¬yåˆ—ä¸º1
+			auto iterx = edge_matrix.find(x);  //xæ˜¯å¦å·²ç»åŠ å…¥
+			if (iterx == edge_matrix.end()) {  //å°šæœªåŠ å…¥
 				map<int, int> xadjlist;
-				xadjlist.insert(map<int, int>::value_type(y,1));  //½«y¼ÓÈëxµÄÁÚ½Ólist
-				edge_matrix.insert(map<int, map<int, int>>::value_type(x, xadjlist)); //½«xµÄÁÚ½Ólist¼ÓÈëedge_matrix
+				xadjlist.insert(map<int, int>::value_type(y,1));  //å°†yåŠ å…¥xçš„é‚»æ¥list
+				edge_matrix.insert(map<int, map<int, int>>::value_type(x, xadjlist)); //å°†xçš„é‚»æ¥liståŠ å…¥edge_matrix
 				xadjlist.clear();
 			}
-			else {  //xÒÑ¾­¼ÓÈë
+			else {  //xå·²ç»åŠ å…¥
 				iterx->second.insert(map<int, int>::value_type(y, 1));
 			}
 		}
-		edge_info.push_back(edge_matrix);  //µÚiÀà±ßµÄÁÚ½Ó±í
+		edge_info.push_back(edge_matrix);  //ç¬¬iç±»è¾¹çš„é‚»æ¥è¡¨
 		edge_matrix.clear();
 		edge_input.close();
 	}
 	input.close();
 }
-/*¸ù¾İ±ßµÄÁ½¸ö¶¥µãµÄË÷ÒıºÅ£¬²éÕÒ±ßµÄË÷ÒıºÅ*/
+/*æ ¹æ®è¾¹çš„ä¸¤ä¸ªé¡¶ç‚¹çš„ç´¢å¼•å·ï¼ŒæŸ¥æ‰¾è¾¹çš„ç´¢å¼•å·*/
 int hetergraph::getEdgeIndex(int x, int y) {
 	int index = -1;
 	for (auto it : edge_class) {
@@ -343,69 +343,69 @@ int hetergraph::getEdgeIndex(int x, int y) {
 	return index;
 }
 
-/*´ÓÒì¹¹Í¼ÖĞ£¬Éú³ÉP-multigraph*/
+/*ä»å¼‚æ„å›¾ä¸­ï¼Œç”ŸæˆP-multigraph*/
 void multigraph::getPmg(vector<char>* P) {
-	vector<char>::iterator it = P->begin();  //itµü´ú±éÀúÔªÂ·¾¶PÖĞµÄ¶¥µãÀà±ğ
-	/*Pmg¶¥µãÊı*/
+	vector<char>::iterator it = P->begin();  //itè¿­ä»£éå†å…ƒè·¯å¾„Pä¸­çš„é¡¶ç‚¹ç±»åˆ«
+	/*Pmgé¡¶ç‚¹æ•°*/
 	n_vertex = hg.vertex_num[hg.vertex_class_index[*it]];
 	n_vertex_org = n_vertex;
 	adjlist.resize(n_vertex);  
 	
-	/*¸ù¾İP²éÕÒPÖĞ±ßµÄË÷Òı£¬±£´æÔÚeindexÖĞ*/
+	/*æ ¹æ®PæŸ¥æ‰¾Pä¸­è¾¹çš„ç´¢å¼•ï¼Œä¿å­˜åœ¨eindexä¸­*/
 	vector<int> eindex;
-	for (int i = 0; i < P->size() / 2 ; i++) {  //Ò»¹²±éÀúP->size()/2Ìõ±ß
+	for (int i = 0; i < P->size() / 2 ; i++) {  //ä¸€å…±éå†P->size()/2æ¡è¾¹
 		int x = hg.vertex_class_index[*it++];
 		int y = hg.vertex_class_index[*it];
-		int index = hg.getEdgeIndex(x, y);  //¸ù¾İÆğµãºÍÖÕµãÀà±ğ£¬ÕÒµ½¸ÃÀà±ß¶ÔÓ¦µÄË÷Òı£¬´Ó¶øµÃµ½¸ÃÀà±ßµÄÁÚ½Ó¾ØÕó
+		int index = hg.getEdgeIndex(x, y);  //æ ¹æ®èµ·ç‚¹å’Œç»ˆç‚¹ç±»åˆ«ï¼Œæ‰¾åˆ°è¯¥ç±»è¾¹å¯¹åº”çš„ç´¢å¼•ï¼Œä»è€Œå¾—åˆ°è¯¥ç±»è¾¹çš„é‚»æ¥çŸ©é˜µ
 		if (index == -1) {
 			cerr << "edge error!" << endl;
 			exit(1);
 		}
 		eindex.push_back(index);
 	}
-	cout << "ÕÒµ½±ßË÷Òı£º";
+	cout << "æ‰¾åˆ°è¾¹ç´¢å¼•ï¼š";
 	for (int i : eindex) cout << i << "-";
 	cout << endl;
-	/*¼ÆËãMpl*/
+	/*è®¡ç®—Mpl*/
 	int p = 0;
-	map<int,map<int,int>> matrixpl = hg.edge_info[eindex[p]];  //µÚ1Àà±ßµÄÁÚ½Ó¾ØÕó
-	hg.edge_info[eindex[p]].clear();  //´ËÊ±£¬µÚÒ»¸öeindexµÄÁÚ½Ó¾ØÕóÒÑ¾­±£´æÔÚmatrixplÖĞ£¬ĞÅÏ¢²»ÔÙĞèÒª
-	while (++p < eindex.size()) {  //½«matrixÓëÏÂÒ»¸öÁÚ½Ó¾ØÕóedge_info[eindex[p]]Ïà³Ë
-		int curr_eindex = eindex[p];  //µ±Ç°¼ÆËãµÄ±ßµÄË÷Òı,¼´µ±Ç°ÓÃÄÄ¸ö±ßµÄÁÚ½Ó¾ØÕóÓëMPLÏà³Ë
-		cout << "¼ÆËã"<<eindex[p-1]<<'*' << curr_eindex << "µÄÁÚ½Ó¾ØÕó" << endl;
+	map<int,map<int,int>> matrixpl = hg.edge_info[eindex[p]];  //ç¬¬1ç±»è¾¹çš„é‚»æ¥çŸ©é˜µ
+	hg.edge_info[eindex[p]].clear();  //æ­¤æ—¶ï¼Œç¬¬ä¸€ä¸ªeindexçš„é‚»æ¥çŸ©é˜µå·²ç»ä¿å­˜åœ¨matrixplä¸­ï¼Œä¿¡æ¯ä¸å†éœ€è¦
+	while (++p < eindex.size()) {  //å°†matrixä¸ä¸‹ä¸€ä¸ªé‚»æ¥çŸ©é˜µedge_info[eindex[p]]ç›¸ä¹˜
+		int curr_eindex = eindex[p];  //å½“å‰è®¡ç®—çš„è¾¹çš„ç´¢å¼•,å³å½“å‰ç”¨å“ªä¸ªè¾¹çš„é‚»æ¥çŸ©é˜µä¸MPLç›¸ä¹˜
+		cout << "è®¡ç®—"<<eindex[p-1]<<'*' << curr_eindex << "çš„é‚»æ¥çŸ©é˜µ" << endl;
 		double ps11, pt11, time11;
 		ps11 = clock();
-		map<int,map<int,int>> tmatrix;  //ÁÙÊ±¼ÇÂ¼¼ÆËã½á¹û
+		map<int,map<int,int>> tmatrix;  //ä¸´æ—¶è®°å½•è®¡ç®—ç»“æœ
 		auto iterik = matrixpl.begin();
-		for(iterik;iterik!=matrixpl.end();iterik++) {  //¶ÔÃ¿¸öÓĞÁÚ½ÓĞòÁĞµÄi
+		for(iterik;iterik!=matrixpl.end();iterik++) {  //å¯¹æ¯ä¸ªæœ‰é‚»æ¥åºåˆ—çš„i
 			int i = iterik->first;
-			auto iterk = iterik->second.begin();  //iterk:µãiµÄÁÚ½ÓµãkĞòÁĞ
+			auto iterk = iterik->second.begin();  //iterk:ç‚¹içš„é‚»æ¥ç‚¹kåºåˆ—
 			for (iterk; iterk != iterik->second.end(); iterk++) {
 				int k = iterk->first;
-				int currik = iterk->second;  //(y,1) ´æÔÚ¼´>0 ±íÊ¾iÓëkÁÚ½Ó£¬Ö®ºóÕÒÓëkÁÚ½ÓµÄj
+				int currik = iterk->second;  //(y,1) å­˜åœ¨å³>0 è¡¨ç¤ºiä¸ké‚»æ¥ï¼Œä¹‹åæ‰¾ä¸ké‚»æ¥çš„j
 				auto iterkj = hg.edge_info[curr_eindex].find(k);
-				if (iterkj != hg.edge_info[curr_eindex].end()) {  //k*jµÄÁÚ½Ó±íÖĞ´æÔÚµãkµÄÁÚ½ÓĞòÁĞ
-					auto iterj = iterkj->second.begin();  //iterj£ºµãkµÄÁÚ½ÓµãjĞòÁĞ
+				if (iterkj != hg.edge_info[curr_eindex].end()) {  //k*jçš„é‚»æ¥è¡¨ä¸­å­˜åœ¨ç‚¹kçš„é‚»æ¥åºåˆ—
+					auto iterj = iterkj->second.begin();  //iterjï¼šç‚¹kçš„é‚»æ¥ç‚¹jåºåˆ—
 					for (iterj; iterj != iterkj->second.end(); iterj++) {
 						int j = iterj->first;
 						int currkj = iterj->second;
-						//Ïò½á¹ûÖĞ£¬²åÈëiµÄÁÚ½Óµãj£¬ÁÚ½Ó¶àÖØ±ßÊıÎªcurrik*currkj
+						//å‘ç»“æœä¸­ï¼Œæ’å…¥içš„é‚»æ¥ç‚¹jï¼Œé‚»æ¥å¤šé‡è¾¹æ•°ä¸ºcurrik*currkj
 						auto iterri = tmatrix.find(i);
-						if (iterri == tmatrix.end()) {  //Èô»¹Î´¸üĞÂi£¬Ôò¸üĞÂÆäµÚÒ»¸öÁÚ½Óµãk
+						if (iterri == tmatrix.end()) {  //è‹¥è¿˜æœªæ›´æ–°iï¼Œåˆ™æ›´æ–°å…¶ç¬¬ä¸€ä¸ªé‚»æ¥ç‚¹k
 							map<int, int> iadjlistj;
 							iadjlistj.insert(map<int, int>::value_type(j, currik * currkj));
 							tmatrix.insert(map<int, map<int, int>>::value_type(i, iadjlistj));
 							iadjlistj.clear();
 						}
-						else {  //ÈôiÒÑ¸üĞÂ£¬ÅĞ¶ÏjÊÇ·ñÒÑ²åÈëµ½iµÄÁÚ½Ó±íÖĞ
+						else {  //è‹¥iå·²æ›´æ–°ï¼Œåˆ¤æ–­jæ˜¯å¦å·²æ’å…¥åˆ°içš„é‚»æ¥è¡¨ä¸­
 							auto iterrj = iterri->second.find(j);
-							if (iterrj == iterri->second.end()) {  //ÈôjÎ´×÷ÎªiµÄÁÚ¾Ó±»²åÈëµ½iµÄÁÚ½Ó±íÖĞ
+							if (iterrj == iterri->second.end()) {  //è‹¥jæœªä½œä¸ºiçš„é‚»å±…è¢«æ’å…¥åˆ°içš„é‚»æ¥è¡¨ä¸­
 								iterri->second.insert(map<int, int>::value_type(j, currik * currkj));
 							}
 							else {
 								int oldij = iterrj->second;
 								int nowij = oldij + currik * currkj;
-								iterrj->second = nowij;  //¸üĞÂijÎ»ÖÃµÄÖµ
+								iterrj->second = nowij;  //æ›´æ–°ijä½ç½®çš„å€¼
 							}
 						}
 					}
@@ -417,11 +417,11 @@ void multigraph::getPmg(vector<char>* P) {
 		hg.edge_info[curr_eindex].clear();
 		pt11 = clock();
 		time11 = (double)(pt11 - ps11) / CLOCKS_PER_SEC;
-		cout << " ÓÃÊ±£º" << time11;
+		cout << " ç”¨æ—¶ï¼š" << time11;
 		cout << endl;
-		out_result << "¼ÆËã" << eindex[p - 1] << '*' << curr_eindex << "µÄÁÚ½Ó¾ØÕó" << " ÓÃÊ±£º" << time11 << endl;
+		out_result << "è®¡ç®—" << eindex[p - 1] << '*' << curr_eindex << "çš„é‚»æ¥çŸ©é˜µ" << " ç”¨æ—¶ï¼š" << time11 << endl;
 	}
-	//save_Mpl(&matrixpl);  //±£´æMpl
+	//save_Mpl(&matrixpl);  //ä¿å­˜Mpl
 	eindex.clear();
 	/*for (auto it : matrixpl) {
 		cout << it.first << ":";
@@ -431,13 +431,13 @@ void multigraph::getPmg(vector<char>* P) {
 		cout << endl;
 	}*/
 
-	/*¼ÆËã³öMplºó£¬¼ÆËãMp+side*/
-	cout << "¼ÆËãadjlist" << endl;
+	/*è®¡ç®—å‡ºMplåï¼Œè®¡ç®—Mp+side*/
+	cout << "è®¡ç®—adjlist" << endl;
 	double ps12, pt12, time12;
 	ps12 = clock();
 	m_edge = 0;
 
-	//µÃµ½MplÁÚ½Ó±íµÄ×ªÖÃ
+	//å¾—åˆ°Mplé‚»æ¥è¡¨çš„è½¬ç½®
 	map<int, map<int, int>> matrixplt;
 	for (auto it : matrixpl) {
 		int x = it.first;
@@ -445,9 +445,9 @@ void multigraph::getPmg(vector<char>* P) {
 		for (ity; ity != it.second.end(); ity++) {
 			int y = ity->first;
 			int valuexy = ity->second;
-			//yÓëxÁÚ½Ó£¬ÖµÎªvaluexy
+			//yä¸xé‚»æ¥ï¼Œå€¼ä¸ºvaluexy
 			auto itfindy = matrixplt.find(y);
-			if (itfindy == matrixplt.end()) {  //yÎ´²åÈë
+			if (itfindy == matrixplt.end()) {  //yæœªæ’å…¥
 				map<int, int> yadjlistx;
 				yadjlistx.insert(map<int, int>::value_type(x, valuexy));
 				matrixplt.insert(map<int, map<int, int>>::value_type(y, yadjlistx));
@@ -458,27 +458,27 @@ void multigraph::getPmg(vector<char>* P) {
 			}
 		}
 	}
-	cout << "×ªÖÃ¼ÆËãÍê±Ï" << endl;
+	cout << "è½¬ç½®è®¡ç®—å®Œæ¯•" << endl;
 	double pt13 = clock();
 	double time13 = (double)(pt13 - ps12) / CLOCKS_PER_SEC;
-	out_result << "¼ÆËãmplµÄ×ªÖÃÓÃÊ±£º" << time13 << endl;
+	out_result << "è®¡ç®—mplçš„è½¬ç½®ç”¨æ—¶ï¼š" << time13 << endl;
 
-	for (int i = 0; i < n_vertex; i++) {  //¼ÆËãµÚi¸öµãµÄÁÚ½ÓĞòÁĞ
-		cout << "¼ÆËãµ½µÚ" << i;
-		auto iterik = matrixpl.find(i);  //ÕÒµÚi¸öµãµÄkÁÚ½ÓĞòÁĞ
-		if (iterik != matrixpl.end()) {  //ÕÒµ½ÁË
+	for (int i = 0; i < n_vertex; i++) {  //è®¡ç®—ç¬¬iä¸ªç‚¹çš„é‚»æ¥åºåˆ—
+		cout << "è®¡ç®—åˆ°ç¬¬" << i;
+		auto iterik = matrixpl.find(i);  //æ‰¾ç¬¬iä¸ªç‚¹çš„ké‚»æ¥åºåˆ—
+		if (iterik != matrixpl.end()) {  //æ‰¾åˆ°äº†
 			auto iterk = iterik->second.begin();
-			for (iterk; iterk != iterik->second.end(); iterk++) {  //¶ÔÓÚiµÄÃ¿¸öÁÚ½Óµãk
+			for (iterk; iterk != iterik->second.end(); iterk++) {  //å¯¹äºiçš„æ¯ä¸ªé‚»æ¥ç‚¹k
 				int k = iterk->first;
 				int currik = iterk->second;
-				auto iterkj = matrixplt.find(k);//ÕÒkµÄÁÚ½Óµãj
+				auto iterkj = matrixplt.find(k);//æ‰¾kçš„é‚»æ¥ç‚¹j
 				if (iterkj != matrixplt.end()) {
 					auto iterj = iterkj->second.begin();
 					for (iterj; iterj != iterkj->second.end(); iterj++) {
 						int j = iterj->first;
 						int currkj = iterj->second;
 						if (j > i) {
-							//ÏòiµÄadjlistÖĞ£¬²åÈëj£¨¿ÉÄÜÒÑ¾­²åÈë¹ı£¬Ò²¿ÉÄÜÃ»²åÈë¹ı£©;Í¬Ê±ÏòjµÄadjlistÖĞ²åÈëi
+							//å‘içš„adjlistä¸­ï¼Œæ’å…¥jï¼ˆå¯èƒ½å·²ç»æ’å…¥è¿‡ï¼Œä¹Ÿå¯èƒ½æ²¡æ’å…¥è¿‡ï¼‰;åŒæ—¶å‘jçš„adjlistä¸­æ’å…¥i
 							if (adjlist[i].find(j) == adjlist[i].end()) {
 								m_edge++;
 								adjlist[i].insert(map<int, int>::value_type(j, currik * currkj));
@@ -505,8 +505,8 @@ void multigraph::getPmg(vector<char>* P) {
 	matrixpl.clear(); matrixplt.clear();
 	pt12 = clock();
 	time12 = (double)(pt12 - ps12) / CLOCKS_PER_SEC;
-	cout << "ÓÉmplµÃµ½mpÓÃÊ±£º" << time12 << endl;
-	out_result<< "ÓÉmplµÃµ½mpÓÃÊ±£º" << time12 << endl;
+	cout << "ç”±mplå¾—åˆ°mpç”¨æ—¶ï¼š" << time12 << endl;
+	out_result<< "ç”±mplå¾—åˆ°mpç”¨æ—¶ï¼š" << time12 << endl;
 	/*cout << "side vertex:";
 	for (int i = 0; i < side.size(); i++) cout << side[i] << " ";
 	cout << endl;*/
