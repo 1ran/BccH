@@ -10,7 +10,15 @@ This repository contains basic and advanced algorithms proposed in this article.
 * IMDb：downloadable from https://www.imdb.com/interfaces/ <br />
 
 The preprocessed data used in our experiments can be found in the "data" folder. <br />
-## algorithms
-Please see b_base.cpp and k_base.cpp for the basic algorithms. <br />
-Please see b_ba_s2_i1.cpp and k_ba_i.cpp for the advanced algorithms.<br />
-Before running the file, please change the parameter "file" to the dataset folder and modify the parameter "P" to the m-path seleced for this dataset.
+## Rreproduce major results
+### experimental environment
+Compiled by Microsoft Visual Studio 2019 with MSVC++ 14.2
+### algorithms
+Please see b_base.cpp for the basic algorithm to compute bBC. <br />
+Please see k_base.cpp for the basic algorithm to compute kBC. <br />
+Please see b_ba_s2_i1.cpp for the algorithm with SD2 and ID1 optimization strategies. <br />
+Please see k_ba_i.cpp for the algorithm with ID optimization strategies.<br />
+### parameter
+Before running the algorithm, please refine the parameter each .cpp file.<br/>
+Please refine the parameter "file" with the local dataset folder. <br />
+Please refine the parameter "P" with the meta-path seleced for this dataset.<br />
