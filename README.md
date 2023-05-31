@@ -18,7 +18,8 @@ Please see b_base.cpp for the basic algorithm to compute bBC. <br />
 Please see k_base.cpp for the basic algorithm to compute kBC. <br />
 Please see b_ba_s2_i1.cpp for the algorithm with SD2 and ID1 optimization strategies. <br />
 Please see k_ba_i.cpp for the algorithm with ID optimization strategies.<br />
+You can run the .cpp file directly to get the experimental results.
 ### parameter
-Before running the algorithm, please refine the parameter each .cpp file.<br/>
+Before running the .cpp files, please refine the parameter.<br/>
 Please refine the parameter "file" with the local dataset folder. <br />
 Please refine the parameter "P" with the meta-path seleced for this dataset.<br />
