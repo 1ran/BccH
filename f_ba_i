@@ -1,4 +1,4 @@
-//Ê¶±ğidentical¶¥µã£¨×îĞÂ¶¨Òå£¬Í¬Ò»identicalµã¼¯ÖĞ£¬ÈÎÒâidenticalµãÖ®¼äµÄedgeinfoÏàÍ¬£©£¬PmgÖĞÓĞadjlist
+//è¯†åˆ«identicalé¡¶ç‚¹ï¼ˆæœ€æ–°å®šä¹‰ï¼ŒåŒä¸€identicalç‚¹é›†ä¸­ï¼Œä»»æ„identicalç‚¹ä¹‹é—´çš„edgeinfoç›¸åŒï¼‰ï¼ŒPmgä¸­æœ‰adjlist
 #include<iostream>
 #include<vector>
 #include<map>
@@ -13,48 +13,48 @@ using namespace std;
 
 class hetergraph {
 public:
-	int n_vertexclass;  //¶¥µãÀà±ğÊı
-	map<char, int> vertex_class_index;  //¶¥µãÀà±ğ-¶¥µã±àºÅ
-	vector<int> vertex_num;  //°´¶¥µãË÷ÒıË³Ğò´æ´¢Ã¿Àà¶¥µãÊı
+	int n_vertexclass;  //é¡¶ç‚¹ç±»åˆ«æ•°
+	map<char, int> vertex_class_index;  //é¡¶ç‚¹ç±»åˆ«-é¡¶ç‚¹ç¼–å·
+	vector<int> vertex_num;  //æŒ‰é¡¶ç‚¹ç´¢å¼•é¡ºåºå­˜å‚¨æ¯ç±»é¡¶ç‚¹æ•°
 
-	int n_edgeclass;  //±ßµÄÀà±ğÊı
-	vector<vector<int>> edge_class;  //Ã¿Àà±ßÁ¬½ÓµÄ¶¥µãÀà±ğ£º¶¥µã±àºÅx¡ª¶¥µã±àºÅy
-	vector<int> edge_num;  //Ã¿Àà±ßÊı
+	int n_edgeclass;  //è¾¹çš„ç±»åˆ«æ•°
+	vector<vector<int>> edge_class;  //æ¯ç±»è¾¹è¿æ¥çš„é¡¶ç‚¹ç±»åˆ«ï¼šé¡¶ç‚¹ç¼–å·xâ€”é¡¶ç‚¹ç¼–å·y
+	vector<int> edge_num;  //æ¯ç±»è¾¹æ•°
 
-	//vector<vector<vector<int>>> edge_info;  //3Î¬Êı×é£¬µÚÒ»Î¬edge_num£¬±íÊ¾Ã¿Àà±ß£»µÚ¶şÎ¬ºÍµÚÈıÎ¬±íÊ¾±ßedgeµÄÁÚ½Ó¾ØÕó
-	vector<map<int, map<int, int>>> edge_info;  //3Î¬Êı×é£¬µÚÒ»Î¬edge_num£¬±íÊ¾Ã¿Àà±ß£»µÚ¶şÎ¬ºÍµÚÈıÎ¬±íÊ¾±ßedgeµÄÁÚ½Ó±í
+	//vector<vector<vector<int>>> edge_info;  //3ç»´æ•°ç»„ï¼Œç¬¬ä¸€ç»´edge_numï¼Œè¡¨ç¤ºæ¯ç±»è¾¹ï¼›ç¬¬äºŒç»´å’Œç¬¬ä¸‰ç»´è¡¨ç¤ºè¾¹edgeçš„é‚»æ¥çŸ©é˜µ
+	vector<map<int, map<int, int>>> edge_info;  //3ç»´æ•°ç»„ï¼Œç¬¬ä¸€ç»´edge_numï¼Œè¡¨ç¤ºæ¯ç±»è¾¹ï¼›ç¬¬äºŒç»´å’Œç¬¬ä¸‰ç»´è¡¨ç¤ºè¾¹edgeçš„é‚»æ¥è¡¨
 
 	void read_file();
 	void show_hg();
-	int getEdgeIndex(int x, int y);  //¸ù¾İÊäÈëµÄÔªÂ·¾¶PÀ´Æ¥ÅäÒì¹¹schemaÍ¼ÉÏµÄ±ß
+	int getEdgeIndex(int x, int y);  //æ ¹æ®è¾“å…¥çš„å…ƒè·¯å¾„Pæ¥åŒ¹é…å¼‚æ„schemaå›¾ä¸Šçš„è¾¹
 };
 
 
 class multigraph {
 public:
-	int n_vertex;  //×îĞÂ¶¥µãÊı£¨¼ÓÈëcopyµÄ¹Ø½Ú¶¥µã£©
-	int n_vertex_org;  //Ô­¶¥µãÊı
-	int m_edge;  //±ßÊı
-	vector<vector<vector<int>>> edge_info;  //´æ´¢Ã¿Ìõ±ßµÄĞÅÏ¢[[class1index,num1],[class2index,num2]...]class¼´Â·¾¶ÊµÀıÀà±ğ£¬¼´Â·¾¶ÊµÀıÓëÄÄ¸öEÀà¶¥µãÏà¹Ø
-	//vector<vector<int>> Mp_edge;  //´æ´¢aiÓëajÖ®¼ä±ßµÄË÷Òı??
-	vector<map<int, int> > adjlist_edge;  //ÔÚÃ¿Ò»ĞĞ´æ´¢¶¥µãµÄÏàÁÚ¶¥µãµÄÍ¬Ê±£¬´æ´¢Í¨¹ıÄÄÌõ±ßÓëÏàÁÚ¶¥µãÏàÁ¬
+	int n_vertex;  //æœ€æ–°é¡¶ç‚¹æ•°ï¼ˆåŠ å…¥copyçš„å…³èŠ‚é¡¶ç‚¹ï¼‰
+	int n_vertex_org;  //åŸé¡¶ç‚¹æ•°
+	int m_edge;  //è¾¹æ•°
+	vector<vector<vector<int>>> edge_info;  //å­˜å‚¨æ¯æ¡è¾¹çš„ä¿¡æ¯[[class1index,num1],[class2index,num2]...]classå³è·¯å¾„å®ä¾‹ç±»åˆ«ï¼Œå³è·¯å¾„å®ä¾‹ä¸å“ªä¸ªEç±»é¡¶ç‚¹ç›¸å…³
+	//vector<vector<int>> Mp_edge;  //å­˜å‚¨aiä¸ajä¹‹é—´è¾¹çš„ç´¢å¼•??
+	vector<map<int, int> > adjlist_edge;  //åœ¨æ¯ä¸€è¡Œå­˜å‚¨é¡¶ç‚¹çš„ç›¸é‚»é¡¶ç‚¹çš„åŒæ—¶ï¼Œå­˜å‚¨é€šè¿‡å“ªæ¡è¾¹ä¸ç›¸é‚»é¡¶ç‚¹ç›¸è¿
 	//vector<vector<int> > Mp;  //??
 	//vector<vector<int> > adjlist;
 
 	void show_mg();
-	void getPmg(vector<char>* P);  //´ÓÒì¹¹Í¼ÖĞ»ñµÃPmg
-	void getPmg_read_file();      //´Ó±£´æµÄÎÄ¼şÖĞ¶ÁÈ¡MplºÍPmg
-	void save_Mpl(vector<vector<int>>* Mpl);  //±£´æMpl
-	void save_Pmg();  //±£´æÕû¸öPmg
+	void getPmg(vector<char>* P);  //ä»å¼‚æ„å›¾ä¸­è·å¾—Pmg
+	void getPmg_read_file();      //ä»ä¿å­˜çš„æ–‡ä»¶ä¸­è¯»å–Mplå’ŒPmg
+	void save_Mpl(vector<vector<int>>* Mpl);  //ä¿å­˜Mpl
+	void save_Pmg();  //ä¿å­˜æ•´ä¸ªPmg
 	void deleteVertex(int v);
 	void deleteEdge(int a, int b);
 };
 
-void CBC(int s);  //±£´ævºóµÄÂ·¾¶ÊµÀıĞÅÏ¢
-void CBC_(int s);  //Ö±½ÓÔÚpredÖĞ±£´æ±ßÈ¨£»predÓÃvector  ¡¾×î¿ì¡¿
-void CBC_1(int s);  //Ö±½ÓÔÚpredÖĞ±£´æ±ßÈ¨£»predÓÃmap 
-void CBC_ident0(int s);  //+ident£¬ident[s]=0
-void CBC_ident1(int s);  //+ident£¬ident[s]>0
+void CBC(int s);  //ä¿å­˜våçš„è·¯å¾„å®ä¾‹ä¿¡æ¯
+void CBC_(int s);  //ç›´æ¥åœ¨predä¸­ä¿å­˜è¾¹æƒï¼›predç”¨vector  ã€æœ€å¿«ã€‘
+void CBC_1(int s);  //ç›´æ¥åœ¨predä¸­ä¿å­˜è¾¹æƒï¼›predç”¨map 
+void CBC_ident0(int s);  //+identï¼Œident[s]=0
+void CBC_ident1(int s);  //+identï¼Œident[s]>0
 void CBC_reachident(int s); //+reach+ident
 void save_bc();
 void getbcfromfile();
@@ -76,13 +76,13 @@ string file = "data1";
 hetergraph hg;
 multigraph Pmg;
 vector<double> bc;
-map<int, vector<int>> IdentSet;  //¶¥µã´ú±íÆäËûidentical¶¥µãµÄÁĞ±í
-map<int, map<int, int>> IdentSetEdgeindex;  //¼ÇÂ¼proxy¶¥µãÓëÆäËû´ú±íµÄ¶¥µãÖ®¼ä±ßµÄË÷Òı
-vector<int> ident;     //¶¥µã´ú±íÆäËûidentical¶¥µãµÄ¸öÊı£¨²»°üÀ¨×Ô¼º£©
-vector<int> flag_addtoident;  //ÒÑ¾­¼ÓÈëidenticalµã¼¯µÄ¶¥µã
-//vector<double> deta0;  //ÑéÖ¤
+map<int, vector<int>> IdentSet;  //é¡¶ç‚¹ä»£è¡¨å…¶ä»–identicalé¡¶ç‚¹çš„åˆ—è¡¨
+map<int, map<int, int>> IdentSetEdgeindex;  //è®°å½•proxyé¡¶ç‚¹ä¸å…¶ä»–ä»£è¡¨çš„é¡¶ç‚¹ä¹‹é—´è¾¹çš„ç´¢å¼•
+vector<int> ident;     //é¡¶ç‚¹ä»£è¡¨å…¶ä»–identicalé¡¶ç‚¹çš„ä¸ªæ•°ï¼ˆä¸åŒ…æ‹¬è‡ªå·±ï¼‰
+vector<int> flag_addtoident;  //å·²ç»åŠ å…¥identicalç‚¹é›†çš„é¡¶ç‚¹
+//vector<double> deta0;  //éªŒè¯
 vector<int> reach;
-map<int, int> org;  //map[100]=1  ±íÊ¾¶¥µã100ÔÚ¹Ø½Ú¶¥µã»®·ÖÇ°µÄÔ­¶¥µãÊÇ1
+map<int, int> org;  //map[100]=1  è¡¨ç¤ºé¡¶ç‚¹100åœ¨å…³èŠ‚é¡¶ç‚¹åˆ’åˆ†å‰çš„åŸé¡¶ç‚¹æ˜¯1
 ofstream out_result(file + "/al1_time_result_amdma.txt");
 int counta = 0, countb = 0;
 int count_ident_edge = 0;
@@ -95,43 +95,43 @@ double weight_min = 100000;
 double weight_max = 0;
 
 int main() {
-	//Ò»¡¢¸ù¾İÒì¹¹Í¼¼ÆËãPmg
+	//ä¸€ã€æ ¹æ®å¼‚æ„å›¾è®¡ç®—Pmg
 	double ps00, pt00, time00;
 	ps00 = clock();
 	hg.read_file();
 	pt00 = clock();
 	time00 = (double)(pt00 - ps00) / CLOCKS_PER_SEC;
-	out_result << "¶ÁÈëÒì¹¹Í¼ÓÃÊ±£º" << time00 << endl;
-	cout << "¶ÁÈëÒì¹¹Í¼ÓÃÊ±£º" << time00 << endl;
+	out_result << "è¯»å…¥å¼‚æ„å›¾ç”¨æ—¶ï¼š" << time00 << endl;
+	cout << "è¯»å…¥å¼‚æ„å›¾ç”¨æ—¶ï¼š" << time00 << endl;
 	/*hg.show_hg();*/
 	double ps0, pt0, time0;
 	ps0 = clock();
 	vector<char> P = { 'A','M','W','M','A' };
 	//vector<char> P = { 'A','P','V','P','A' };
 	//vector<char> P = { 'B','U','B' };
-	Pmg.getPmg(&P);  //µÃµ½P-multigraph
+	Pmg.getPmg(&P);  //å¾—åˆ°P-multigraph
 	pt0 = clock();
 	time0 = (double)(pt0 - ps0) / CLOCKS_PER_SEC;
-	cout << "µÃµ½PmgÓÃÊ±£º" << time0 << endl;
-	out_result << "µÃµ½PmgÓÃÊ±:" << time0 << endl;
-	cout << "µãÊı£º" << Pmg.n_vertex << endl;
-	out_result << "PmgµãÊı£º" << Pmg.n_vertex << endl;
-	cout << "±ßÊı£º" << Pmg.m_edge << endl;
-	out_result << "Pmg±ßÊı£º" << Pmg.m_edge << endl;
+	cout << "å¾—åˆ°Pmgç”¨æ—¶ï¼š" << time0 << endl;
+	out_result << "å¾—åˆ°Pmgç”¨æ—¶:" << time0 << endl;
+	cout << "ç‚¹æ•°ï¼š" << Pmg.n_vertex << endl;
+	out_result << "Pmgç‚¹æ•°ï¼š" << Pmg.n_vertex << endl;
+	cout << "è¾¹æ•°ï¼š" << Pmg.m_edge << endl;
+	out_result << "Pmgè¾¹æ•°ï¼š" << Pmg.m_edge << endl;
 	//Pmg.show_mg();
-	//¶ş¡¢ÒÑ¾­±£´æÁËPmg£¬´ÓÎÄ¼şÖĞ¶ÁÈ¡
+	//äºŒã€å·²ç»ä¿å­˜äº†Pmgï¼Œä»æ–‡ä»¶ä¸­è¯»å–
 	/*Pmg.getPmg_read_file();*/
 	/*Pmg.show_mg();*/
 
-	/*Í³¼Æ×î´óÁ¬Í¨·ÖÁ¿´óĞ¡*/
+	/*ç»Ÿè®¡æœ€å¤§è¿é€šåˆ†é‡å¤§å°*/
 	double pcmps, pcmpt, timecmp;
 	pcmps = clock();
 	int maxComponent = getMaxComponent();
-	cout << "×î´óÁ¬Í¨·ÖÁ¿£º" << maxComponent << endl;
-	out_result << "Pmg×î´óÁ¬Í¨·ÖÁ¿£º" << maxComponent << endl;
+	cout << "æœ€å¤§è¿é€šåˆ†é‡ï¼š" << maxComponent << endl;
+	out_result << "Pmgæœ€å¤§è¿é€šåˆ†é‡ï¼š" << maxComponent << endl;
 	pcmpt = clock();
 	timecmp = (double)(pcmpt - pcmps) / CLOCKS_PER_SEC;
-	out_result << "¼ÆËã×î´óÁ¬Í¨·ÖÁ¿´óĞ¡ÓÃÊ±£º" << timecmp << endl;
+	out_result << "è®¡ç®—æœ€å¤§è¿é€šåˆ†é‡å¤§å°ç”¨æ—¶ï¼š" << timecmp << endl;
 
 
 	bc.resize(Pmg.n_vertex);
@@ -140,39 +140,39 @@ int main() {
 	
 	double ps1, pt1, time1;
 	ps1 = clock();
-	BridgeEdgeDivide();  //ÇÅ±ß·Ö¸î
+	BridgeEdgeDivide();  //æ¡¥è¾¹åˆ†å‰²
 	pt1 = clock();
 	time1 = (double)(pt1 - ps1) / CLOCKS_PER_SEC;
-	cout << "ÇÅ±ß·Ö¸îÍê±Ï,¹²»®·Ö" << countb << "¸öÇÅ±ß,×ÜÓÃÊ±£º" << time1 << endl;
-	out_result << "ÇÅ±ß·Ö¸îÍê±Ï,¹²»®·Ö(É¾³ı)" << countb << "¸öÇÅ±ß,×ÜÓÃÊ±£º" << time1 << endl;
+	cout << "æ¡¥è¾¹åˆ†å‰²å®Œæ¯•,å…±åˆ’åˆ†" << countb << "ä¸ªæ¡¥è¾¹,æ€»ç”¨æ—¶ï¼š" << time1 << endl;
+	out_result << "æ¡¥è¾¹åˆ†å‰²å®Œæ¯•,å…±åˆ’åˆ†(åˆ é™¤)" << countb << "ä¸ªæ¡¥è¾¹,æ€»ç”¨æ—¶ï¼š" << time1 << endl;
 
 	double pcmpsb, pcmptb, timecmpb;
 	pcmpsb = clock();
 	int maxComponentb = getMaxComponent();
-	cout << "ÇÅ±ß·Ö¸îºó£¬×î´óÁ¬Í¨·ÖÁ¿£º" << maxComponentb << endl;
-	out_result << "ÇÅ±ß·Ö¸îºó£¬×î´óÁ¬Í¨·ÖÁ¿£º" << maxComponentb << endl;
+	cout << "æ¡¥è¾¹åˆ†å‰²åï¼Œæœ€å¤§è¿é€šåˆ†é‡ï¼š" << maxComponentb << endl;
+	out_result << "æ¡¥è¾¹åˆ†å‰²åï¼Œæœ€å¤§è¿é€šåˆ†é‡ï¼š" << maxComponentb << endl;
 	pcmptb = clock();
 	timecmpb = (double)(pcmptb - pcmpsb) / CLOCKS_PER_SEC;
-	out_result << "¼ÆËã×î´óÁ¬Í¨·ÖÁ¿´óĞ¡ÓÃÊ±£º" << timecmpb << endl;
+	out_result << "è®¡ç®—æœ€å¤§è¿é€šåˆ†é‡å¤§å°ç”¨æ—¶ï¼š" << timecmpb << endl;
 
 
 	double ps2, pt2, time2;
 	ps2 = clock();
-	ArticulationVertexDivide();  //¹Ø½Ú¶¥µã·Ö¸î
-	bc.resize(Pmg.n_vertex);  //ĞÂ¼ÓÈëµÄcopy¹Ø½Ú¶¥µãµÄbcÖµµÄ´æ´¢¿Õ¼ä
+	ArticulationVertexDivide();  //å…³èŠ‚é¡¶ç‚¹åˆ†å‰²
+	bc.resize(Pmg.n_vertex);  //æ–°åŠ å…¥çš„copyå…³èŠ‚é¡¶ç‚¹çš„bcå€¼çš„å­˜å‚¨ç©ºé—´
 	pt2 = clock();
 	time2 = (double)(pt2 - ps2) / CLOCKS_PER_SEC;
-	cout << "¹Ø½Ú¶¥µã·Ö¸îÍê±Ï£¬¹²»®·Ö" << counta << "¸ö¹Ø½Ú¶¥µã,×ÜÓÃÊ±£º" << time2 << endl;
-	out_result << "¹Ø½Ú¶¥µã·Ö¸îÍê±Ï£¬¹²»®·Ö" << counta << "¸ö¹Ø½Ú¶¥µã,×ÜÓÃÊ±£º" << time2 << endl;
+	cout << "å…³èŠ‚é¡¶ç‚¹åˆ†å‰²å®Œæ¯•ï¼Œå…±åˆ’åˆ†" << counta << "ä¸ªå…³èŠ‚é¡¶ç‚¹,æ€»ç”¨æ—¶ï¼š" << time2 << endl;
+	out_result << "å…³èŠ‚é¡¶ç‚¹åˆ†å‰²å®Œæ¯•ï¼Œå…±åˆ’åˆ†" << counta << "ä¸ªå…³èŠ‚é¡¶ç‚¹,æ€»ç”¨æ—¶ï¼š" << time2 << endl;
 
 	double pcmps1, pcmpt1, timecmp1;
 	pcmps1 = clock();
 	int maxComponent1 = getMaxComponent();
-	cout << "ÇÅ±ß¡¢¹Ø½Ú¶¥µã·Ö¸îºó£¬×î´óÁ¬Í¨·ÖÁ¿£º" << maxComponent1 << endl;
-	out_result << "ÇÅ±ß¡¢¹Ø½Ú¶¥µã·Ö¸îºó£¬×î´óÁ¬Í¨·ÖÁ¿£º" << maxComponent1 << endl;
+	cout << "æ¡¥è¾¹ã€å…³èŠ‚é¡¶ç‚¹åˆ†å‰²åï¼Œæœ€å¤§è¿é€šåˆ†é‡ï¼š" << maxComponent1 << endl;
+	out_result << "æ¡¥è¾¹ã€å…³èŠ‚é¡¶ç‚¹åˆ†å‰²åï¼Œæœ€å¤§è¿é€šåˆ†é‡ï¼š" << maxComponent1 << endl;
 	pcmpt1 = clock();
 	timecmp1 = (double)(pcmpt1 - pcmps1) / CLOCKS_PER_SEC;
-	out_result << "¼ÆËã×î´óÁ¬Í¨·ÖÁ¿´óĞ¡ÓÃÊ±£º" << timecmp1 << endl;
+	out_result << "è®¡ç®—æœ€å¤§è¿é€šåˆ†é‡å¤§å°ç”¨æ—¶ï¼š" << timecmp1 << endl;
 
 
 	/*for (int i = 0; i < Pmg.n_vertex; i++) cout << i << ":" << bc[i] << endl;*/
@@ -181,17 +181,17 @@ int main() {
 	Ident();
 	pt4 = clock();
 	time4 = (double)(pt4 - ps4) / CLOCKS_PER_SEC;
-	cout << "identical¶¥µãÊ¶±ğÓëºÏ²¢ÓÃÊ±£º" << time4 << endl;
-	out_result << "identical¶¥µãÊ¶±ğÓëºÏ²¢ÓÃÊ±£º" << time4 << endl;
+	cout << "identicalé¡¶ç‚¹è¯†åˆ«ä¸åˆå¹¶ç”¨æ—¶ï¼š" << time4 << endl;
+	out_result << "identicalé¡¶ç‚¹è¯†åˆ«ä¸åˆå¹¶ç”¨æ—¶ï¼š" << time4 << endl;
 
 	double pcmps2, pcmpt2, timecmp2;
 	pcmps2 = clock();
 	int maxComponent2 = getMaxComponent();
-	cout << "identical¶¥µãºÏ²¢Íê±Ïºó£¬×î´óÁ¬Í¨·ÖÁ¿£º" << maxComponent2 << endl;
-	out_result << "identical¶¥µãºÏ²¢Íê±Ïºó£¬×î´óÁ¬Í¨·ÖÁ¿£º" << maxComponent2 << endl;
+	cout << "identicalé¡¶ç‚¹åˆå¹¶å®Œæ¯•åï¼Œæœ€å¤§è¿é€šåˆ†é‡ï¼š" << maxComponent2 << endl;
+	out_result << "identicalé¡¶ç‚¹åˆå¹¶å®Œæ¯•åï¼Œæœ€å¤§è¿é€šåˆ†é‡ï¼š" << maxComponent2 << endl;
 	pcmpt2 = clock();
 	timecmp2 = (double)(pcmpt2 - pcmps2) / CLOCKS_PER_SEC;
-	out_result << "¼ÆËã×î´óÁ¬Í¨·ÖÁ¿´óĞ¡ÓÃÊ±£º" << timecmp2 << endl;
+	out_result << "è®¡ç®—æœ€å¤§è¿é€šåˆ†é‡å¤§å°ç”¨æ—¶ï¼š" << timecmp2 << endl;
 
 
 	double ps5, pt5, time5 = 0;
@@ -201,10 +201,10 @@ int main() {
 		if (flag_addtoident[i] == 0) {
 			ps5 = clock();
 			if (ident[i] == 0) {
-				CBC_ident0(i);  //µ±Ô´µãi²»ÊÇidenticalµã¼¯ÖĞµÄproxy¶¥µã
+				CBC_ident0(i);  //å½“æºç‚¹iä¸æ˜¯identicalç‚¹é›†ä¸­çš„proxyé¡¶ç‚¹
 			}
 			else {
-				CBC_ident1(i);  //µ±Ô´µãiÊÇproxy¶¥µã
+				CBC_ident1(i);  //å½“æºç‚¹iæ˜¯proxyé¡¶ç‚¹
 			}
 			pt5 = clock();
 			time5 += (double)(pt5 - ps5) / CLOCKS_PER_SEC;
@@ -214,59 +214,59 @@ int main() {
 		}
 		count++;
 		if(count%100==0)
-		    cout << count<<"¸ö¶¥µãÎªÔ´µã±éÀúÊ±¼ä£º" << time5<< endl;
+		    cout << count<<"ä¸ªé¡¶ç‚¹ä¸ºæºç‚¹éå†æ—¶é—´ï¼š" << time5<< endl;
 	}
 
-	//¸ù¾İ¹Ø½Ú¶¥µãµÄÓ³Éä¹ØÏµ£¬¼ÆËã¹Ø½Ú¶¥µãµÄbcÖµ
+	//æ ¹æ®å…³èŠ‚é¡¶ç‚¹çš„æ˜ å°„å…³ç³»ï¼Œè®¡ç®—å…³èŠ‚é¡¶ç‚¹çš„bcå€¼
 	for (auto it : org) {
 		bc[it.second] += bc[it.first];
 	}
 	double ptt = clock();
 
-	cout << "Ç°ÏòbfsµÄÊ±¼ä£º" << time5bfs << endl;
-	cout << "·´ÏòÀÛ»ıµÄÊ±¼ä£º" << time5back << endl;
-	cout << "¼ÆËãbcÖµµÄÊ±¼ä£º" << time5 << endl;
-	out_result << "Ç°ÏòbfsµÄÊ±¼ä£º" << time5bfs << endl;
-	out_result << "·´ÏòÀÛ»ıµÄÊ±¼ä£º" << time5back << endl;
-	out_result << "¼ÆËãbcÖµµÄÊ±¼ä£º" << time5 << endl;
+	cout << "å‰å‘bfsçš„æ—¶é—´ï¼š" << time5bfs << endl;
+	cout << "åå‘ç´¯ç§¯çš„æ—¶é—´ï¼š" << time5back << endl;
+	cout << "è®¡ç®—bcå€¼çš„æ—¶é—´ï¼š" << time5 << endl;
+	out_result << "å‰å‘bfsçš„æ—¶é—´ï¼š" << time5bfs << endl;
+	out_result << "åå‘ç´¯ç§¯çš„æ—¶é—´ï¼š" << time5back << endl;
+	out_result << "è®¡ç®—bcå€¼çš„æ—¶é—´ï¼š" << time5 << endl;
 
 	double time_all = (double)(ptt - ps00) / CLOCKS_PER_SEC;
-	cout << "×ÜÓÃÊ±£º" << time_all << endl;
-	out_result << "×ÜÓÃÊ±£º" << time_all << endl;
+	cout << "æ€»ç”¨æ—¶ï¼š" << time_all << endl;
+	out_result << "æ€»ç”¨æ—¶ï¼š" << time_all << endl;
 
 	/*for (int i = 0; i < Pmg.n_vertex; i++) {
 		if (bc[i] > 0) {
-			cout << "¶¥µã" << i << "µÄbcÖµ£º" << bc[i] << endl;
+			cout << "é¡¶ç‚¹" << i << "çš„bcå€¼ï¼š" << bc[i] << endl;
 		}
 	}*/
 	//compare_result();
 
-	cout << "È¨ÖØ×î´ó£º" << weight_max << endl;
-	cout << "È¨ÖØ×îĞ¡£º" << weight_min << endl;
-	cout << "È¨ÖØD×î´ó£º" << weight_D_max << endl;
-	cout << "È¨ÖØD×îĞ¡£º" << weight_D_min << endl;
-	cout << "È¨ÖØpathinstance×î´ó£º" << weight_pathinstance_max << endl;
-	cout << "È¨ÖØpathinstance×îĞ¡£º" << weight_pathinstance_min << endl;
-	out_result << "È¨ÖØ×î´ó£º" << fixed << setprecision(8) << weight_max << endl;
-	out_result << "È¨ÖØ×îĞ¡£º" << fixed << setprecision(8) << weight_min << endl;
-	out_result << "È¨ÖØD×î´ó£º" << fixed << setprecision(8) << weight_D_max << endl;
-	out_result << "È¨ÖØD×îĞ¡£º" << fixed << setprecision(8) << weight_D_min << endl;
-	out_result << "È¨ÖØpathinstance×î´ó£º" << fixed << setprecision(8) << weight_pathinstance_max << endl;
-	out_result << "È¨ÖØpathinstance×îĞ¡£º" << fixed << setprecision(8) << weight_pathinstance_min << endl;
+	cout << "æƒé‡æœ€å¤§ï¼š" << weight_max << endl;
+	cout << "æƒé‡æœ€å°ï¼š" << weight_min << endl;
+	cout << "æƒé‡Dæœ€å¤§ï¼š" << weight_D_max << endl;
+	cout << "æƒé‡Dæœ€å°ï¼š" << weight_D_min << endl;
+	cout << "æƒé‡pathinstanceæœ€å¤§ï¼š" << weight_pathinstance_max << endl;
+	cout << "æƒé‡pathinstanceæœ€å°ï¼š" << weight_pathinstance_min << endl;
+	out_result << "æƒé‡æœ€å¤§ï¼š" << fixed << setprecision(8) << weight_max << endl;
+	out_result << "æƒé‡æœ€å°ï¼š" << fixed << setprecision(8) << weight_min << endl;
+	out_result << "æƒé‡Dæœ€å¤§ï¼š" << fixed << setprecision(8) << weight_D_max << endl;
+	out_result << "æƒé‡Dæœ€å°ï¼š" << fixed << setprecision(8) << weight_D_min << endl;
+	out_result << "æƒé‡pathinstanceæœ€å¤§ï¼š" << fixed << setprecision(8) << weight_pathinstance_max << endl;
+	out_result << "æƒé‡pathinstanceæœ€å°ï¼š" << fixed << setprecision(8) << weight_pathinstance_min << endl;
 
 	out_result.close();
 	save_bc();
 	return 0;
 	
-	//string filename = file + "/deta0_.txt";  //baseÖĞ´æ´¢ÎÄ¼şµÄ»ù±¾ĞÅÏ¢£¬¸ù¾İ±ßÀà±ğµÄĞĞ¶ÔÓ¦µÄ±ßµÄË÷Òı£¬ÕÒµ½±ßµÄÎÄ¼ş"x.txt"
-	//ifstream inputt(filename, ios::in);  //ÊäÈëÎÄ¼şÁ÷¶ÔÏóinput
-	////ÅĞ¶ÏÎÄ¼şÊÇ·ñ´æÔÚ
+	//string filename = file + "/deta0_.txt";  //baseä¸­å­˜å‚¨æ–‡ä»¶çš„åŸºæœ¬ä¿¡æ¯ï¼Œæ ¹æ®è¾¹ç±»åˆ«çš„è¡Œå¯¹åº”çš„è¾¹çš„ç´¢å¼•ï¼Œæ‰¾åˆ°è¾¹çš„æ–‡ä»¶"x.txt"
+	//ifstream inputt(filename, ios::in);  //è¾“å…¥æ–‡ä»¶æµå¯¹è±¡input
+	////åˆ¤æ–­æ–‡ä»¶æ˜¯å¦å­˜åœ¨
 	//if (!inputt) {
 	//	cerr << "file error!" << endl;
 	//	exit(1);
 	//}
 	//vector<double> deta0_(Pmg.n_vertex_org);
-	////¶ÁÈëËùÓĞ¶¥µãµÄdeta0Öµ
+	////è¯»å…¥æ‰€æœ‰é¡¶ç‚¹çš„deta0å€¼
 	//string deta0_info;
 	//while (getline(inputt, deta0_info)) {
 	//	istringstream sdeta0_info(deta0_info);
@@ -275,12 +275,12 @@ int main() {
 	//	sdeta0_info >> v >> deta0;
 	//	deta0_[v] = deta0;
 	//}
-	//±È½Ïdeta0Öµ
+	//æ¯”è¾ƒdeta0å€¼
 	/*vector<int> different_v;
 	for (int i = 0; i < Pmg.n_vertex_org; i++) {
 		if (abs(deta0[i] - deta0_[i]) > 0.000001) different_v.push_back(i);
 	}
-	cout << "deta0Öµ²»Í¬µÄ¶¥µãÊı£º" << different_v.size() << endl;
+	cout << "deta0å€¼ä¸åŒçš„é¡¶ç‚¹æ•°ï¼š" << different_v.size() << endl;
 	for (int v : different_v) {
 		cout << v << ":" << deta0[v] << " " << deta0_[v] << endl;
 	}
@@ -334,16 +334,16 @@ int getComponentSize(int i, vector<int>* visited) {
 
 
 void compare_result() {
-	string filename = file + "/result.txt";  //baseÖĞ´æ´¢ÎÄ¼şµÄ»ù±¾ĞÅÏ¢£¬¸ù¾İ±ßÀà±ğµÄĞĞ¶ÔÓ¦µÄ±ßµÄË÷Òı£¬ÕÒµ½±ßµÄÎÄ¼ş"x.txt"
-	ifstream input(filename, ios::in);  //ÊäÈëÎÄ¼şÁ÷¶ÔÏóinput
-	//ÅĞ¶ÏÎÄ¼şÊÇ·ñ´æÔÚ
+	string filename = file + "/result.txt";  //baseä¸­å­˜å‚¨æ–‡ä»¶çš„åŸºæœ¬ä¿¡æ¯ï¼Œæ ¹æ®è¾¹ç±»åˆ«çš„è¡Œå¯¹åº”çš„è¾¹çš„ç´¢å¼•ï¼Œæ‰¾åˆ°è¾¹çš„æ–‡ä»¶"x.txt"
+	ifstream input(filename, ios::in);  //è¾“å…¥æ–‡ä»¶æµå¯¹è±¡input
+	//åˆ¤æ–­æ–‡ä»¶æ˜¯å¦å­˜åœ¨
 	if (!input) {
 		cerr << "file error!" << endl;
 		exit(1);
 	}
 
 	vector<double> bc0(Pmg.n_vertex_org);
-	//¶ÁÈëËùÓĞ¶¥µãµÄbcÖµ//±£´æÃ¿¸ö¶¥µãµÄbcÖµµÄÎÄ¼ş
+	//è¯»å…¥æ‰€æœ‰é¡¶ç‚¹çš„bcå€¼//ä¿å­˜æ¯ä¸ªé¡¶ç‚¹çš„bcå€¼çš„æ–‡ä»¶
 	string bc_info;
 	while (getline(input, bc_info)) {
 		istringstream sbc_info(bc_info);
@@ -353,20 +353,20 @@ void compare_result() {
 		bc0[v] = bc;
 	}
 
-	//±È½ÏbcÖµ
+	//æ¯”è¾ƒbcå€¼
 	vector<int> different_v;
 	for (int i = 0; i < Pmg.n_vertex_org; i++) {
 		if (abs(bc[i] - bc0[i]) > 0.000001) different_v.push_back(i);
 	}
-	cout << "bcÖµ²»Í¬µÄ¶¥µãÊı£º" << different_v.size() << endl;
+	cout << "bcå€¼ä¸åŒçš„é¡¶ç‚¹æ•°ï¼š" << different_v.size() << endl;
 	for (int v : different_v) {
 
 		cout << v << ":" << bc[v] << " " << bc0[v] << endl;
 	}
 }
 
-/*»®·ÖÇÅ±ß¡¢¹Ø½Ú¶¥µã*/
-/*¼ÆËã¶¥µãiËùÔÚµÄÁ¬Í¨·ÖÁ¿£¬ËùÓĞ¶¥µãµÄreachÖµÖ®ºÍ*/
+/*åˆ’åˆ†æ¡¥è¾¹ã€å…³èŠ‚é¡¶ç‚¹*/
+/*è®¡ç®—é¡¶ç‚¹iæ‰€åœ¨çš„è¿é€šåˆ†é‡ï¼Œæ‰€æœ‰é¡¶ç‚¹çš„reachå€¼ä¹‹å’Œ*/
 int countTotalReach(int i) {
 	int totalreach = 0;
 	queue<int> Q;
@@ -393,18 +393,18 @@ vector<int> low;
 int stamp;
 stack<int> stack_bi;
 
-/*»®·ÖÇÅ±ß*/
+/*åˆ’åˆ†æ¡¥è¾¹*/
 void BridgeEdgeDivide() {
-	dfn.resize(Pmg.n_vertex);  //dfn[i]¼ÇÂ¼ÁËµ÷ÓÃb_tarjanº¯Êı½øĞĞdfsÊ±µÄË³Ğò
-	low.resize(Pmg.n_vertex);  //low[i]¼ÇÂ¼ÁËµãiµÄÁÚ¾ÓÖĞ£¬×îĞ¡µÄdfnÖµ
+	dfn.resize(Pmg.n_vertex);  //dfn[i]è®°å½•äº†è°ƒç”¨b_tarjanå‡½æ•°è¿›è¡Œdfsæ—¶çš„é¡ºåº
+	low.resize(Pmg.n_vertex);  //low[i]è®°å½•äº†ç‚¹içš„é‚»å±…ä¸­ï¼Œæœ€å°çš„dfnå€¼
 	for (int i = 0; i < Pmg.n_vertex; i++) {
 		stamp = 0;
 		int totalreach;
 		if (!dfn[i]) {
-			totalreach = countTotalReach(i);  //¼ÆËãiËùÔÚµÄÁ¬Í¨·ÖÁ¿ÖĞ£¬¶¥µãµÄ×ÜÊı£¬»áÓĞÔ­Í¼¾ÍÊÇ¶à¸ö·ÇÁ¬Í¨·ÖÁ¿µÄÇé¿ö
+			totalreach = countTotalReach(i);  //è®¡ç®—iæ‰€åœ¨çš„è¿é€šåˆ†é‡ä¸­ï¼Œé¡¶ç‚¹çš„æ€»æ•°ï¼Œä¼šæœ‰åŸå›¾å°±æ˜¯å¤šä¸ªéè¿é€šåˆ†é‡çš„æƒ…å†µ
 			/*cout << "totalreach:" << totalreach << endl;*/
-			/*outt << "£¡£¡£¡ÒÔ" << i << "ÎªÔ´µã,total reach:" << totalreach << endl;*/
-			b_tarjan(i, -1, totalreach);  //¶ÔiËùÔÚµÄÁ¬Í¨·ÖÁ¿Ö´ĞĞb_tarjan£¬»®·ÖÇÅ±ß
+			/*outt << "ï¼ï¼ï¼ä»¥" << i << "ä¸ºæºç‚¹,total reach:" << totalreach << endl;*/
+			b_tarjan(i, -1, totalreach);  //å¯¹iæ‰€åœ¨çš„è¿é€šåˆ†é‡æ‰§è¡Œb_tarjanï¼Œåˆ’åˆ†æ¡¥è¾¹
 		}
 		/*cout << "stacklefgsize:" << stack_bi.size() << endl;*/
 		stack<int>().swap(stack_bi);
@@ -421,24 +421,24 @@ void b_tarjan(int index, int fa, int totalreach) {
 	map<int, int> indexadj = Pmg.adjlist_edge[index];
 	for (auto adjj : indexadj) {
 		int j = adjj.first;
-		/*outt  << index << "µÄÁÚ¾Ó" << j << endl;*/
+		/*outt  << index << "çš„é‚»å±…" << j << endl;*/
 		/*int j = j_[0];*/
 		if (j == fa) continue;
 		if (!dfn[j]) {
 			b_tarjan(j, index, totalreach);
-			/*outt << "¶Ô" << j << "·ÃÎÊÍê±Ï" << endl;
-			outt << "¸üĞÂlow[" << index << "]=min(" << low[index] << "," << low[j] << ")";*/
+			/*outt << "å¯¹" << j << "è®¿é—®å®Œæ¯•" << endl;
+			outt << "æ›´æ–°low[" << index << "]=min(" << low[index] << "," << low[j] << ")";*/
 			low[index] = min(low[index], low[j]);
 			/*outt << "low[" << index << "]=" << low[index] << endl;*/
-			/*outt << "ÅĞ¶Ï" << index << "-" << j << "ÊÇ·ñÊÇÇÅ±ß" << endl;*/
+			/*outt << "åˆ¤æ–­" << index << "-" << j << "æ˜¯å¦æ˜¯æ¡¥è¾¹" << endl;*/
 			if (low[j] > dfn[index]) {
-				//±ßindex-jÊÇÇÅ±ß
-				cout << "ÕÒµ½ÇÅ±ß£º" << index << "-" << j << endl;
+				//è¾¹index-jæ˜¯æ¡¥è¾¹
+				cout << "æ‰¾åˆ°æ¡¥è¾¹ï¼š" << index << "-" << j << endl;
 				countb++;
 				/*outt << index << "-" << j << endl;*/
 				int repj = 0, repindex = 0;
-				/*cout << "Õ»£º" << endl;*/
-				while (stack_bi.top() != j) {  //¼ÆËãjËùÔÚµÄ·ÖÁ¿ÖĞ£¬¶¥µãµÄreachÖ®ºÍ
+				/*cout << "æ ˆï¼š" << endl;*/
+				while (stack_bi.top() != j) {  //è®¡ç®—jæ‰€åœ¨çš„åˆ†é‡ä¸­ï¼Œé¡¶ç‚¹çš„reachä¹‹å’Œ
 					int temp = stack_bi.top();
 					/*cout << temp << endl;*/
 					stack_bi.pop();
@@ -446,19 +446,19 @@ void b_tarjan(int index, int fa, int totalreach) {
 				}
 				/*cout << j << endl;*/
 				repj += reach[j]; stack_bi.pop();
-				repindex = totalreach - repj;  //indexËùÔÚ·ÖÁ¿µÄ¶¥µãµÄreachÖ®ºÍ£¬µÈÓÚ×Üreach-jËùÔÚ·ÖÁ¿µÄreachÖ®ºÍ
-				//¸üĞÂindex¡¢jµÄreachÖµ
+				repindex = totalreach - repj;  //indexæ‰€åœ¨åˆ†é‡çš„é¡¶ç‚¹çš„reachä¹‹å’Œï¼Œç­‰äºæ€»reach-jæ‰€åœ¨åˆ†é‡çš„reachä¹‹å’Œ
+				//æ›´æ–°indexã€jçš„reachå€¼
 				reach[index] += repj;  reach[j] += repindex;
 
-				//ÀÛ¼ÓÈ±ÉÙµÄpair-dependency
+				//ç´¯åŠ ç¼ºå°‘çš„pair-dependency
 				bc[index] += ((double)repindex - 1) * repj;
 				bc[j] += ((double)repj - 1) * repindex;
-				//ĞŞ¸ÄÁÚ½Ó±í£¬ÁÚ½Ó¾ØÕó
+				//ä¿®æ”¹é‚»æ¥è¡¨ï¼Œé‚»æ¥çŸ©é˜µ
 				Pmg.deleteEdge(index, j);
 			}
 		}
 		else if (dfn[j] < dfn[index]) {
-			/*outt << j<<"ÔÚÖ®Ç°±»·ÃÎÊ¹ı£¬Í¨¹ıdfn[" << j << "]¸üĞÂlow[" << index << "]=(min(" << low[index] << ", " << dfn[j] << "))  ";*/
+			/*outt << j<<"åœ¨ä¹‹å‰è¢«è®¿é—®è¿‡ï¼Œé€šè¿‡dfn[" << j << "]æ›´æ–°low[" << index << "]=(min(" << low[index] << ", " << dfn[j] << "))  ";*/
 			low[index] = min(low[index], dfn[j]);
 			/*outt << "low[" << index << "]=" << low[index] << endl;*/
 		}
@@ -467,8 +467,8 @@ void b_tarjan(int index, int fa, int totalreach) {
 }
 
 
-//Ê¶±ğ¹Ø½Ú¶¥µã£¬×¢ÒâÒªÔÚbcºóÔö¼ÓĞÂÔö¶¥µãviµÄbcÖµ£»ÔÚÁÚ½Ó¾ØÕóÖĞÔö¼ÓĞÂÔöviµÄĞĞºÍÁĞ£»ÔÚÁÚ½Ó±íÖĞÓÃvi´úÌæ²¿·Öv£»¸üĞÂPmgµÄn_vertex
-/*»®·Ö¹Ø½Ú¶¥µã*/
+//è¯†åˆ«å…³èŠ‚é¡¶ç‚¹ï¼Œæ³¨æ„è¦åœ¨bcåå¢åŠ æ–°å¢é¡¶ç‚¹viçš„bcå€¼ï¼›åœ¨é‚»æ¥çŸ©é˜µä¸­å¢åŠ æ–°å¢viçš„è¡Œå’Œåˆ—ï¼›åœ¨é‚»æ¥è¡¨ä¸­ç”¨viä»£æ›¿éƒ¨åˆ†vï¼›æ›´æ–°Pmgçš„n_vertex
+/*åˆ’åˆ†å…³èŠ‚é¡¶ç‚¹*/
 void ArticulationVertexDivide() {
 	dfn.resize(Pmg.n_vertex);
 	low.resize(Pmg.n_vertex);
@@ -476,9 +476,9 @@ void ArticulationVertexDivide() {
 		stamp = 0;
 		int totalreach;
 		if (!dfn[i]) {
-			totalreach = countTotalReach(i);  //¼ÆËãiËùÔÚµÄÁ¬Í¨·ÖÁ¿ÖĞ£¬¶¥µãµÄ×ÜÊı
+			totalreach = countTotalReach(i);  //è®¡ç®—iæ‰€åœ¨çš„è¿é€šåˆ†é‡ä¸­ï¼Œé¡¶ç‚¹çš„æ€»æ•°
 			/*cout << "totalreach:" << totalreach << endl;*/
-			a_tarjan(i, -1, totalreach);  //¶ÔiËùÔÚµÄÁ¬Í¨·ÖÁ¿Ö´ĞĞb_tarjan£¬»®·ÖÇÅ±ß
+			a_tarjan(i, -1, totalreach);  //å¯¹iæ‰€åœ¨çš„è¿é€šåˆ†é‡æ‰§è¡Œb_tarjanï¼Œåˆ’åˆ†æ¡¥è¾¹
 		}
 		stack<int>().swap(stack_bi);
 	}
@@ -490,7 +490,7 @@ void a_tarjan(int index, int fa, int totalreach) {
 	dfn[index] = ++stamp;
 	low[index] = stamp;
 	stack_bi.push(index);
-	map<int, int> indexadj = Pmg.adjlist_edge[index];  //ÒòÎªÏÂ·½ÔÚartvertexcopyÖĞ£¬¿ÉÄÜ»áĞŞ¸ÄPmg.adjlist[index]£¬ËùÒÔÏÈ½«Æä±£´æÏÂÀ´£¬ÔÚĞŞ¸ÄÇ°µÄindexµÄÁÚ¾ÓÉÏ±éÀú
+	map<int, int> indexadj = Pmg.adjlist_edge[index];  //å› ä¸ºä¸‹æ–¹åœ¨artvertexcopyä¸­ï¼Œå¯èƒ½ä¼šä¿®æ”¹Pmg.adjlist[index]ï¼Œæ‰€ä»¥å…ˆå°†å…¶ä¿å­˜ä¸‹æ¥ï¼Œåœ¨ä¿®æ”¹å‰çš„indexçš„é‚»å±…ä¸Šéå†
 	for (auto iteradjj = indexadj.begin(); iteradjj != indexadj.end(); iteradjj++) {
 		int j = iteradjj->first;
 		if (j == fa) continue;
@@ -499,20 +499,20 @@ void a_tarjan(int index, int fa, int totalreach) {
 			a_tarjan(j, index, totalreach);
 			low[index] = min(low[index], low[j]);
 			if (low[j] >= dfn[index] && fa >= 0) {
-				cout << "ÕÒµ½¹Ø½Ú¶¥µã£º" << index << endl;
+				cout << "æ‰¾åˆ°å…³èŠ‚é¡¶ç‚¹ï¼š" << index << endl;
 				counta++;
-				artvertexcopy(index, j, totalreach);  //ÒÔindexÎª¸îµã£¬·Ö¸îjËùÔÚµÄÁ¬Í¨·ÖÁ¿£¬½«index-->copyindex
+				artvertexcopy(index, j, totalreach);  //ä»¥indexä¸ºå‰²ç‚¹ï¼Œåˆ†å‰²jæ‰€åœ¨çš„è¿é€šåˆ†é‡ï¼Œå°†index-->copyindex
 			}
-			//µ±indexÎª¸ù½ÚµãÊ±£¬±éÀúindexµÄÁÚ¾Ó£¬ÅĞ¶ÏÊÇ·ñ»¹»áÓĞÁíÒ»¸öº¢×Ó£¬ÈôÃ»ÓĞ£¬Ôòindex²»ÊÇ¸îµã£¬ÈôÓĞ£¬ÔòÊÇindex-jËùÔÚ·ÖÁ¿µÄ¸îµã
+			//å½“indexä¸ºæ ¹èŠ‚ç‚¹æ—¶ï¼Œéå†indexçš„é‚»å±…ï¼Œåˆ¤æ–­æ˜¯å¦è¿˜ä¼šæœ‰å¦ä¸€ä¸ªå­©å­ï¼Œè‹¥æ²¡æœ‰ï¼Œåˆ™indexä¸æ˜¯å‰²ç‚¹ï¼Œè‹¥æœ‰ï¼Œåˆ™æ˜¯index-jæ‰€åœ¨åˆ†é‡çš„å‰²ç‚¹
 			if (low[j] >= dfn[index] && fa < 0) {
 				/*cout << j << " " << index << endl;*/
 				auto nowj = iteradjj;
 				nowj++;
 				int isbi = 0;
-				for (nowj; nowj != indexadj.end(); nowj++) {  //ÅĞ¶ÏindexµÄÁÚ¾ÓÊÇ·ñ¶¼·ÃÎÊµ½ÁË£¬¼´ÅĞ¶ÏindexÊÇ·ñ»¹ÓĞÆäËûÁÚ¾Ó½Úµã
+				for (nowj; nowj != indexadj.end(); nowj++) {  //åˆ¤æ–­indexçš„é‚»å±…æ˜¯å¦éƒ½è®¿é—®åˆ°äº†ï¼Œå³åˆ¤æ–­indexæ˜¯å¦è¿˜æœ‰å…¶ä»–é‚»å±…èŠ‚ç‚¹
 					int nb = nowj->first;
-					if (!dfn[nb]) {  //ÓĞÎ´·ÃÎÊµ½µÄÁÚ¾Ó£¬ËµÃ÷indexÊÇ¸îµã£¬µ±Ç°Õ»ÖĞµÄËùÓĞ¶¥µã¹¹³ÉÒ»¸öÁ¬Í¨·ÖÁ¿
-						cout << "ÕÒµ½¹Ø½Ú¶¥µã(¿íËÑÔ´µã)£º" << index << endl;
+					if (!dfn[nb]) {  //æœ‰æœªè®¿é—®åˆ°çš„é‚»å±…ï¼Œè¯´æ˜indexæ˜¯å‰²ç‚¹ï¼Œå½“å‰æ ˆä¸­çš„æ‰€æœ‰é¡¶ç‚¹æ„æˆä¸€ä¸ªè¿é€šåˆ†é‡
+						cout << "æ‰¾åˆ°å…³èŠ‚é¡¶ç‚¹(å®½æœæºç‚¹)ï¼š" << index << endl;
 						counta++;
 						isbi = 1;
 						break;
@@ -528,20 +528,20 @@ void a_tarjan(int index, int fa, int totalreach) {
 		}
 	}
 	map<int, int>().swap(indexadj);
-	//¸ù½ÚµãÎª¸îµãÊ±
-	//if (fa < 0 && child>1) {  //ÉÏ·½¼ÆËãÁËµ±index²»Îª¸ù½ÚµãÊ±£¬indexÎª¸îµãµÄÁ¬Í¨·ÖÁ¿£¬µ«µ±indexÎª¸ù½Úµã£¬²»ÄÜÍ¨¹ılow[j]>=dfn[index]À´ÅĞ¶ÏindexÊÇ·ñÎª¸îµã
+	//æ ¹èŠ‚ç‚¹ä¸ºå‰²ç‚¹æ—¶
+	//if (fa < 0 && child>1) {  //ä¸Šæ–¹è®¡ç®—äº†å½“indexä¸ä¸ºæ ¹èŠ‚ç‚¹æ—¶ï¼Œindexä¸ºå‰²ç‚¹çš„è¿é€šåˆ†é‡ï¼Œä½†å½“indexä¸ºæ ¹èŠ‚ç‚¹ï¼Œä¸èƒ½é€šè¿‡low[j]>=dfn[index]æ¥åˆ¤æ–­indexæ˜¯å¦ä¸ºå‰²ç‚¹
 	//	
 	//}
 }
 
 
-/*tarjanËã·¨ÕÒµ½¹Ø½Ú¶¥µãºó£¬¸´ÖÆ¹Ø½Ú¶¥µã²¢¸üĞÂÁÚ½Ó¾ØÕó¡¢ÁÚ½Ó±í¡¢reachÖµ*/
+/*tarjanç®—æ³•æ‰¾åˆ°å…³èŠ‚é¡¶ç‚¹åï¼Œå¤åˆ¶å…³èŠ‚é¡¶ç‚¹å¹¶æ›´æ–°é‚»æ¥çŸ©é˜µã€é‚»æ¥è¡¨ã€reachå€¼*/
 void artvertexcopy(int index, int j, int totalreach) {
-	//¶¥µãindexÊÇ¸îµã
-	int copyindex = Pmg.n_vertex++;  //ÔÚÁ¬Í¨·ÖÁ¿ÖĞ£¬copyÒ»¸öindexµã
-	cout << "¸´ÖÆ¹Ø½Úµã" << copyindex << endl;
-	org[copyindex] = index;//±£´æcopyindexµÄÔ­µãÊÇindex
-	//¸üĞÂÁÚ½Ó¾ØÕó£¬²åÈëĞÂµÄ¶¥µã
+	//é¡¶ç‚¹indexæ˜¯å‰²ç‚¹
+	int copyindex = Pmg.n_vertex++;  //åœ¨è¿é€šåˆ†é‡ä¸­ï¼Œcopyä¸€ä¸ªindexç‚¹
+	cout << "å¤åˆ¶å…³èŠ‚ç‚¹" << copyindex << endl;
+	org[copyindex] = index;//ä¿å­˜copyindexçš„åŸç‚¹æ˜¯index
+	//æ›´æ–°é‚»æ¥çŸ©é˜µï¼Œæ’å…¥æ–°çš„é¡¶ç‚¹
 	//Pmg.Mp.resize(Pmg.n_vertex);
 	//Pmg.Mp_edge.resize(Pmg.n_vertex);
 	//for (int i = 0; i < Pmg.n_vertex; i++) {
@@ -551,19 +551,19 @@ void artvertexcopy(int index, int j, int totalreach) {
 	Pmg.adjlist_edge.resize(Pmg.n_vertex);
 	//Pmg.adjlist.resize(Pmg.n_vertex);
 	int repcopyindex = 0, repindex = 0;
-	while (stack_bi.top() != j) {  //½«index-jÕâ¸öÁ¬Í¨·ÖÁ¿ÖĞµÄ¶¥µã³öÕ»
+	while (stack_bi.top() != j) {  //å°†index-jè¿™ä¸ªè¿é€šåˆ†é‡ä¸­çš„é¡¶ç‚¹å‡ºæ ˆ
 		int temp = stack_bi.top();
 		stack_bi.pop();
-		//¸üĞÂj´ú±íµÄ¶¥µãÊı
+		//æ›´æ–°jä»£è¡¨çš„é¡¶ç‚¹æ•°
 		repcopyindex += reach[temp];
-		/*¸üĞÂÁÚ½Ó¾ØÕóºÍÁÚ½Ó±í£¬½«Á¬Í¨·ÖÁ¿ÖĞµÄ¶¥µãÓëindexÁÚ½Ó£¬ĞŞ¸ÄÎªÓëcopyindexÁÚ½Ó*/
+		/*æ›´æ–°é‚»æ¥çŸ©é˜µå’Œé‚»æ¥è¡¨ï¼Œå°†è¿é€šåˆ†é‡ä¸­çš„é¡¶ç‚¹ä¸indexé‚»æ¥ï¼Œä¿®æ”¹ä¸ºä¸copyindexé‚»æ¥*/
 		auto itertemp = Pmg.adjlist_edge[index].find(temp);
-		if (itertemp != Pmg.adjlist_edge[index].end()) {  //Èç¹ûtemp¶¥µãÔÚPmultigraphÖĞÓëindexÏàÁ¬£¬Ôò½«Æä¸üĞÂÎªÓëcopyindexÏàÁ¬
-			//¸üĞÂindex-tempµÄÁÚ½Ó¾ØÕó
+		if (itertemp != Pmg.adjlist_edge[index].end()) {  //å¦‚æœtempé¡¶ç‚¹åœ¨Pmultigraphä¸­ä¸indexç›¸è¿ï¼Œåˆ™å°†å…¶æ›´æ–°ä¸ºä¸copyindexç›¸è¿
+			//æ›´æ–°index-tempçš„é‚»æ¥çŸ©é˜µ
 			int e_index = itertemp->second;  //???????????????
 			//int e_index = Pmg.adjlist_edge[index][temp];
 
-			//ÔÚPmgÖĞÉ¾³ı±ßindex-temp
+			//åœ¨Pmgä¸­åˆ é™¤è¾¹index-temp
 			Pmg.deleteEdge(index, temp);
 			Pmg.adjlist_edge[copyindex].insert(map<int, int>::value_type(temp, e_index));
 			Pmg.adjlist_edge[temp].insert(map<int, int>::value_type(copyindex, e_index));
@@ -571,7 +571,7 @@ void artvertexcopy(int index, int j, int totalreach) {
 			//Pmg.adjlist[temp].push_back(copyindex);
 		}
 	}
-	//×îºó½«j³öÕ»²¢¸üĞÂjµÄ´ú±íµÄ¶¥µãÊı¡¢ÁÚ½Ó¾ØÕóºÍÁÚ½Ó±í
+	//æœ€åå°†jå‡ºæ ˆå¹¶æ›´æ–°jçš„ä»£è¡¨çš„é¡¶ç‚¹æ•°ã€é‚»æ¥çŸ©é˜µå’Œé‚»æ¥è¡¨
 	stack_bi.pop();  repcopyindex += reach[j];
 	/*Pmg.Mp[copyindex][j] = Pmg.Mp[index][j];
 	Pmg.Mp[j][copyindex] = Pmg.Mp[j][index];*/
@@ -584,9 +584,9 @@ void artvertexcopy(int index, int j, int totalreach) {
 	/*Pmg.adjlist[copyindex].push_back(j);
 	Pmg.adjlist[j].push_back(copyindex);*/
 
-	repindex = totalreach - repcopyindex;  //repcopyindexÊÇjËùÔÚÁ¬Í¨·ÖÁ¿ÉÏ£¬¶¥µãµÄreachÖµÖ®ºÍ£¨²»°üº¬index¶¥µãµÄreach£©£»repindexÊÇ·Ö¸îÁ¬Í¨·ÖÁ¿ºó£¬indexËùÔÚ·ÖÁ¿µÄreachÖµÖ®ºÍ£¨°üº¬indexµÄreach£©
-	reach[index] += repcopyindex;  //¸üĞÂ¶¥µãindexµÄreachÖµ£¬ĞÂ¼ÓÈëjËùÔÚµÄ·ÖÀàÉÏ¶¥µãµÄreachÖµÖ®ºÍ£¬²»Í¬¼ÓindexµÄreach£¬ÒòÎª±¾À´¾ÍÓĞÁË
-	reach.push_back(repindex);  //copyindexÊÇĞÂ¼ÓÈëµÄ¶¥µã£¬ËùÒÔÒªÔÚreachÖĞpush_back£»copyindexµÄreachÖµÊ±indexËùÔÚÁ¬Í¨·ÖÁ¿ÖĞ¶¥µãµÄreachÖ®ºÍ(°üÀ¨index¶¥µãµÄreach)
+	repindex = totalreach - repcopyindex;  //repcopyindexæ˜¯jæ‰€åœ¨è¿é€šåˆ†é‡ä¸Šï¼Œé¡¶ç‚¹çš„reachå€¼ä¹‹å’Œï¼ˆä¸åŒ…å«indexé¡¶ç‚¹çš„reachï¼‰ï¼›repindexæ˜¯åˆ†å‰²è¿é€šåˆ†é‡åï¼Œindexæ‰€åœ¨åˆ†é‡çš„reachå€¼ä¹‹å’Œï¼ˆåŒ…å«indexçš„reachï¼‰
+	reach[index] += repcopyindex;  //æ›´æ–°é¡¶ç‚¹indexçš„reachå€¼ï¼Œæ–°åŠ å…¥jæ‰€åœ¨çš„åˆ†ç±»ä¸Šé¡¶ç‚¹çš„reachå€¼ä¹‹å’Œï¼Œä¸åŒåŠ indexçš„reachï¼Œå› ä¸ºæœ¬æ¥å°±æœ‰äº†
+	reach.push_back(repindex);  //copyindexæ˜¯æ–°åŠ å…¥çš„é¡¶ç‚¹ï¼Œæ‰€ä»¥è¦åœ¨reachä¸­push_backï¼›copyindexçš„reachå€¼æ—¶indexæ‰€åœ¨è¿é€šåˆ†é‡ä¸­é¡¶ç‚¹çš„reachä¹‹å’Œ(åŒ…æ‹¬indexé¡¶ç‚¹çš„reach)
 }
 
 
@@ -598,7 +598,7 @@ void Ident() {
 	flag_addtoident.resize(Pmg.n_vertex);
 
 	todoType2Ident();
-	//Í³¼Æidenticalµã¼¯ºÍ¶¥µã
+	//ç»Ÿè®¡identicalç‚¹é›†å’Œé¡¶ç‚¹
 	int countset = 0, countvertex = 0;
 	for (auto idset : IdentSet) {
 		countset++;
@@ -606,15 +606,15 @@ void Ident() {
 			countvertex++;
 		}
 	}
-	cout << "ÕÒµ½identicalµã¼¯" << countset << "¸ö£¬¼ÓÈëidenticalµã¼¯µÄµã(²»°üÀ¨proxy)" << countvertex << "¸ö" << endl;
-	out_result << "ÕÒµ½identicalµã¼¯" << countset << "¸ö£¬¼ÓÈëidenticalµã¼¯µÄµã(²»°üÀ¨proxy)" << countvertex << "¸ö" << endl;
-	cout << "ºÏ²¢identicalµã£¬É¾³ı±ßÊı£º" << count_ident_edge << endl;
-	out_result << "ºÏ²¢identicalµã£¬É¾³ı±ßÊı£º" << count_ident_edge << endl;
+	cout << "æ‰¾åˆ°identicalç‚¹é›†" << countset << "ä¸ªï¼ŒåŠ å…¥identicalç‚¹é›†çš„ç‚¹(ä¸åŒ…æ‹¬proxy)" << countvertex << "ä¸ª" << endl;
+	out_result << "æ‰¾åˆ°identicalç‚¹é›†" << countset << "ä¸ªï¼ŒåŠ å…¥identicalç‚¹é›†çš„ç‚¹(ä¸åŒ…æ‹¬proxy)" << countvertex << "ä¸ª" << endl;
+	cout << "åˆå¹¶identicalç‚¹ï¼Œåˆ é™¤è¾¹æ•°ï¼š" << count_ident_edge << endl;
+	out_result << "åˆå¹¶identicalç‚¹ï¼Œåˆ é™¤è¾¹æ•°ï¼š" << count_ident_edge << endl;
 
-	//identicalµã¼¯ÖĞÊÇ·ñÓĞÈÎÒâÁ½µã¶ÔÖ®¼äµÄ±ß²»ÏàÍ¬
+	//identicalç‚¹é›†ä¸­æ˜¯å¦æœ‰ä»»æ„ä¸¤ç‚¹å¯¹ä¹‹é—´çš„è¾¹ä¸ç›¸åŒ
 	//int countdiff = 0;
 	//vector<int> different;
-	//for (auto idset : IdentSet) {  //ÅĞ¶ÏisetÖĞÃ¿¸ö¶¥µãÖ®¼äµÄedgeinfoÊÇ·ñÏàµÈ
+	//for (auto idset : IdentSet) {  //åˆ¤æ–­isetä¸­æ¯ä¸ªé¡¶ç‚¹ä¹‹é—´çš„edgeinfoæ˜¯å¦ç›¸ç­‰
 	//	vector<int> iset = { idset.first };
 	//	for (int i : idset.second) iset.push_back(i);
 	//	vector<vector<int>> einfo = Pmg.edge_info[Pmg.Mp_edge[iset[0]][iset[1]]];
@@ -643,11 +643,11 @@ void Ident() {
 
 
 //void todoType2Ident() {
-//	for (int i = 0; i < Pmg.n_vertex; i++) {  //¶¥µãi=0-n_vertex£¬Ñ°ÕÒÆäidenticalµã¼¯
+//	for (int i = 0; i < Pmg.n_vertex; i++) {  //é¡¶ç‚¹i=0-n_vertexï¼Œå¯»æ‰¾å…¶identicalç‚¹é›†
 //		if (flag_addtoident[i] == 0) {
 //			vector<int> mayidentset = { i };
 //			//vector<int> iadjlist = Pmg.adjlist_edge[i];
-//			//map<int, int> iadjlist = Pmg.adjlist_edge[i];  //²»ĞèÒªÏÈµ¥¶À´æ´¢£¬ÒòÎªÊÇÏÈ½«iµÄidentµãv´æÔÚmayidentsetÖĞ£¬²»ĞŞ¸Äadjli_edge[i]
+//			//map<int, int> iadjlist = Pmg.adjlist_edge[i];  //ä¸éœ€è¦å…ˆå•ç‹¬å­˜å‚¨ï¼Œå› ä¸ºæ˜¯å…ˆå°†içš„identç‚¹vå­˜åœ¨mayidentsetä¸­ï¼Œä¸ä¿®æ”¹adjli_edge[i]
 //			auto iteriadj = Pmg.adjlist_edge[i].begin();
 //			for (iteriadj; iteriadj != Pmg.adjlist_edge[i].end(); iteriadj++) {
 //				int v = iteriadj->first;
@@ -692,11 +692,11 @@ void Ident() {
 //}
 
 void todoType2Ident() {
-	for (int i = 0; i < Pmg.n_vertex; i++) {  //¶¥µãi=0-n_vertex£¬Ñ°ÕÒÆäidenticalµã¼¯
+	for (int i = 0; i < Pmg.n_vertex; i++) {  //é¡¶ç‚¹i=0-n_vertexï¼Œå¯»æ‰¾å…¶identicalç‚¹é›†
 		if (flag_addtoident[i] == 0) {
 			vector<int> iwithidentset = { i };
 			//vector<int> iadjlist = Pmg.adjlist_edge[i];
-			//map<int, int> iadjlist = Pmg.adjlist_edge[i];  //²»ĞèÒªÏÈµ¥¶À´æ´¢£¬ÒòÎªÊÇÏÈ½«iµÄidentµãv´æÔÚmayidentsetÖĞ£¬²»ĞŞ¸Äadjli_edge[i]
+			//map<int, int> iadjlist = Pmg.adjlist_edge[i];  //ä¸éœ€è¦å…ˆå•ç‹¬å­˜å‚¨ï¼Œå› ä¸ºæ˜¯å…ˆå°†içš„identç‚¹vå­˜åœ¨mayidentsetä¸­ï¼Œä¸ä¿®æ”¹adjli_edge[i]
 			auto iteriadj = Pmg.adjlist_edge[i].begin();
 			for (iteriadj; iteriadj != Pmg.adjlist_edge[i].end(); iteriadj++) {
 				int v = iteriadj->first;
@@ -722,7 +722,7 @@ void todoType2Ident() {
 }
 
 void mergeIdent2(int i, int v) {
-	//µ±¿¼ÂÇreachÖµÊ±
+	//å½“è€ƒè™‘reachå€¼æ—¶
 	int detav = reach[v] - 1;
 	int reachiident = reach[i];
 	if (ident[i] > 0) {
@@ -740,9 +740,9 @@ void mergeIdent2(int i, int v) {
 		}
 	}
 
-	//¼ÇÂ¼iÓëvÖ®¼ä±ßµÄË÷Òı
+	//è®°å½•iä¸vä¹‹é—´è¾¹çš„ç´¢å¼•
 	int eindexi_v = Pmg.adjlist_edge[i][v];
-	if (ident[i] == 0) {  //ËµÃ÷vÊÇµÚÒ»¸ö¼Óµ½iÎªproxyµÄidentical setµÄµã,ËùÒÔIdentSetEdgeindexÖĞÄ¿Ç°Ã»ÓĞi
+	if (ident[i] == 0) {  //è¯´æ˜væ˜¯ç¬¬ä¸€ä¸ªåŠ åˆ°iä¸ºproxyçš„identical setçš„ç‚¹,æ‰€ä»¥IdentSetEdgeindexä¸­ç›®å‰æ²¡æœ‰i
 		map<int, int> tempvindex;
 		tempvindex.insert(map<int, int>::value_type(v, eindexi_v));
 		IdentSetEdgeindex.insert(map<int,map<int,int>>::value_type(i,tempvindex));
@@ -763,24 +763,24 @@ int judgeIdent(int i, int v, int type) {
 	auto iteriadj = Pmg.adjlist_edge[i].begin();
 	auto itervadj = Pmg.adjlist_edge[v].begin();
 	for (iteriadj, itervadj; iteriadj != Pmg.adjlist_edge[i].end()&&itervadj != Pmg.adjlist_edge[v].end(); iteriadj++, itervadj++) {
-		if (iteriadj->first == v) { //´ÓiµÄÁÚ¾ÓÖĞÌø¹ıv
+		if (iteriadj->first == v) { //ä»içš„é‚»å±…ä¸­è·³è¿‡v
 			iteriadj++; 
 		}  
-		if (itervadj->first == i) { //´ÓvµÄÁÚ¾ÓÖĞÌø¹ıi
+		if (itervadj->first == i) { //ä»vçš„é‚»å±…ä¸­è·³è¿‡i
 			itervadj++;
 		} 
 		if (iteriadj != Pmg.adjlist_edge[i].end()&&itervadj != Pmg.adjlist_edge[v].end()) {
 			if (iteriadj->first != itervadj->first) return 0;  
-			//Á½¸öÁÚ¾ÓµãÏàÍ¬,¿ªÊ¼ÅĞ¶ÏÁÚ¾Ó±ßµÄĞÅÏ¢ÊÇ·ñÏàÍ¬
+			//ä¸¤ä¸ªé‚»å±…ç‚¹ç›¸åŒ,å¼€å§‹åˆ¤æ–­é‚»å±…è¾¹çš„ä¿¡æ¯æ˜¯å¦ç›¸åŒ
 			int i_neibedgeindex = iteriadj->second;
 			int v_neibedgeindex = itervadj->second;
 			set<vector<int>> i_neib_einfo{ Pmg.edge_info[i_neibedgeindex].begin(),Pmg.edge_info[i_neibedgeindex].end() };
 			set<vector<int>> v_neib_einfo{ Pmg.edge_info[v_neibedgeindex].begin(),Pmg.edge_info[v_neibedgeindex].end() };
 
-			if (i_neib_einfo.size() != v_neib_einfo.size()) return 0;  //Èç¹ûÂ·¾¶ÊµÀıÀà±ğÊı²»Í¬£¬Ôò²»ÊÇ
+			if (i_neib_einfo.size() != v_neib_einfo.size()) return 0;  //å¦‚æœè·¯å¾„å®ä¾‹ç±»åˆ«æ•°ä¸åŒï¼Œåˆ™ä¸æ˜¯
 			set<vector<int>> einfo_result;
 			set_intersection(i_neib_einfo.begin(), i_neib_einfo.end(), v_neib_einfo.begin(), v_neib_einfo.end(), inserter(einfo_result, einfo_result.begin()));
-			/*cout << "iÓëvÏàÍ¬µÄÁÚ¾ÓÂ·¾¶ÊµÀıÀà±ğÊı£º" << einfo_result.size() << endl;*/
+			/*cout << "iä¸vç›¸åŒçš„é‚»å±…è·¯å¾„å®ä¾‹ç±»åˆ«æ•°ï¼š" << einfo_result.size() << endl;*/
 			if (einfo_result.size() != i_neib_einfo.size()) return 0;
 		}
 		else {
@@ -790,22 +790,22 @@ int judgeIdent(int i, int v, int type) {
 	return 1;
 	//set<int> i_adj{ Pmg.adjlist[i].begin(),Pmg.adjlist[i].end() };
 	//set<int> v_adj{ Pmg.adjlist[v].begin(),Pmg.adjlist[v].end() };
-	//if (type == 2) {  //type2ÀàĞÍµÄ£¬Òª½«i¡¢vÏÈ´ÓÁÚ¾ÓÖĞÉ¾³ıÔÙÅĞ¶Ï
+	//if (type == 2) {  //type2ç±»å‹çš„ï¼Œè¦å°†iã€vå…ˆä»é‚»å±…ä¸­åˆ é™¤å†åˆ¤æ–­
 	//	i_adj.erase(v);
 	//	v_adj.erase(i);
 	//}
-	//set<int> result;  //ÅĞ¶ÏÁÚ¾ÓÊÇ·ñÏàÍ¬
+	//set<int> result;  //åˆ¤æ–­é‚»å±…æ˜¯å¦ç›¸åŒ
 	//set_intersection(i_adj.begin(), i_adj.end(), v_adj.begin(), v_adj.end(), inserter(result, result.begin()));
 	//if (result.size() != i_adj.size()) return 0;
 
-	//for (int neib : result) {  //ÅĞ¶ÏÓëÁÚ¾ÓÏàÁ¬µÄ±ßµÄĞÅÏ¢ÊÇ·ñ¶¼ÏàÍ¬
+	//for (int neib : result) {  //åˆ¤æ–­ä¸é‚»å±…ç›¸è¿çš„è¾¹çš„ä¿¡æ¯æ˜¯å¦éƒ½ç›¸åŒ
 	//	set<vector<int>> i_neib_einfo{ Pmg.edge_info[Pmg.Mp_edge[i][neib]].begin(),Pmg.edge_info[Pmg.Mp_edge[i][neib]].end() };
 	//	set<vector<int>> v_neib_einfo{ Pmg.edge_info[Pmg.Mp_edge[v][neib]].begin(),Pmg.edge_info[Pmg.Mp_edge[v][neib]].end() };
 	//	
-	//	if (i_neib_einfo.size() != v_neib_einfo.size()) return 0;  //Èç¹ûÂ·¾¶ÊµÀıÀà±ğÊı²»Í¬£¬Ôò²»ÊÇ
+	//	if (i_neib_einfo.size() != v_neib_einfo.size()) return 0;  //å¦‚æœè·¯å¾„å®ä¾‹ç±»åˆ«æ•°ä¸åŒï¼Œåˆ™ä¸æ˜¯
 	//	set<vector<int>> einfo_result;
 	//	set_intersection(i_neib_einfo.begin(), i_neib_einfo.end(), v_neib_einfo.begin(), v_neib_einfo.end(), inserter(einfo_result, einfo_result.begin()));
-	//	/*cout << "iÓëvÏàÍ¬µÄÁÚ¾ÓÂ·¾¶ÊµÀıÀà±ğÊı£º" << einfo_result.size() << endl;*/
+	//	/*cout << "iä¸vç›¸åŒçš„é‚»å±…è·¯å¾„å®ä¾‹ç±»åˆ«æ•°ï¼š" << einfo_result.size() << endl;*/
 	//	if (einfo_result.size() != i_neib_einfo.size()) return 0;
 
 	//}
@@ -814,9 +814,9 @@ int judgeIdent(int i, int v, int type) {
 
 
 
-//void CBC_(int s) {  //predÓÃvector
+//void CBC_(int s) {  //predç”¨vector
 //	//initialize variable
-//	/*cout << "Ô´µã" << s << endl;*/
+//	/*cout << "æºç‚¹" << s << endl;*/
 //	queue<int> Q;
 //	stack<int> S;
 //	/*vector<map<int,double>> pred(Pmg.n_vertex);*/
@@ -832,14 +832,14 @@ int judgeIdent(int i, int v, int type) {
 //		Q.pop();
 //		S.push(v);
 //		map<int, int> pathinstance;
-//		for (auto w : Pmg.adjlist_edge[v]) {  //·ÃÎÊÁËvµÄËùÓĞÁÚ¾Ów[ÁÚ½Ó¶¥µã£¬ÁÚ½Ó±ß]
+//		for (auto w : Pmg.adjlist_edge[v]) {  //è®¿é—®äº†vçš„æ‰€æœ‰é‚»å±…w[é‚»æ¥é¡¶ç‚¹ï¼Œé‚»æ¥è¾¹]
 //			if (dist[w[0]] == DBL_MAX) {
 //				dist[w[0]] = dist[v] + 1;
 //				Q.push(w[0]);
 //			}
-//			if (dist[w[0]] == dist[v] + 1) {  //Í¨¹ı´ËifÌõ¼ş£¬¿ÉÒÔµÃµ½vµÄËùÓĞÏÂ·½µÄÁÚ¾Ów
+//			if (dist[w[0]] == dist[v] + 1) {  //é€šè¿‡æ­¤ifæ¡ä»¶ï¼Œå¯ä»¥å¾—åˆ°vçš„æ‰€æœ‰ä¸‹æ–¹çš„é‚»å±…w
 //				/*pathnum[w[0]] += pathnum[v]*Pmg.Mp[v][w[0]];*/
-//				//Í³¼ÆvÏÂ·½µÄÂ·¾¶ÊµÀıĞÅÏ¢
+//				//ç»Ÿè®¡vä¸‹æ–¹çš„è·¯å¾„å®ä¾‹ä¿¡æ¯
 //				vector<vector<int>> einfo = Pmg.edge_info[w[1]];
 //				for (auto pinfo : einfo) {
 //					int pclass = pinfo[0];
@@ -848,15 +848,15 @@ int judgeIdent(int i, int v, int type) {
 //				}
 //			}
 //		}
-//		//±éÀúÍêvµÄÁÚ¾Óµãºó£¬²ÅÄÜÍ³¼ÆÍêÕûµÄvºóÂ·¾¶ÊµÀıµÄĞÅÏ¢£¬»ñµÃvÓëÆäÃ¿¸öºóÖÃµãwÖ®¼ä±ßµÄÈ¨ÖØ
+//		//éå†å®Œvçš„é‚»å±…ç‚¹åï¼Œæ‰èƒ½ç»Ÿè®¡å®Œæ•´çš„våè·¯å¾„å®ä¾‹çš„ä¿¡æ¯ï¼Œè·å¾—vä¸å…¶æ¯ä¸ªåç½®ç‚¹wä¹‹é—´è¾¹çš„æƒé‡
 //		for (auto w : Pmg.adjlist_edge[v]) {
 //			double weight = 0;
-//			if (dist[w[0]] == dist[v] + 1) {  //¼ÆËãvÓëw[0]Ö®¼äµÄ±ßÈ¨
-//				vector<vector<int>> einfo = Pmg.edge_info[w[1]];  //w[1]ÊÇvÓëw[0]Ö®¼äµÄ±ß
-//				for (auto pinfo : einfo) {  //¸ù¾İvÓëw[0]Ö®¼ä±ßµÄÂ·¾¶ÊµÀıĞÅÏ¢£¬¸üĞÂpathnum[w[0]]
+//			if (dist[w[0]] == dist[v] + 1) {  //è®¡ç®—vä¸w[0]ä¹‹é—´çš„è¾¹æƒ
+//				vector<vector<int>> einfo = Pmg.edge_info[w[1]];  //w[1]æ˜¯vä¸w[0]ä¹‹é—´çš„è¾¹
+//				for (auto pinfo : einfo) {  //æ ¹æ®vä¸w[0]ä¹‹é—´è¾¹çš„è·¯å¾„å®ä¾‹ä¿¡æ¯ï¼Œæ›´æ–°pathnum[w[0]]
 //					int pclass = pinfo[0];
 //					int pnum = pinfo[1];
-//					weight += ((double)pnum / pathinstance[pclass]);  //ÀÛ¼Óv-w[0]Ö®¼äµÄ±ßÈ¨
+//					weight += ((double)pnum / pathinstance[pclass]);  //ç´¯åŠ v-w[0]ä¹‹é—´çš„è¾¹æƒ
 //				}
 //				pathnum[w[0]] += pathnum[v] * weight;
 //				pred[w[0]].push_back({ (double)v,weight });
@@ -864,7 +864,7 @@ int judgeIdent(int i, int v, int type) {
 //		}
 //	}
 //	/*for (int i = 0; i < pathnum.size(); i++) {
-//		cout << "µ½µã" << i << "×î¶ÌÂ·¾¶Êı£º" << pathnum[i] << endl;
+//		cout << "åˆ°ç‚¹" << i << "æœ€çŸ­è·¯å¾„æ•°ï¼š" << pathnum[i] << endl;
 //	}*/
 //	//back propagation
 //	vector<double> deta(Pmg.n_vertex);
@@ -879,13 +879,13 @@ int judgeIdent(int i, int v, int type) {
 //		}
 //	}
 //	/*for (int i = 0; i < deta.size(); i++) {
-//		cout << "¶Ôµã" << i << "Ô´ÒÀÀµ£º" << deta[i] << endl;
+//		cout << "å¯¹ç‚¹" << i << "æºä¾èµ–ï¼š" << deta[i] << endl;
 //	}*/
 //}
-void CBC_ident0(int s) {  //predÓÃvector +identºó  s²»ÊÇproxy
+void CBC_ident0(int s) {  //predç”¨vector +identå  sä¸æ˜¯proxy
 	//initialize variable
 	queue<int> Q;
-	queue<int> temp_Q; //¼ÇÂ¼·ÃÎÊ¹ıµÄlevel²ã¶¥µã
+	queue<int> temp_Q; //è®°å½•è®¿é—®è¿‡çš„levelå±‚é¡¶ç‚¹
 
 	stack<int> S;
 	/*vector<map<int,double>> pred(Pmg.n_vertex);*/
@@ -898,42 +898,42 @@ void CBC_ident0(int s) {  //predÓÃvector +identºó  s²»ÊÇproxy
 
 	Q.push(s);
 	//bfs
-	map<int, int> pathinstance;  //wÏÂ·½ËùÓĞÂ·¾¶ÊµÀı°´ÀàÍ³¼Æ
+	map<int, int> pathinstance;  //wä¸‹æ–¹æ‰€æœ‰è·¯å¾„å®ä¾‹æŒ‰ç±»ç»Ÿè®¡
 
 	while (!Q.empty()) {
 		int v = Q.front();
-		if (dist[v] == level) { //ÈôvÊÇlevel²ãµÄ¶¥µã£¬Ôò·ÃÎÊv£¬½«¸Ã²ãvµãÏÂ·½µÄÂ·¾¶ÊµÀıĞÅÏ¢¶¼Í³¼Æµ½pathinstanceÀïÃæ
+		if (dist[v] == level) { //è‹¥væ˜¯levelå±‚çš„é¡¶ç‚¹ï¼Œåˆ™è®¿é—®vï¼Œå°†è¯¥å±‚vç‚¹ä¸‹æ–¹çš„è·¯å¾„å®ä¾‹ä¿¡æ¯éƒ½ç»Ÿè®¡åˆ°pathinstanceé‡Œé¢
 			Q.pop();
 			S.push(v);
-			//Í³¼Ælevel²ãÂ·¾¶ÊµÀıÀà±ğ
-			temp_Q.push(v);   //¼ÇÂ¼µÚlevel²ã·ÃÎÊµÄ¶¥µã
-			for (auto w : Pmg.adjlist_edge[v]) {  //·ÃÎÊÁËvµÄËùÓĞÁÚ¾Ów[ÁÚ½Ó¶¥µã£¬ÁÚ½Ó±ß]
+			//ç»Ÿè®¡levelå±‚è·¯å¾„å®ä¾‹ç±»åˆ«
+			temp_Q.push(v);   //è®°å½•ç¬¬levelå±‚è®¿é—®çš„é¡¶ç‚¹
+			for (auto w : Pmg.adjlist_edge[v]) {  //è®¿é—®äº†vçš„æ‰€æœ‰é‚»å±…w[é‚»æ¥é¡¶ç‚¹ï¼Œé‚»æ¥è¾¹]
 				if (dist[w.first] == DBL_MAX) {
 					dist[w.first] = dist[v] + 1;
 					Q.push(w.first);
 				}
-				if (dist[w.first] == dist[v] + 1) {  //Í¨¹ı´ËifÌõ¼ş£¬¿ÉÒÔµÃµ½vµÄËùÓĞÏÂ·½µÄÁÚ¾Ów
-					//Í³¼ÆvÏÂ·½µÄÂ·¾¶ÊµÀıĞÅÏ¢
+				if (dist[w.first] == dist[v] + 1) {  //é€šè¿‡æ­¤ifæ¡ä»¶ï¼Œå¯ä»¥å¾—åˆ°vçš„æ‰€æœ‰ä¸‹æ–¹çš„é‚»å±…w
+					//ç»Ÿè®¡vä¸‹æ–¹çš„è·¯å¾„å®ä¾‹ä¿¡æ¯
 					vector<vector<int>> einfo = Pmg.edge_info[w.second];
 					for (auto pinfo : einfo) {
 						int pclass = pinfo[0];
 						int pnum = pinfo[1];
-						pathinstance[pclass] += pnum * (1 + ident[w.first]);  //v--w[0]Óëv--w[0]´ú±íµÄ¶¥µãµÄÂ·¾¶ÊµÀıÊı
+						pathinstance[pclass] += pnum * (1 + ident[w.first]);  //v--w[0]ä¸v--w[0]ä»£è¡¨çš„é¡¶ç‚¹çš„è·¯å¾„å®ä¾‹æ•°
 					}
 				}
 			}
 		}
-		else {  //ÈôvÊÇlevel+1²ãµÄ£¬ËµÃ÷level²ã¶¥µãÒÑ¾­·ÃÎÊÍê±ÏÁË£»ÖØĞÂÔÙ·ÃÎÊlevel²ãµÄ¶¥µãrv£¬¼ÆËã±ßÈ¨£¬¸üĞÂ×î¶ÌÂ·¾¶Êı
+		else {  //è‹¥væ˜¯level+1å±‚çš„ï¼Œè¯´æ˜levelå±‚é¡¶ç‚¹å·²ç»è®¿é—®å®Œæ¯•äº†ï¼›é‡æ–°å†è®¿é—®levelå±‚çš„é¡¶ç‚¹rvï¼Œè®¡ç®—è¾¹æƒï¼Œæ›´æ–°æœ€çŸ­è·¯å¾„æ•°
 			while (!temp_Q.empty()) {
 				int rv = temp_Q.front();
 				temp_Q.pop();
-				//»ñµÃrvÓëÆäÃ¿¸öºóÖÃµãwÖ®¼ä±ßµÄÈ¨ÖØ£¬²¢¸üĞÂ×î¶ÌÂ·¾¶Êı
+				//è·å¾—rvä¸å…¶æ¯ä¸ªåç½®ç‚¹wä¹‹é—´è¾¹çš„æƒé‡ï¼Œå¹¶æ›´æ–°æœ€çŸ­è·¯å¾„æ•°
 				for (auto w : Pmg.adjlist_edge[rv]) {
 					double weight;
 					weight = 0;
-					if (dist[w.first] == dist[rv] + 1) {  //¼ÆËãvÓëw[0]Ö®¼äµÄ±ßÈ¨
-						vector<vector<int>> einfo = Pmg.edge_info[w.second];  //w[1]ÊÇvÓëw[0]Ö®¼äµÄ±ß
-						for (auto pinfo : einfo) {  //¸ù¾İvÓëw[0]Ö®¼ä±ßµÄÂ·¾¶ÊµÀıĞÅÏ¢£¬¸üĞÂpathnum[w[0]]
+					if (dist[w.first] == dist[rv] + 1) {  //è®¡ç®—vä¸w[0]ä¹‹é—´çš„è¾¹æƒ
+						vector<vector<int>> einfo = Pmg.edge_info[w.second];  //w[1]æ˜¯vä¸w[0]ä¹‹é—´çš„è¾¹
+						for (auto pinfo : einfo) {  //æ ¹æ®vä¸w[0]ä¹‹é—´è¾¹çš„è·¯å¾„å®ä¾‹ä¿¡æ¯ï¼Œæ›´æ–°pathnum[w[0]]
 							int pclass = pinfo[0];
 							int pnum = pinfo[1];
 							weight += ((double)pnum / (double)pathinstance[pclass]);
@@ -952,13 +952,13 @@ void CBC_ident0(int s) {  //predÓÃvector +identºó  s²»ÊÇproxy
 					}
 				}
 			}
-			level = level + 1;  //½ÓÏÂÀ´·ÃÎÊµÚlevel+1²ã
-			pathinstance.clear(); //ÖØĞÂÍ³¼ÆµÚlevel+1²ãµÄpathinstanceĞÅÏ¢
+			level = level + 1;  //æ¥ä¸‹æ¥è®¿é—®ç¬¬level+1å±‚
+			pathinstance.clear(); //é‡æ–°ç»Ÿè®¡ç¬¬level+1å±‚çš„pathinstanceä¿¡æ¯
 		}
 	
 	}
 	pmid = clock();
-	//back propagation  s²»ÊÇproxy¶¥µã
+	//back propagation  sä¸æ˜¯proxyé¡¶ç‚¹
 	vector<double> deta(Pmg.n_vertex);
 	for (int i = 0; i < Pmg.n_vertex; i++) deta[i] = (double)reach[i] - 1;
 	while (!S.empty()) {
@@ -989,16 +989,16 @@ void CBC_ident0(int s) {  //predÓÃvector +identºó  s²»ÊÇproxy
 			}
 		}
 	}
-	//cout << s<<"¶Ôµã16Ô´ÒÀÀµ£º" << deta[16] << endl;
+	//cout << s<<"å¯¹ç‚¹16æºä¾èµ–ï¼š" << deta[16] << endl;
 	/*deta0[s] = deta[0];*/
 	/*for (int i = 0; i < deta.size(); i++) {
-		cout << "¶Ôµã" << i << "Ô´ÒÀÀµ£º" << deta[i] << endl;
+		cout << "å¯¹ç‚¹" << i << "æºä¾èµ–ï¼š" << deta[i] << endl;
 	}*/
 }
-void CBC_ident1(int s) {  //predÓÃvector +identºó  sÊÇproxy¶¥µã  ¸ù¾İĞÂ¶¨Òå£¬ÒÔs´ú±íµÄÃ¿¸ö¶¥ÎªÔ´µã½øĞĞbfsµÃµ½µÄ½á¹û¶¼ÏàÍ¬
+void CBC_ident1(int s) {  //predç”¨vector +identå  sæ˜¯proxyé¡¶ç‚¹  æ ¹æ®æ–°å®šä¹‰ï¼Œä»¥sä»£è¡¨çš„æ¯ä¸ªé¡¶ä¸ºæºç‚¹è¿›è¡Œbfså¾—åˆ°çš„ç»“æœéƒ½ç›¸åŒ
 	//initialize variable
 	queue<int> Q;
-	queue<int> temp_Q; //¼ÇÂ¼·ÃÎÊ¹ıµÄlevel²ã¶¥µã
+	queue<int> temp_Q; //è®°å½•è®¿é—®è¿‡çš„levelå±‚é¡¶ç‚¹
 
 	stack<int> S;
 	/*vector<map<int,double>> pred(Pmg.n_vertex);*/
@@ -1011,31 +1011,31 @@ void CBC_ident1(int s) {  //predÓÃvector +identºó  sÊÇproxy¶¥µã  ¸ù¾İĞÂ¶¨Òå£¬ÒÔs
 	int level = 0;
 
 	//bfs
-	map<int, int> pathinstance;  //wÏÂ·½ËùÓĞÂ·¾¶ÊµÀı°´ÀàÍ³¼Æ
+	map<int, int> pathinstance;  //wä¸‹æ–¹æ‰€æœ‰è·¯å¾„å®ä¾‹æŒ‰ç±»ç»Ÿè®¡
 
 	while (!Q.empty()) {
 		int v = Q.front();
-		if (dist[v] == level) { //ÈôvÊÇlevel²ãµÄ¶¥µã£¬Ôò·ÃÎÊv£¬½«¸Ã²ãvµãÏÂ·½µÄÂ·¾¶ÊµÀıĞÅÏ¢¶¼Í³¼Æµ½pathinstanceÀïÃæ
+		if (dist[v] == level) { //è‹¥væ˜¯levelå±‚çš„é¡¶ç‚¹ï¼Œåˆ™è®¿é—®vï¼Œå°†è¯¥å±‚vç‚¹ä¸‹æ–¹çš„è·¯å¾„å®ä¾‹ä¿¡æ¯éƒ½ç»Ÿè®¡åˆ°pathinstanceé‡Œé¢
 			Q.pop();
 			S.push(v);
-			//Í³¼Ælevel²ãÂ·¾¶ÊµÀıÀà±ğ
-			temp_Q.push(v);   //¼ÇÂ¼µÚlevel²ã·ÃÎÊµÄ¶¥µã
-			for (auto w : Pmg.adjlist_edge[v]) {  //·ÃÎÊÁËvµÄËùÓĞÁÚ¾Ów[ÁÚ½Ó¶¥µã£¬ÁÚ½Ó±ß]
+			//ç»Ÿè®¡levelå±‚è·¯å¾„å®ä¾‹ç±»åˆ«
+			temp_Q.push(v);   //è®°å½•ç¬¬levelå±‚è®¿é—®çš„é¡¶ç‚¹
+			for (auto w : Pmg.adjlist_edge[v]) {  //è®¿é—®äº†vçš„æ‰€æœ‰é‚»å±…w[é‚»æ¥é¡¶ç‚¹ï¼Œé‚»æ¥è¾¹]
 				if (dist[w.first] == DBL_MAX) {
 					dist[w.first] = dist[v] + 1;
 					Q.push(w.first);
 				}
-				if (dist[w.first] == dist[v] + 1) {  //Í¨¹ı´ËifÌõ¼ş£¬¿ÉÒÔµÃµ½vµÄËùÓĞÏÂ·½µÄÁÚ¾Ów
-					//Í³¼ÆvÏÂ·½µÄÂ·¾¶ÊµÀıĞÅÏ¢
+				if (dist[w.first] == dist[v] + 1) {  //é€šè¿‡æ­¤ifæ¡ä»¶ï¼Œå¯ä»¥å¾—åˆ°vçš„æ‰€æœ‰ä¸‹æ–¹çš„é‚»å±…w
+					//ç»Ÿè®¡vä¸‹æ–¹çš„è·¯å¾„å®ä¾‹ä¿¡æ¯
 					vector<vector<int>> einfo = Pmg.edge_info[w.second];
 					for (auto pinfo : einfo) {
 						int pclass = pinfo[0];
 						int pnum = pinfo[1];
-						pathinstance[pclass] += pnum * (1 + ident[w.first]);  //v--w[0]Óëv--w[0]´ú±íµÄ¶¥µãµÄÂ·¾¶ÊµÀıÊı
+						pathinstance[pclass] += pnum * (1 + ident[w.first]);  //v--w[0]ä¸v--w[0]ä»£è¡¨çš„é¡¶ç‚¹çš„è·¯å¾„å®ä¾‹æ•°
 					}
 				}
 			}
-			if (v == s) {  //µ±sÎªidentµã¼¯ÖĞµÄproxyµãÊ±£¬µÚÒ»²ãbfs£¬³ıÁË·ÃÎÊÁÚ¾ÓµãwÍâ£¬ÆäÊµ»¹ÓĞÆäidenticalµã£¨Ò²ÊÇsµÄÁÚ¾Óµã£©Ò²ÔÚµÚ¶ş²ã¶¥µãÖĞ£¬ÒòÎªÒªÍ³¼ÆÍêÕûµÄsÏÂ·½Â·¾¶ÊµÀıµÄĞÅÏ¢£¬ËùÒÔÒ²Òª¼ÓÉÏs¡ª¡ªsidentµÄÂ·¾¶ÊµÀıĞÅÏ¢
+			if (v == s) {  //å½“sä¸ºidentç‚¹é›†ä¸­çš„proxyç‚¹æ—¶ï¼Œç¬¬ä¸€å±‚bfsï¼Œé™¤äº†è®¿é—®é‚»å±…ç‚¹wå¤–ï¼Œå…¶å®è¿˜æœ‰å…¶identicalç‚¹ï¼ˆä¹Ÿæ˜¯sçš„é‚»å±…ç‚¹ï¼‰ä¹Ÿåœ¨ç¬¬äºŒå±‚é¡¶ç‚¹ä¸­ï¼Œå› ä¸ºè¦ç»Ÿè®¡å®Œæ•´çš„sä¸‹æ–¹è·¯å¾„å®ä¾‹çš„ä¿¡æ¯ï¼Œæ‰€ä»¥ä¹Ÿè¦åŠ ä¸Šsâ€”â€”sidentçš„è·¯å¾„å®ä¾‹ä¿¡æ¯
 				for (int sident : IdentSet[s]) {
 					//int edge_index_s = Pmg.Mp_edge[s][sident];
 					//!!!!!!!!int edge_index_s = Pmg.adjlist_edge[s][sident]; //??????????????????????????
@@ -1049,17 +1049,17 @@ void CBC_ident1(int s) {  //predÓÃvector +identºó  sÊÇproxy¶¥µã  ¸ù¾İĞÂ¶¨Òå£¬ÒÔs
 				}
 			}
 		}
-		else {  //ÈôvÊÇlevel+1²ãµÄ£¬ËµÃ÷level²ã¶¥µãÒÑ¾­·ÃÎÊÍê±ÏÁË£»ÖØĞÂÔÙ·ÃÎÊlevel²ãµÄ¶¥µãrv£¬¼ÆËã±ßÈ¨£¬¸üĞÂ×î¶ÌÂ·¾¶Êı
+		else {  //è‹¥væ˜¯level+1å±‚çš„ï¼Œè¯´æ˜levelå±‚é¡¶ç‚¹å·²ç»è®¿é—®å®Œæ¯•äº†ï¼›é‡æ–°å†è®¿é—®levelå±‚çš„é¡¶ç‚¹rvï¼Œè®¡ç®—è¾¹æƒï¼Œæ›´æ–°æœ€çŸ­è·¯å¾„æ•°
 			while (!temp_Q.empty()) {
 				int rv = temp_Q.front();
 				temp_Q.pop();
-				//»ñµÃrvÓëÆäÃ¿¸öºóÖÃµãwÖ®¼ä±ßµÄÈ¨ÖØ£¬²¢¸üĞÂ×î¶ÌÂ·¾¶Êı
+				//è·å¾—rvä¸å…¶æ¯ä¸ªåç½®ç‚¹wä¹‹é—´è¾¹çš„æƒé‡ï¼Œå¹¶æ›´æ–°æœ€çŸ­è·¯å¾„æ•°
 				for (auto w : Pmg.adjlist_edge[rv]) {
 					double weight;
 					weight = 0;
-					if (dist[w.first] == dist[rv] + 1) {  //¼ÆËãvÓëw[0]Ö®¼äµÄ±ßÈ¨
-						vector<vector<int>> einfo = Pmg.edge_info[w.second];  //w[1]ÊÇvÓëw[0]Ö®¼äµÄ±ß
-						for (auto pinfo : einfo) {  //¸ù¾İvÓëw[0]Ö®¼ä±ßµÄÂ·¾¶ÊµÀıĞÅÏ¢£¬¸üĞÂpathnum[w[0]]
+					if (dist[w.first] == dist[rv] + 1) {  //è®¡ç®—vä¸w[0]ä¹‹é—´çš„è¾¹æƒ
+						vector<vector<int>> einfo = Pmg.edge_info[w.second];  //w[1]æ˜¯vä¸w[0]ä¹‹é—´çš„è¾¹
+						for (auto pinfo : einfo) {  //æ ¹æ®vä¸w[0]ä¹‹é—´è¾¹çš„è·¯å¾„å®ä¾‹ä¿¡æ¯ï¼Œæ›´æ–°pathnum[w[0]]
 							int pclass = pinfo[0];
 							int pnum = pinfo[1];
 							weight += ((double)pnum / (double)pathinstance[pclass]);
@@ -1080,30 +1080,30 @@ void CBC_ident1(int s) {  //predÓÃvector +identºó  sÊÇproxy¶¥µã  ¸ù¾İĞÂ¶¨Òå£¬ÒÔs
 					}
 				}
 			}
-			level = level + 1;  //½ÓÏÂÀ´·ÃÎÊµÚlevel+1²ã
-			pathinstance.clear(); //ÖØĞÂÍ³¼ÆµÚlevel+1²ãµÄpathinstanceĞÅÏ¢
+			level = level + 1;  //æ¥ä¸‹æ¥è®¿é—®ç¬¬level+1å±‚
+			pathinstance.clear(); //é‡æ–°ç»Ÿè®¡ç¬¬level+1å±‚çš„pathinstanceä¿¡æ¯
 		}
 		//int v = Q.front();
 		//Q.pop();
 		//S.push(v);
 		//map<int, int> pathinstance;
-		//for (auto w : Pmg.adjlist_edge[v]) {  //·ÃÎÊÁËvµÄËùÓĞÁÚ¾Ów[ÁÚ½Ó¶¥µã£¬ÁÚ½Ó±ß]
+		//for (auto w : Pmg.adjlist_edge[v]) {  //è®¿é—®äº†vçš„æ‰€æœ‰é‚»å±…w[é‚»æ¥é¡¶ç‚¹ï¼Œé‚»æ¥è¾¹]
 		//	if (dist[w.first] == DBL_MAX) {
 		//		dist[w.first] = dist[v] + 1;
 		//		Q.push(w.first);
 		//	}
-		//	if (dist[w.first] == dist[v] + 1) {  //Í¨¹ı´ËifÌõ¼ş£¬¿ÉÒÔµÃµ½vµÄËùÓĞÏÂ·½µÄÁÚ¾Ów
+		//	if (dist[w.first] == dist[v] + 1) {  //é€šè¿‡æ­¤ifæ¡ä»¶ï¼Œå¯ä»¥å¾—åˆ°vçš„æ‰€æœ‰ä¸‹æ–¹çš„é‚»å±…w
 		//		/*pathnum[w[0]] += pathnum[v]*Pmg.Mp[v][w[0]];*/
-		//		//Í³¼ÆvÏÂ·½µÄÂ·¾¶ÊµÀıĞÅÏ¢
+		//		//ç»Ÿè®¡vä¸‹æ–¹çš„è·¯å¾„å®ä¾‹ä¿¡æ¯
 		//		vector<vector<int>> einfo = Pmg.edge_info[w.second];
 		//		for (auto pinfo : einfo) {
 		//			int pclass = pinfo[0];
 		//			int pnum = pinfo[1];
-		//			pathinstance[pclass] += pnum * (1 + ident[w.first]);  //v--w[0]Óëv--w[0]´ú±íµÄ¶¥µãµÄÂ·¾¶ÊµÀıÊı
+		//			pathinstance[pclass] += pnum * (1 + ident[w.first]);  //v--w[0]ä¸v--w[0]ä»£è¡¨çš„é¡¶ç‚¹çš„è·¯å¾„å®ä¾‹æ•°
 		//		}
 		//	}
 		//}
-		//if (v == s) {  //µ±sÎªidentµã¼¯ÖĞµÄproxyµãÊ±£¬µÚÒ»²ãbfs£¬³ıÁË·ÃÎÊÁÚ¾ÓµãwÍâ£¬ÆäÊµ»¹ÓĞÆäidenticalµã£¨Ò²ÊÇsµÄÁÚ¾Óµã£©Ò²ÔÚµÚ¶ş²ã¶¥µãÖĞ£¬ÒòÎªÒªÍ³¼ÆÍêÕûµÄsÏÂ·½Â·¾¶ÊµÀıµÄĞÅÏ¢£¬ËùÒÔÒ²Òª¼ÓÉÏs¡ª¡ªsidentµÄÂ·¾¶ÊµÀıĞÅÏ¢
+		//if (v == s) {  //å½“sä¸ºidentç‚¹é›†ä¸­çš„proxyç‚¹æ—¶ï¼Œç¬¬ä¸€å±‚bfsï¼Œé™¤äº†è®¿é—®é‚»å±…ç‚¹wå¤–ï¼Œå…¶å®è¿˜æœ‰å…¶identicalç‚¹ï¼ˆä¹Ÿæ˜¯sçš„é‚»å±…ç‚¹ï¼‰ä¹Ÿåœ¨ç¬¬äºŒå±‚é¡¶ç‚¹ä¸­ï¼Œå› ä¸ºè¦ç»Ÿè®¡å®Œæ•´çš„sä¸‹æ–¹è·¯å¾„å®ä¾‹çš„ä¿¡æ¯ï¼Œæ‰€ä»¥ä¹Ÿè¦åŠ ä¸Šsâ€”â€”sidentçš„è·¯å¾„å®ä¾‹ä¿¡æ¯
 		//	for (int sident : IdentSet[s]) {
 		//		//int edge_index_s = Pmg.Mp_edge[s][sident];
 		//		//!!!!!!!!int edge_index_s = Pmg.adjlist_edge[s][sident]; //??????????????????????????
@@ -1116,15 +1116,15 @@ void CBC_ident1(int s) {  //predÓÃvector +identºó  sÊÇproxy¶¥µã  ¸ù¾İĞÂ¶¨Òå£¬ÒÔs
 		//		}
 		//	}
 		//}
-		////±éÀúÍêvµÄÁÚ¾Óµãºó£¬²ÅÄÜÍ³¼ÆÍêÕûµÄvºóÂ·¾¶ÊµÀıµÄĞÅÏ¢£¬»ñµÃvÓëÆäÃ¿¸öºóÖÃµãwÖ®¼ä±ßµÄÈ¨ÖØ
+		////éå†å®Œvçš„é‚»å±…ç‚¹åï¼Œæ‰èƒ½ç»Ÿè®¡å®Œæ•´çš„våè·¯å¾„å®ä¾‹çš„ä¿¡æ¯ï¼Œè·å¾—vä¸å…¶æ¯ä¸ªåç½®ç‚¹wä¹‹é—´è¾¹çš„æƒé‡
 		//for (auto w : Pmg.adjlist_edge[v]) {
 		//	double weight = 0;
-		//	if (dist[w.first] == dist[v] + 1) {  //¼ÆËãvÓëw[0]Ö®¼äµÄ±ßÈ¨
-		//		vector<vector<int>> einfo = Pmg.edge_info[w.second];  //w[1]ÊÇvÓëw[0]Ö®¼äµÄ±ß
-		//		for (auto pinfo : einfo) {  //¸ù¾İvÓëw[0]Ö®¼ä±ßµÄÂ·¾¶ÊµÀıĞÅÏ¢£¬¸üĞÂpathnum[w[0]]
+		//	if (dist[w.first] == dist[v] + 1) {  //è®¡ç®—vä¸w[0]ä¹‹é—´çš„è¾¹æƒ
+		//		vector<vector<int>> einfo = Pmg.edge_info[w.second];  //w[1]æ˜¯vä¸w[0]ä¹‹é—´çš„è¾¹
+		//		for (auto pinfo : einfo) {  //æ ¹æ®vä¸w[0]ä¹‹é—´è¾¹çš„è·¯å¾„å®ä¾‹ä¿¡æ¯ï¼Œæ›´æ–°pathnum[w[0]]
 		//			int pclass = pinfo[0];
 		//			int pnum = pinfo[1];
-		//			weight += ((double)pnum / pathinstance[pclass]);  //ÀÛ¼Óv-w[0]Ö®¼äµÄ±ßÈ¨
+		//			weight += ((double)pnum / pathinstance[pclass]);  //ç´¯åŠ v-w[0]ä¹‹é—´çš„è¾¹æƒ
 		//		}
 		//		weight = weight * einfo.size();
 		//		pathnum[w.first] += pathnum[v] * weight * (1 + (double)ident[v]);
@@ -1133,10 +1133,10 @@ void CBC_ident1(int s) {  //predÓÃvector +identºó  sÊÇproxy¶¥µã  ¸ù¾İĞÂ¶¨Òå£¬ÒÔs
 		//}
 	}
 	/*for (int i = 0; i < pathnum.size(); i++) {
-		cout << "µ½µã" << i << "×î¶ÌÂ·¾¶Êı£º" << pathnum[i] << endl;
+		cout << "åˆ°ç‚¹" << i << "æœ€çŸ­è·¯å¾„æ•°ï¼š" << pathnum[i] << endl;
 	}*/
 	pmid = clock();
-	//back propagation  sÊÇproxy¶¥µã
+	//back propagation  sæ˜¯proxyé¡¶ç‚¹
 	int total_reach = reach[s];
 	for (int sident : IdentSet[s]) {
 		total_reach += reach[sident];
@@ -1177,15 +1177,15 @@ void CBC_ident1(int s) {  //predÓÃvector +identºó  sÊÇproxy¶¥µã  ¸ù¾İĞÂ¶¨Òå£¬ÒÔs
 	for (int sident:IdentSet[s]) {
 		deta0[sident] = deta[0];
 	}*/
-	/*cout << "¶Ôµã0Ô´ÒÀÀµ£º" << deta[0] << endl;*/
+	/*cout << "å¯¹ç‚¹0æºä¾èµ–ï¼š" << deta[0] << endl;*/
 
 	/*for (int i = 0; i < deta.size(); i++) {
-		cout << "¶Ôµã" << i << "Ô´ÒÀÀµ£º" << deta[i] << endl;
+		cout << "å¯¹ç‚¹" << i << "æºä¾èµ–ï¼š" << deta[i] << endl;
 	}*/
 }
-//void CBC_ident1(int s) {  //predÓÃvector +identºó  s·ÖÎª¶à¸öbfsÊ÷£¨pathnum£©´¦Àí£¨identical¶¥µã¼¯ÖĞµÄµã£¬Ö®¼äµÄ±ßµÄĞÅÏ¢ÔÊĞí²»Í¬£©
+//void CBC_ident1(int s) {  //predç”¨vector +identå  såˆ†ä¸ºå¤šä¸ªbfsæ ‘ï¼ˆpathnumï¼‰å¤„ç†ï¼ˆidenticalé¡¶ç‚¹é›†ä¸­çš„ç‚¹ï¼Œä¹‹é—´çš„è¾¹çš„ä¿¡æ¯å…è®¸ä¸åŒï¼‰
 //	//initialize variable
-//	/*cout << "Ô´µã" << s << endl;*/
+//	/*cout << "æºç‚¹" << s << endl;*/
 //	vector<int> swithidentset = { s };
 //	for (int sident : IdentSet[s]) swithidentset.push_back(sident);
 //	queue<int> Q;
@@ -1213,12 +1213,12 @@ void CBC_ident1(int s) {  //predÓÃvector +identºó  sÊÇproxy¶¥µã  ¸ù¾İĞÂ¶¨Òå£¬ÒÔs
 //				int pclass = pinfo[0];
 //				int pnum = pinfo[1];
 //				for (int i = 0; i < ident[s] + 1; i++) {
-//					pathinstance_s[i][pclass] += pnum * (1 + ident[w[0]]);  //v--w[0]Óëv--w[0]´ú±íµÄ¶¥µãµÄÂ·¾¶ÊµÀıÊı
+//					pathinstance_s[i][pclass] += pnum * (1 + ident[w[0]]);  //v--w[0]ä¸v--w[0]ä»£è¡¨çš„é¡¶ç‚¹çš„è·¯å¾„å®ä¾‹æ•°
 //				}
 //			}
 //		}
 //	}
-//	for (int si = 0; si < swithidentset.size(); si++) {  //¸ù¾İidentsÖĞ²»Í¬µÄµãÎªÔ´µã£¬µÃµ½µÄtempsÏÂ·½µÄÂ·¾¶ÊµÀıÊı£¬¸üĞÂpathinstance_v
+//	for (int si = 0; si < swithidentset.size(); si++) {  //æ ¹æ®identsä¸­ä¸åŒçš„ç‚¹ä¸ºæºç‚¹ï¼Œå¾—åˆ°çš„tempsä¸‹æ–¹çš„è·¯å¾„å®ä¾‹æ•°ï¼Œæ›´æ–°pathinstance_v
 //		int temps = swithidentset[si];
 //		for (int sident : swithidentset) {
 //			if (sident != temps) {
@@ -1227,7 +1227,7 @@ void CBC_ident1(int s) {  //predÓÃvector +identºó  sÊÇproxy¶¥µã  ¸ù¾İĞÂ¶¨Òå£¬ÒÔs
 //				for (auto pinfo : einfo) {
 //					int pclass = pinfo[0];
 //					int pnum = pinfo[1];
-//					pathinstance_s[si][pclass] += pnum;  //ÒòÎªsidentÒ»¶¨Ö»´ú±íËü×Ô¼º£¬ËùÒÔ²»ĞèÒª*ident[sident](ident[w[0]])
+//					pathinstance_s[si][pclass] += pnum;  //å› ä¸ºsidentä¸€å®šåªä»£è¡¨å®ƒè‡ªå·±ï¼Œæ‰€ä»¥ä¸éœ€è¦*ident[sident](ident[w[0]])
 //				}
 //			}
 //		}
@@ -1245,7 +1245,7 @@ void CBC_ident1(int s) {  //predÓÃvector +identºó  sÊÇproxy¶¥µã  ¸ù¾İĞÂ¶¨Òå£¬ÒÔs
 //					int pnum = pinfo[1];
 //					weight += ((double)pnum / pathinstance_s[si][pclass]);
 //				}
-//				pathnum[si][w[0]] += pathnum[si][temps] * weight;  //²»ĞèÒª*ident[temps]£¨ident[v]£©£¬ÒòÎª½«²»Í¬µÄidents·Ö³É²»Í¬µÄpathnumÊı×é
+//				pathnum[si][w[0]] += pathnum[si][temps] * weight;  //ä¸éœ€è¦*ident[temps]ï¼ˆident[v]ï¼‰ï¼Œå› ä¸ºå°†ä¸åŒçš„identsåˆ†æˆä¸åŒçš„pathnumæ•°ç»„
 //			}
 //			pred[w[0]].push_back(pred_weightset);
 //		}
@@ -1256,31 +1256,31 @@ void CBC_ident1(int s) {  //predÓÃvector +identºó  sÊÇproxy¶¥µã  ¸ù¾İĞÂ¶¨Òå£¬ÒÔs
 //		Q.pop();
 //		S.push(v);
 //		map<int, int> pathinstance;
-//		for (auto w : Pmg.adjlist_edge[v]) {  //·ÃÎÊÁËvµÄËùÓĞÁÚ¾Ów[ÁÚ½Ó¶¥µã£¬ÁÚ½Ó±ß]
+//		for (auto w : Pmg.adjlist_edge[v]) {  //è®¿é—®äº†vçš„æ‰€æœ‰é‚»å±…w[é‚»æ¥é¡¶ç‚¹ï¼Œé‚»æ¥è¾¹]
 //			if (dist[w[0]] == DBL_MAX) {
 //				dist[w[0]] = dist[v] + 1;
 //				Q.push(w[0]);
 //			}
-//			if (dist[w[0]] == dist[v] + 1) {  //Í¨¹ı´ËifÌõ¼ş£¬¿ÉÒÔµÃµ½vµÄËùÓĞÏÂ·½µÄÁÚ¾Ów
+//			if (dist[w[0]] == dist[v] + 1) {  //é€šè¿‡æ­¤ifæ¡ä»¶ï¼Œå¯ä»¥å¾—åˆ°vçš„æ‰€æœ‰ä¸‹æ–¹çš„é‚»å±…w
 //				/*pathnum[w[0]] += pathnum[v]*Pmg.Mp[v][w[0]];*/
-//				//Í³¼ÆvÏÂ·½µÄÂ·¾¶ÊµÀıĞÅÏ¢
+//				//ç»Ÿè®¡vä¸‹æ–¹çš„è·¯å¾„å®ä¾‹ä¿¡æ¯
 //				vector<vector<int>> einfo = Pmg.edge_info[w[1]];
 //				for (auto pinfo : einfo) {
 //					int pclass = pinfo[0];
 //					int pnum = pinfo[1];
-//					pathinstance[pclass] += pnum * (1 + ident[w[0]]);  //v--w[0]Óëv--w[0]´ú±íµÄ¶¥µãµÄÂ·¾¶ÊµÀıÊı
+//					pathinstance[pclass] += pnum * (1 + ident[w[0]]);  //v--w[0]ä¸v--w[0]ä»£è¡¨çš„é¡¶ç‚¹çš„è·¯å¾„å®ä¾‹æ•°
 //				}
 //			}
 //		}
-//		//±éÀúÍêvµÄÁÚ¾Óµãºó£¬²ÅÄÜÍ³¼ÆÍêÕûµÄvºóÂ·¾¶ÊµÀıµÄĞÅÏ¢£¬»ñµÃvÓëÆäÃ¿¸öºóÖÃµãwÖ®¼ä±ßµÄÈ¨ÖØ
+//		//éå†å®Œvçš„é‚»å±…ç‚¹åï¼Œæ‰èƒ½ç»Ÿè®¡å®Œæ•´çš„våè·¯å¾„å®ä¾‹çš„ä¿¡æ¯ï¼Œè·å¾—vä¸å…¶æ¯ä¸ªåç½®ç‚¹wä¹‹é—´è¾¹çš„æƒé‡
 //		for (auto w : Pmg.adjlist_edge[v]) {
 //			double weight = 0;
-//			if (dist[w[0]] == dist[v] + 1) {  //¼ÆËãvÓëw[0]Ö®¼äµÄ±ßÈ¨
-//				vector<vector<int>> einfo = Pmg.edge_info[w[1]];  //w[1]ÊÇvÓëw[0]Ö®¼äµÄ±ß
-//				for (auto pinfo : einfo) {  //¸ù¾İvÓëw[0]Ö®¼ä±ßµÄÂ·¾¶ÊµÀıĞÅÏ¢£¬¸üĞÂpathnum[w[0]]
+//			if (dist[w[0]] == dist[v] + 1) {  //è®¡ç®—vä¸w[0]ä¹‹é—´çš„è¾¹æƒ
+//				vector<vector<int>> einfo = Pmg.edge_info[w[1]];  //w[1]æ˜¯vä¸w[0]ä¹‹é—´çš„è¾¹
+//				for (auto pinfo : einfo) {  //æ ¹æ®vä¸w[0]ä¹‹é—´è¾¹çš„è·¯å¾„å®ä¾‹ä¿¡æ¯ï¼Œæ›´æ–°pathnum[w[0]]
 //					int pclass = pinfo[0];
 //					int pnum = pinfo[1];
-//					weight += ((double)pnum / pathinstance[pclass]);  //ÀÛ¼Óv-w[0]Ö®¼äµÄ±ßÈ¨
+//					weight += ((double)pnum / pathinstance[pclass]);  //ç´¯åŠ v-w[0]ä¹‹é—´çš„è¾¹æƒ
 //				}
 //				for (int si = 0; si < swithidentset.size(); si++) {
 //					pathnum[si][w[0]] += pathnum[si][v] * weight * (1 + (double)ident[v]);
@@ -1290,7 +1290,7 @@ void CBC_ident1(int s) {  //predÓÃvector +identºó  sÊÇproxy¶¥µã  ¸ù¾İĞÂ¶¨Òå£¬ÒÔs
 //		}
 //	}
 //	/*for (int i = 0; i < pathnum.size(); i++) {
-//		cout << "µ½µã" << i << "×î¶ÌÂ·¾¶Êı£º" << pathnum[i] << endl;
+//		cout << "åˆ°ç‚¹" << i << "æœ€çŸ­è·¯å¾„æ•°ï¼š" << pathnum[i] << endl;
 //	}*/
 //	//back propagation
 //	vector<vector<double>> deta(swithidentset.size(),vector<double>(Pmg.n_vertex));
@@ -1304,7 +1304,7 @@ void CBC_ident1(int s) {  //predÓÃvector +identºó  sÊÇproxy¶¥µã  ¸ù¾İĞÂ¶¨Òå£¬ÒÔs
 //				}
 //			}
 //			/*if (v[0] == 19) {
-//				cout<<"w="<<w<<"Ê±£¬"<< "deta[(int)"<<19<<"] += ("<<pathnum[(int)v[0]]<<" * "<<v[1]<<" / "<<pathnum[w]<<") * (1 + "<<deta[w]<<") * ((double)1 + "<<ident[w]<<")"<<endl;
+//				cout<<"w="<<w<<"æ—¶ï¼Œ"<< "deta[(int)"<<19<<"] += ("<<pathnum[(int)v[0]]<<" * "<<v[1]<<" / "<<pathnum[w]<<") * (1 + "<<deta[w]<<") * ((double)1 + "<<ident[w]<<")"<<endl;
 //			}*/
 //		}
 //		if (w != s) {
@@ -1322,19 +1322,19 @@ void CBC_ident1(int s) {  //predÓÃvector +identºó  sÊÇproxy¶¥µã  ¸ù¾İĞÂ¶¨Òå£¬ÒÔs
 //		}
 //	}
 //	/*for (int si = 0; si < swithidentset.size(); si++) {
-//		cout << swithidentset[si]<<"¶Ôµã0Ô´ÒÀÀµ£º" << deta[si][0] << endl;
+//		cout << swithidentset[si]<<"å¯¹ç‚¹0æºä¾èµ–ï¼š" << deta[si][0] << endl;
 //	}*/
 //	for (int si = 0; si < swithidentset.size(); si++) {
 //		deta0[si] = deta[si][0];
 //	}
 //
 //	/*for (int i = 0; i < deta.size(); i++) {
-//		cout << "¶Ôµã" << i << "Ô´ÒÀÀµ£º" << deta[i] << endl;
+//		cout << "å¯¹ç‚¹" << i << "æºä¾èµ–ï¼š" << deta[i] << endl;
 //	}*/
 //}
-//void CBC_ri(int s) {  //predÓÃvector +reach+identºó
+//void CBC_ri(int s) {  //predç”¨vector +reach+identå
 //	//initialize variable
-//	/*cout << "Ô´µã" << s << endl;*/
+//	/*cout << "æºç‚¹" << s << endl;*/
 //	queue<int> Q;
 //	stack<int> S;
 //	/*vector<map<int,double>> pred(Pmg.n_vertex);*/
@@ -1350,14 +1350,14 @@ void CBC_ident1(int s) {  //predÓÃvector +identºó  sÊÇproxy¶¥µã  ¸ù¾İĞÂ¶¨Òå£¬ÒÔs
 //		Q.pop();
 //		S.push(v);
 //		map<int, int> pathinstance;
-//		for (auto w : Pmg.adjlist_edge[v]) {  //·ÃÎÊÁËvµÄËùÓĞÁÚ¾Ów[ÁÚ½Ó¶¥µã£¬ÁÚ½Ó±ß]
+//		for (auto w : Pmg.adjlist_edge[v]) {  //è®¿é—®äº†vçš„æ‰€æœ‰é‚»å±…w[é‚»æ¥é¡¶ç‚¹ï¼Œé‚»æ¥è¾¹]
 //			if (dist[w[0]] == DBL_MAX) {
 //				dist[w[0]] = dist[v] + 1;
 //				Q.push(w[0]);
 //			}
-//			if (dist[w[0]] == dist[v] + 1) {  //Í¨¹ı´ËifÌõ¼ş£¬¿ÉÒÔµÃµ½vµÄËùÓĞÏÂ·½µÄÁÚ¾Ów
+//			if (dist[w[0]] == dist[v] + 1) {  //é€šè¿‡æ­¤ifæ¡ä»¶ï¼Œå¯ä»¥å¾—åˆ°vçš„æ‰€æœ‰ä¸‹æ–¹çš„é‚»å±…w
 //				/*pathnum[w[0]] += pathnum[v]*Pmg.Mp[v][w[0]];*/
-//				//Í³¼ÆvÏÂ·½µÄÂ·¾¶ÊµÀıĞÅÏ¢
+//				//ç»Ÿè®¡vä¸‹æ–¹çš„è·¯å¾„å®ä¾‹ä¿¡æ¯
 //				vector<vector<int>> einfo = Pmg.edge_info[w[1]];
 //				for (auto pinfo : einfo) {
 //					int pclass = pinfo[0];
@@ -1366,15 +1366,15 @@ void CBC_ident1(int s) {  //predÓÃvector +identºó  sÊÇproxy¶¥µã  ¸ù¾İĞÂ¶¨Òå£¬ÒÔs
 //				}
 //			}
 //		}
-//		//±éÀúÍêvµÄÁÚ¾Óµãºó£¬²ÅÄÜÍ³¼ÆÍêÕûµÄvºóÂ·¾¶ÊµÀıµÄĞÅÏ¢£¬»ñµÃvÓëÆäÃ¿¸öºóÖÃµãwÖ®¼ä±ßµÄÈ¨ÖØ
+//		//éå†å®Œvçš„é‚»å±…ç‚¹åï¼Œæ‰èƒ½ç»Ÿè®¡å®Œæ•´çš„våè·¯å¾„å®ä¾‹çš„ä¿¡æ¯ï¼Œè·å¾—vä¸å…¶æ¯ä¸ªåç½®ç‚¹wä¹‹é—´è¾¹çš„æƒé‡
 //		for (auto w : Pmg.adjlist_edge[v]) {
 //			double weight = 0;
-//			if (dist[w[0]] == dist[v] + 1) {  //¼ÆËãvÓëw[0]Ö®¼äµÄ±ßÈ¨
-//				vector<vector<int>> einfo = Pmg.edge_info[w[1]];  //w[1]ÊÇvÓëw[0]Ö®¼äµÄ±ß
-//				for (auto pinfo : einfo) {  //¸ù¾İvÓëw[0]Ö®¼ä±ßµÄÂ·¾¶ÊµÀıĞÅÏ¢£¬¸üĞÂpathnum[w[0]]
+//			if (dist[w[0]] == dist[v] + 1) {  //è®¡ç®—vä¸w[0]ä¹‹é—´çš„è¾¹æƒ
+//				vector<vector<int>> einfo = Pmg.edge_info[w[1]];  //w[1]æ˜¯vä¸w[0]ä¹‹é—´çš„è¾¹
+//				for (auto pinfo : einfo) {  //æ ¹æ®vä¸w[0]ä¹‹é—´è¾¹çš„è·¯å¾„å®ä¾‹ä¿¡æ¯ï¼Œæ›´æ–°pathnum[w[0]]
 //					int pclass = pinfo[0];
 //					int pnum = pinfo[1];
-//					weight += ((double)pnum / pathinstance[pclass]);  //ÀÛ¼Óv-w[0]Ö®¼äµÄ±ßÈ¨
+//					weight += ((double)pnum / pathinstance[pclass]);  //ç´¯åŠ v-w[0]ä¹‹é—´çš„è¾¹æƒ
 //				}
 //				pathnum[w[0]] += pathnum[v] * weight * (1 + (double)ident[v]);
 //				pred[w[0]].push_back({ (double)v,weight });
@@ -1382,7 +1382,7 @@ void CBC_ident1(int s) {  //predÓÃvector +identºó  sÊÇproxy¶¥µã  ¸ù¾İĞÂ¶¨Òå£¬ÒÔs
 //		}
 //	}
 //	/*for (int i = 0; i < pathnum.size(); i++) {
-//		cout << "µ½µã" << i << "×î¶ÌÂ·¾¶Êı£º" << pathnum[i] << endl;
+//		cout << "åˆ°ç‚¹" << i << "æœ€çŸ­è·¯å¾„æ•°ï¼š" << pathnum[i] << endl;
 //	}*/
 //	//back propagation
 //	int reachs_total = reach[s];
@@ -1420,7 +1420,7 @@ void CBC_ident1(int s) {  //predÓÃvector +identºó  sÊÇproxy¶¥µã  ¸ù¾İĞÂ¶¨Òå£¬ÒÔs
 //		}
 //	}
 //	/*for (int i = 0; i < deta.size(); i++) {
-//		cout << "¶Ôµã" << i << "Ô´ÒÀÀµ£º" << deta[i] << endl;
+//		cout << "å¯¹ç‚¹" << i << "æºä¾èµ–ï¼š" << deta[i] << endl;
 //	}*/
 //}
 
@@ -1436,20 +1436,20 @@ void sort_bc() {
 	sort(bc_.begin(), bc_.end(), cmp);
 	cout << "top10:" << endl;
 	for (int i = 0; i < 10; i++) {
-		cout <<"¶¥µã"<< bc_[i].first << "µÄbcÖµ:" << bc_[i].second << endl;
+		cout <<"é¡¶ç‚¹"<< bc_[i].first << "çš„bcå€¼:" << bc_[i].second << endl;
 	}
 }
 
 void getbcfromfile() {
 	string filename = file + "/result.txt";  
-	ifstream input(filename, ios::in);  //ÊäÈëÎÄ¼şÁ÷¶ÔÏóinput
-	//ÅĞ¶ÏÎÄ¼şÊÇ·ñ´æÔÚ
+	ifstream input(filename, ios::in);  //è¾“å…¥æ–‡ä»¶æµå¯¹è±¡input
+	//åˆ¤æ–­æ–‡ä»¶æ˜¯å¦å­˜åœ¨
 	if (!input) {
 		cerr << "file error!" << endl;
 		exit(1);
 	}
 
-	//¶ÁÈëËùÓĞ¶¥µãµÄbcÖµ//±£´æÃ¿¸ö¶¥µãµÄbcÖµµÄÎÄ¼ş
+	//è¯»å…¥æ‰€æœ‰é¡¶ç‚¹çš„bcå€¼//ä¿å­˜æ¯ä¸ªé¡¶ç‚¹çš„bcå€¼çš„æ–‡ä»¶
 	string bc_info;
 	while (getline(input, bc_info)) {
 		istringstream sbc_info(bc_info);
@@ -1467,26 +1467,26 @@ void save_bc() {
 		out << i << " ";
 		out<< fixed << setprecision(8) << bc[i] << endl;
 	}
-	cout << "ÓÉcbc¼ÆËã³öµÄbcÖµÒÑ±£´æÖÁ" << file << "/cbc_result_amwma.txt";
+	cout << "ç”±cbcè®¡ç®—å‡ºçš„bcå€¼å·²ä¿å­˜è‡³" << file << "/cbc_result_amwma.txt";
 }
 
-/*¶ÁÎÄ¼ş£¬»ñÈ¡Òì¹¹Í¼ĞÅÏ¢*/
-void hetergraph::read_file() {  //Î´¼Óadjlist
-	string filename = file + "/base.txt";  //baseÖĞ´æ´¢ÎÄ¼şµÄ»ù±¾ĞÅÏ¢£¬¸ù¾İ±ßÀà±ğµÄĞĞ¶ÔÓ¦µÄ±ßµÄË÷Òı£¬ÕÒµ½±ßµÄÎÄ¼ş"x.txt"
-	ifstream input(filename, ios::in);  //ÊäÈëÎÄ¼şÁ÷¶ÔÏóinput
-	//ÅĞ¶ÏÎÄ¼şÊÇ·ñ´æÔÚ
+/*è¯»æ–‡ä»¶ï¼Œè·å–å¼‚æ„å›¾ä¿¡æ¯*/
+void hetergraph::read_file() {  //æœªåŠ adjlist
+	string filename = file + "/base.txt";  //baseä¸­å­˜å‚¨æ–‡ä»¶çš„åŸºæœ¬ä¿¡æ¯ï¼Œæ ¹æ®è¾¹ç±»åˆ«çš„è¡Œå¯¹åº”çš„è¾¹çš„ç´¢å¼•ï¼Œæ‰¾åˆ°è¾¹çš„æ–‡ä»¶"x.txt"
+	ifstream input(filename, ios::in);  //è¾“å…¥æ–‡ä»¶æµå¯¹è±¡input
+	//åˆ¤æ–­æ–‡ä»¶æ˜¯å¦å­˜åœ¨
 	if (!input) {
 		cerr << "file error!" << endl;
 		exit(1);
 	}
 
-	//µÚÒ»ĞĞ£¬¶¥µãÀà±ğÊı
+	//ç¬¬ä¸€è¡Œï¼Œé¡¶ç‚¹ç±»åˆ«æ•°
 	string vinfo;
 	getline(input, vinfo);
 	istringstream svinfo(vinfo);
 	svinfo >> n_vertexclass;
 
-	//¶¥µãÀà±ğvclass-¶¥µãË÷Òı(i)  iÀà¶¥µãÊıvcnum
+	//é¡¶ç‚¹ç±»åˆ«vclass-é¡¶ç‚¹ç´¢å¼•(i)  iç±»é¡¶ç‚¹æ•°vcnum
 	for (int i = 0; i < n_vertexclass; i++) {
 		string vcinfo;
 		getline(input, vcinfo);
@@ -1494,39 +1494,39 @@ void hetergraph::read_file() {  //Î´¼Óadjlist
 		char vclass;
 		int vcnum;
 		svcinfo >> vclass >> vcnum;
-		vertex_class_index[vclass] = i;  //¶¥µãÀà±ğ-Ë÷ÒıºÅ
-		vertex_num.push_back(vcnum);    //Ã¿Àà¶¥µãÊı
+		vertex_class_index[vclass] = i;  //é¡¶ç‚¹ç±»åˆ«-ç´¢å¼•å·
+		vertex_num.push_back(vcnum);    //æ¯ç±»é¡¶ç‚¹æ•°
 	}
 
-	//±ßµÄÀà±ğÊı
+	//è¾¹çš„ç±»åˆ«æ•°
 	string einfo;
 	getline(input, einfo);
 	istringstream seinfo(einfo);
 	seinfo >> n_edgeclass;
 
-	//±ßµÄÀà±ğµÄĞÅÏ¢
-	for (int i = 0; i < n_edgeclass; i++) {  //µÚiÀà±ß
+	//è¾¹çš„ç±»åˆ«çš„ä¿¡æ¯
+	for (int i = 0; i < n_edgeclass; i++) {  //ç¬¬iç±»è¾¹
 		string eeinfo;
 		getline(input, eeinfo);
 		istringstream seeinfo(eeinfo);
 		int vx, vy, edgenum;
 		seeinfo >> vx >> vy >> edgenum;
-		edge_class.push_back({ vx,vy });  //µÚiÀà±ßÁ¬½ÓµÄ¶¥µãÀà±ğË÷Òı
+		edge_class.push_back({ vx,vy });  //ç¬¬iç±»è¾¹è¿æ¥çš„é¡¶ç‚¹ç±»åˆ«ç´¢å¼•
 		edge_num.push_back(edgenum);
 
-		//»ñµÃ±£´æµÚiÀà±ßĞÅÏ¢µÄÎÄ¼şÃû²¢¶ÁÈëÎÄ¼ş
+		//è·å¾—ä¿å­˜ç¬¬iç±»è¾¹ä¿¡æ¯çš„æ–‡ä»¶åå¹¶è¯»å…¥æ–‡ä»¶
 		stringstream si;
 		si << i;
 		string edge_filename = file + "/edge/" + si.str() + ".txt";
-		ifstream edge_input(edge_filename, ios::in);  //ÊäÈëÎÄ¼şÁ÷¶ÔÏóinput
-		//ÅĞ¶ÏÎÄ¼şÊÇ·ñ´æÔÚ
+		ifstream edge_input(edge_filename, ios::in);  //è¾“å…¥æ–‡ä»¶æµå¯¹è±¡input
+		//åˆ¤æ–­æ–‡ä»¶æ˜¯å¦å­˜åœ¨
 		if (!edge_input) {
 			cerr << "file error!" << endl;
 			exit(1);
 		}
-		//¶Á±£´æµÚiÀà±ßĞÅÏ¢µÄÎÄ¼ş£¬²¢µÃµ½¸ÃÀà±ßµÄÁÚ½Ó¾ØÕó
+		//è¯»ä¿å­˜ç¬¬iç±»è¾¹ä¿¡æ¯çš„æ–‡ä»¶ï¼Œå¹¶å¾—åˆ°è¯¥ç±»è¾¹çš„é‚»æ¥çŸ©é˜µ
 		string edgeinformation;
-		getline(edge_input, edgeinformation);/***edgeÎÄ¼şµÚÒ»ĞĞÊÇ·ñÓĞ±íÊ¾±ßµÄĞÅÏ¢***/
+		getline(edge_input, edgeinformation);/***edgeæ–‡ä»¶ç¬¬ä¸€è¡Œæ˜¯å¦æœ‰è¡¨ç¤ºè¾¹çš„ä¿¡æ¯***/
 		int nx = vertex_num[vx], ny = vertex_num[vy];
 		map<int, map<int, int>> edge_matrix;
 		string edgedata;
@@ -1534,26 +1534,26 @@ void hetergraph::read_file() {  //Î´¼Óadjlist
 			istringstream sedgedata(edgedata);
 			int x, y;
 			sedgedata >> x >> y;
-			//µÚxĞĞ µÚyÁĞÎª1
-			auto iterx = edge_matrix.find(x);  //xÊÇ·ñÒÑ¾­¼ÓÈë
-			if (iterx == edge_matrix.end()) {  //ÉĞÎ´¼ÓÈë
+			//ç¬¬xè¡Œ ç¬¬yåˆ—ä¸º1
+			auto iterx = edge_matrix.find(x);  //xæ˜¯å¦å·²ç»åŠ å…¥
+			if (iterx == edge_matrix.end()) {  //å°šæœªåŠ å…¥
 				map<int, int> xadjlist;
-				xadjlist.insert(map<int, int>::value_type(y, 1));  //½«y¼ÓÈëxµÄÁÚ½Ólist
-				edge_matrix.insert(map<int, map<int, int>>::value_type(x, xadjlist)); //½«xµÄÁÚ½Ólist¼ÓÈëedge_matrix
+				xadjlist.insert(map<int, int>::value_type(y, 1));  //å°†yåŠ å…¥xçš„é‚»æ¥list
+				edge_matrix.insert(map<int, map<int, int>>::value_type(x, xadjlist)); //å°†xçš„é‚»æ¥liståŠ å…¥edge_matrix
 				xadjlist.clear();
 			}
-			else {  //xÒÑ¾­¼ÓÈë
+			else {  //xå·²ç»åŠ å…¥
 				iterx->second.insert(map<int, int>::value_type(y, 1));
 			}
 		}
-		edge_info.push_back(edge_matrix);  //µÚiÀà±ßµÄÁÚ½Ó¾ØÕó
+		edge_info.push_back(edge_matrix);  //ç¬¬iç±»è¾¹çš„é‚»æ¥çŸ©é˜µ
 		edge_matrix.clear();
 		edge_input.close();
 	}
 	input.close();
 }
 
-/*¸ù¾İ±ßµÄÁ½¸ö¶¥µãµÄÀà±ğË÷ÒıºÅ£¬²éÕÒ±ßµÄÀà±ğË÷ÒıºÅ*/
+/*æ ¹æ®è¾¹çš„ä¸¤ä¸ªé¡¶ç‚¹çš„ç±»åˆ«ç´¢å¼•å·ï¼ŒæŸ¥æ‰¾è¾¹çš„ç±»åˆ«ç´¢å¼•å·*/
 int hetergraph::getEdgeIndex(int x, int y) {
 	int index = -1;
 	for (auto it : edge_class) {
@@ -1564,70 +1564,70 @@ int hetergraph::getEdgeIndex(int x, int y) {
 	return index;
 }
 
-/*´ÓÒì¹¹Í¼ÖĞ£¬Éú³ÉP-multigraph*/
-void multigraph::getPmg(vector<char>* P) {  //¼Óadjlist
-	vector<char>::iterator it = P->begin();  //itµü´ú±éÀúÔªÂ·¾¶PÖĞµÄ¶¥µãÀà±ğ
-	/*Pmg¶¥µãÊı*/
+/*ä»å¼‚æ„å›¾ä¸­ï¼Œç”ŸæˆP-multigraph*/
+void multigraph::getPmg(vector<char>* P) {  //åŠ adjlist
+	vector<char>::iterator it = P->begin();  //itè¿­ä»£éå†å…ƒè·¯å¾„Pä¸­çš„é¡¶ç‚¹ç±»åˆ«
+	/*Pmgé¡¶ç‚¹æ•°*/
 	n_vertex = hg.vertex_num[hg.vertex_class_index[*it]];
 	n_vertex_org = n_vertex;
-	adjlist_edge.resize(n_vertex);  //n¸öai¶¥µãµÄÁÚ½Ó¶¥µã+±ßµÄ±àºÅ
+	adjlist_edge.resize(n_vertex);  //nä¸ªaié¡¶ç‚¹çš„é‚»æ¥é¡¶ç‚¹+è¾¹çš„ç¼–å·
 	//adjlist.resize(n_vertex);
 
-	/*¸ù¾İP²éÕÒPÖĞ±ßµÄË÷Òı£¬±£´æÔÚeindexÖĞ*/
+	/*æ ¹æ®PæŸ¥æ‰¾Pä¸­è¾¹çš„ç´¢å¼•ï¼Œä¿å­˜åœ¨eindexä¸­*/
 	vector<int> eindex;
-	for (int i = 0; i < P->size() / 2 ; i++) {  //Ò»¹²±éÀúP->size()/2Ìõ±ß
+	for (int i = 0; i < P->size() / 2 ; i++) {  //ä¸€å…±éå†P->size()/2æ¡è¾¹
 		int x = hg.vertex_class_index[*it++];
 		int y = hg.vertex_class_index[*it];
-		int index = hg.getEdgeIndex(x, y);  //¸ù¾İÆğµãºÍÖÕµãÀà±ğ£¬ÕÒµ½¸ÃÀà±ß¶ÔÓ¦µÄË÷Òı£¬´Ó¶øµÃµ½¸ÃÀà±ßµÄÁÚ½Ó¾ØÕó
+		int index = hg.getEdgeIndex(x, y);  //æ ¹æ®èµ·ç‚¹å’Œç»ˆç‚¹ç±»åˆ«ï¼Œæ‰¾åˆ°è¯¥ç±»è¾¹å¯¹åº”çš„ç´¢å¼•ï¼Œä»è€Œå¾—åˆ°è¯¥ç±»è¾¹çš„é‚»æ¥çŸ©é˜µ
 		if (index == -1) {
 			cerr << "edge error!" << endl;
 			exit(1);
 		}
 		eindex.push_back(index);
 	}
-	cout << "ÕÒµ½±ßË÷Òı£º";
+	cout << "æ‰¾åˆ°è¾¹ç´¢å¼•ï¼š";
 	for (int i : eindex) cout << i << "-";
 	cout << endl;
-	/*¼ÆËãMpl*/
+	/*è®¡ç®—Mpl*/
 	int p = 0;
 	map<int, map<int, int>> matrixpl = hg.edge_info[eindex[p]];
-	hg.edge_info[eindex[p]].clear();  //´ËÊ±£¬µÚÒ»¸öeindexµÄÁÚ½Ó¾ØÕóÒÑ¾­±£´æÔÚmatrixplÖĞ£¬ĞÅÏ¢²»ÔÙĞèÒª
-	while (++p < eindex.size()) {  //½«matrixÓëÏÂÒ»¸öÁÚ½Ó¾ØÕóedge_info[eindex[p]]Ïà³Ë
-		int curr_eindex = eindex[p];  //µ±Ç°¼ÆËãµÄ±ßµÄË÷Òı,¼´µ±Ç°ÓÃÄÄ¸ö±ßµÄÁÚ½Ó¾ØÕóÓëMPLÏà³Ë
-		cout << "¼ÆËã" << eindex[p - 1] << '*' << curr_eindex << "µÄÁÚ½Ó¾ØÕó" << endl;
+	hg.edge_info[eindex[p]].clear();  //æ­¤æ—¶ï¼Œç¬¬ä¸€ä¸ªeindexçš„é‚»æ¥çŸ©é˜µå·²ç»ä¿å­˜åœ¨matrixplä¸­ï¼Œä¿¡æ¯ä¸å†éœ€è¦
+	while (++p < eindex.size()) {  //å°†matrixä¸ä¸‹ä¸€ä¸ªé‚»æ¥çŸ©é˜µedge_info[eindex[p]]ç›¸ä¹˜
+		int curr_eindex = eindex[p];  //å½“å‰è®¡ç®—çš„è¾¹çš„ç´¢å¼•,å³å½“å‰ç”¨å“ªä¸ªè¾¹çš„é‚»æ¥çŸ©é˜µä¸MPLç›¸ä¹˜
+		cout << "è®¡ç®—" << eindex[p - 1] << '*' << curr_eindex << "çš„é‚»æ¥çŸ©é˜µ" << endl;
 		double ps11, pt11, time11;
 		ps11 = clock();
-		map<int, map<int, int>> tmatrix;  //ÁÙÊ±¼ÇÂ¼¼ÆËã½á¹û
+		map<int, map<int, int>> tmatrix;  //ä¸´æ—¶è®°å½•è®¡ç®—ç»“æœ
 		auto iterik = matrixpl.begin();
-		for (iterik; iterik != matrixpl.end(); iterik++) {  //¶ÔÃ¿¸öÓĞÁÚ½ÓĞòÁĞµÄi
+		for (iterik; iterik != matrixpl.end(); iterik++) {  //å¯¹æ¯ä¸ªæœ‰é‚»æ¥åºåˆ—çš„i
 			int i = iterik->first;
-			auto iterk = iterik->second.begin();  //iterk:µãiµÄÁÚ½ÓµãkĞòÁĞ
+			auto iterk = iterik->second.begin();  //iterk:ç‚¹içš„é‚»æ¥ç‚¹kåºåˆ—
 			for (iterk; iterk != iterik->second.end(); iterk++) {
 				int k = iterk->first;
-				int currik = iterk->second;  //(y,1) ´æÔÚ¼´>0 ±íÊ¾iÓëkÁÚ½Ó£¬Ö®ºóÕÒÓëkÁÚ½ÓµÄj
+				int currik = iterk->second;  //(y,1) å­˜åœ¨å³>0 è¡¨ç¤ºiä¸ké‚»æ¥ï¼Œä¹‹åæ‰¾ä¸ké‚»æ¥çš„j
 				auto iterkj = hg.edge_info[curr_eindex].find(k);
-				if (iterkj != hg.edge_info[curr_eindex].end()) {  //k*jµÄÁÚ½Ó±íÖĞ´æÔÚµãkµÄÁÚ½ÓĞòÁĞ
-					auto iterj = iterkj->second.begin();  //iterj£ºµãkµÄÁÚ½ÓµãjĞòÁĞ
+				if (iterkj != hg.edge_info[curr_eindex].end()) {  //k*jçš„é‚»æ¥è¡¨ä¸­å­˜åœ¨ç‚¹kçš„é‚»æ¥åºåˆ—
+					auto iterj = iterkj->second.begin();  //iterjï¼šç‚¹kçš„é‚»æ¥ç‚¹jåºåˆ—
 					for (iterj; iterj != iterkj->second.end(); iterj++) {
 						int j = iterj->first;
 						int currkj = iterj->second;
-						//Ïò½á¹ûÖĞ£¬²åÈëiµÄÁÚ½Óµãj£¬ÁÚ½Ó¶àÖØ±ßÊıÎªcurrik*currkj
+						//å‘ç»“æœä¸­ï¼Œæ’å…¥içš„é‚»æ¥ç‚¹jï¼Œé‚»æ¥å¤šé‡è¾¹æ•°ä¸ºcurrik*currkj
 						auto iterri = tmatrix.find(i);
-						if (iterri == tmatrix.end()) {  //Èô»¹Î´¸üĞÂi£¬Ôò¸üĞÂÆäµÚÒ»¸öÁÚ½Óµãk
+						if (iterri == tmatrix.end()) {  //è‹¥è¿˜æœªæ›´æ–°iï¼Œåˆ™æ›´æ–°å…¶ç¬¬ä¸€ä¸ªé‚»æ¥ç‚¹k
 							map<int, int> iadjlistj;
 							iadjlistj.insert(map<int, int>::value_type(j, currik * currkj));
 							tmatrix.insert(map<int, map<int, int>>::value_type(i, iadjlistj));
 							iadjlistj.clear();
 						}
-						else {  //ÈôiÒÑ¸üĞÂ£¬ÅĞ¶ÏjÊÇ·ñÒÑ²åÈëµ½iµÄÁÚ½Ó±íÖĞ
+						else {  //è‹¥iå·²æ›´æ–°ï¼Œåˆ¤æ–­jæ˜¯å¦å·²æ’å…¥åˆ°içš„é‚»æ¥è¡¨ä¸­
 							auto iterrj = iterri->second.find(j);
-							if (iterrj == iterri->second.end()) {  //ÈôjÎ´×÷ÎªiµÄÁÚ¾Ó±»²åÈëµ½iµÄÁÚ½Ó±íÖĞ
+							if (iterrj == iterri->second.end()) {  //è‹¥jæœªä½œä¸ºiçš„é‚»å±…è¢«æ’å…¥åˆ°içš„é‚»æ¥è¡¨ä¸­
 								iterri->second.insert(map<int, int>::value_type(j, currik * currkj));
 							}
 							else {
 								int oldij = iterrj->second;
 								int nowij = oldij + currik * currkj;
-								iterrj->second = nowij;  //¸üĞÂijÎ»ÖÃµÄÖµ
+								iterrj->second = nowij;  //æ›´æ–°ijä½ç½®çš„å€¼
 							}
 						}
 					}
@@ -1639,14 +1639,14 @@ void multigraph::getPmg(vector<char>* P) {  //¼Óadjlist
 		hg.edge_info[curr_eindex].clear();
 		pt11 = clock();
 		time11 = (double)(pt11 - ps11) / CLOCKS_PER_SEC;
-		cout << " ÓÃÊ±£º" << time11 << endl;
-		out_result << "¼ÆËã" << eindex[p - 1] << "*" << curr_eindex << "ÓÃÊ±:" << time11 << endl;
+		cout << " ç”¨æ—¶ï¼š" << time11 << endl;
+		out_result << "è®¡ç®—" << eindex[p - 1] << "*" << curr_eindex << "ç”¨æ—¶:" << time11 << endl;
 	}
 	hg.edge_info.clear();
 	eindex.clear();
 
-	//save_Mpl(&matrixpl);  //±£´æMpl
-    //µÃµ½MplÁÚ½Ó±íµÄ×ªÖÃ
+	//save_Mpl(&matrixpl);  //ä¿å­˜Mpl
+    //å¾—åˆ°Mplé‚»æ¥è¡¨çš„è½¬ç½®
 	double ps12, pt12, time12;
 	ps12 = clock();
 	map<int, map<int, int>> matrixplt;
@@ -1656,9 +1656,9 @@ void multigraph::getPmg(vector<char>* P) {  //¼Óadjlist
 		for (ity; ity != it.second.end(); ity++) {
 			int y = ity->first;
 			int valuexy = ity->second;
-			//yÓëxÁÚ½Ó£¬ÖµÎªvaluexy
+			//yä¸xé‚»æ¥ï¼Œå€¼ä¸ºvaluexy
 			auto itfindy = matrixplt.find(y);
-			if (itfindy == matrixplt.end()) {  //yÎ´²åÈë
+			if (itfindy == matrixplt.end()) {  //yæœªæ’å…¥
 				map<int, int> yadjlistx;
 				yadjlistx.insert(map<int, int>::value_type(x, valuexy));
 				matrixplt.insert(map<int, map<int, int>>::value_type(y, yadjlistx));
@@ -1669,40 +1669,40 @@ void multigraph::getPmg(vector<char>* P) {  //¼Óadjlist
 			}
 		}
 	}
-	cout << "×ªÖÃ¼ÆËãÍê±Ï" << endl;
+	cout << "è½¬ç½®è®¡ç®—å®Œæ¯•" << endl;
 	double pt14 = clock();
 	double time14 = (double)(pt14 - ps12) / CLOCKS_PER_SEC;
-	out_result << "¼ÆËãmplµÄ×ªÖÃÓÃÊ±£º" << time14 << endl;
+	out_result << "è®¡ç®—mplçš„è½¬ç½®ç”¨æ—¶ï¼š" << time14 << endl;
 
 
-	/*¼ÆËã³öMplºó£¬¼ÆËãMp£¿£¿,µÃµ½edge_info¡¢adjlist_edge¡¢Mp_edge??*/
-	cout << "¼ÆËãMpÁÚ½Ó±í" << endl;
+	/*è®¡ç®—å‡ºMplåï¼Œè®¡ç®—Mpï¼Ÿï¼Ÿ,å¾—åˆ°edge_infoã€adjlist_edgeã€Mp_edge??*/
+	cout << "è®¡ç®—Mpé‚»æ¥è¡¨" << endl;
 	int edge_index = 0;
-	for (int i = 0; i < n_vertex; i++) {  //¼ÆËãµÚi¸öµãµÄÁÚ½ÓĞòÁĞ
-	/*cout << "¼ÆËãµ½µÚ" << i;*/
-		auto iterik = matrixpl.find(i);  //ÕÒµÚi¸öµãµÄkÁÚ½ÓĞòÁĞ
-		if (iterik != matrixpl.end()) {  //ÕÒµ½ÁË
-			map<int, vector<vector<int>>> ij_einfo;  //¼ÇÂ¼iµÄËùÓĞÁÚ¾Ój£¬ÓëÖ®¼ä±ßµÄĞÅÏ¢
+	for (int i = 0; i < n_vertex; i++) {  //è®¡ç®—ç¬¬iä¸ªç‚¹çš„é‚»æ¥åºåˆ—
+	/*cout << "è®¡ç®—åˆ°ç¬¬" << i;*/
+		auto iterik = matrixpl.find(i);  //æ‰¾ç¬¬iä¸ªç‚¹çš„ké‚»æ¥åºåˆ—
+		if (iterik != matrixpl.end()) {  //æ‰¾åˆ°äº†
+			map<int, vector<vector<int>>> ij_einfo;  //è®°å½•içš„æ‰€æœ‰é‚»å±…jï¼Œä¸ä¹‹é—´è¾¹çš„ä¿¡æ¯
 			auto iterk = iterik->second.begin();
-			for (iterk; iterk != iterik->second.end(); iterk++) {  //¶ÔÓÚiµÄÃ¿¸öÁÚ½Óµãk
+			for (iterk; iterk != iterik->second.end(); iterk++) {  //å¯¹äºiçš„æ¯ä¸ªé‚»æ¥ç‚¹k
 				int k = iterk->first;
 				int currik = iterk->second;
-				auto iterkj = matrixplt.find(k);//ÕÒkµÄÁÚ½ÓµãjĞòÁĞ
+				auto iterkj = matrixplt.find(k);//æ‰¾kçš„é‚»æ¥ç‚¹jåºåˆ—
 				if (iterkj != matrixplt.end()) {
 					auto iterj = iterkj->second.begin();
 					for (iterj; iterj != iterkj->second.end(); iterj++) {
 						int j = iterj->first;
 						int currkj = iterj->second;
 						if (j > i) {
-							int ij_kclasspathnum = currik * currkj;  //µÚijµãÖ®¼ä£¬kÀàÂ·¾¶ÊµÀıÊı
-							auto iterjeinfo = ij_einfo.find(j);  //ÊÇ·ñÒÑ¾­¸üĞÂ¹ıiÓëÁÚ¾ÓjµÄ±ßµÄĞÅÏ¢
-							if (iterjeinfo == ij_einfo.end()) {  //Ã»¸üĞÂ¹ıiÓëÁÚ¾ÓjµÄ±ßµÄĞÅÏ¢
+							int ij_kclasspathnum = currik * currkj;  //ç¬¬ijç‚¹ä¹‹é—´ï¼Œkç±»è·¯å¾„å®ä¾‹æ•°
+							auto iterjeinfo = ij_einfo.find(j);  //æ˜¯å¦å·²ç»æ›´æ–°è¿‡iä¸é‚»å±…jçš„è¾¹çš„ä¿¡æ¯
+							if (iterjeinfo == ij_einfo.end()) {  //æ²¡æ›´æ–°è¿‡iä¸é‚»å±…jçš„è¾¹çš„ä¿¡æ¯
 								vector<vector<int>> temp_ij_einfo;
 								temp_ij_einfo.push_back({ k,ij_kclasspathnum });
 								ij_einfo.insert(map<int, vector<vector<int>>>::value_type(j, temp_ij_einfo));
 								temp_ij_einfo.clear();
 							}
-							else {  //ÒÑ¾­¸üĞÂ¹ıiÓëÁÚ¾ÓjµÄ±ßµÄĞÅÏ¢
+							else {  //å·²ç»æ›´æ–°è¿‡iä¸é‚»å±…jçš„è¾¹çš„ä¿¡æ¯
 								iterjeinfo->second.push_back({ k,ij_kclasspathnum });
 							}
 						}
@@ -1723,8 +1723,8 @@ void multigraph::getPmg(vector<char>* P) {  //¼Óadjlist
 	matrixpl.clear(); matrixplt.clear();
 	pt12 = clock();
 	time12 = (double)(pt12 - ps12) / CLOCKS_PER_SEC;
-	cout << "ÓÉmplµÃµ½mpÓÃÊ±£º" << time12 << endl;
-	out_result << "ÓÉmplµÃµ½mpÓÃÊ±£º" << time12 << endl;
+	cout << "ç”±mplå¾—åˆ°mpç”¨æ—¶ï¼š" << time12 << endl;
+	out_result << "ç”±mplå¾—åˆ°mpç”¨æ—¶ï¼š" << time12 << endl;
 
 	/*save_Pmg();*/
 }
@@ -1744,11 +1744,11 @@ void multigraph::save_Mpl(vector<vector<int>>* Mpl) {
 
 void multigraph::deleteVertex(int a) {
 
-	//¶ÔaµÄÃ¿¸öÁÚ½Óµã
+	//å¯¹açš„æ¯ä¸ªé‚»æ¥ç‚¹
 	for (auto an : adjlist_edge[a]) {
-		//ĞŞ¸ÄÁÚ½Ó¾ØÕó
+		//ä¿®æ”¹é‚»æ¥çŸ©é˜µ
 		/*Mp[a][an] = 0; Mp[an][a] = 0;*/
-		//ÔÚanµÄÁÚ½Ó±íÖĞÉ¾³ıa
+		//åœ¨ançš„é‚»æ¥è¡¨ä¸­åˆ é™¤a
 		map<int, int>::iterator it = adjlist_edge[an.first].begin();
 		for (it; it != adjlist_edge[an.first].end(); it++) {
 			if (it->first == a) {
@@ -1757,11 +1757,11 @@ void multigraph::deleteVertex(int a) {
 			}
 		}
 	}
-	//Çå¿ÕaµÄÁÚ½Ó±í£¨´ËÊ±aÎªP-multigraphÖĞÒ»¸ö¶ÀÁ¢µÄµã£¬µ«Í¨¹ıindex±éÀúÈÔÈ»ÄÜ±éÀúµ½a£©
+	//æ¸…ç©ºaçš„é‚»æ¥è¡¨ï¼ˆæ­¤æ—¶aä¸ºP-multigraphä¸­ä¸€ä¸ªç‹¬ç«‹çš„ç‚¹ï¼Œä½†é€šè¿‡indexéå†ä»ç„¶èƒ½éå†åˆ°aï¼‰
 	map<int, int>().swap(adjlist_edge[a]);
 }
 
-/*ÔÚP-multigraphÖĞÉ¾³ı±ß*/
+/*åœ¨P-multigraphä¸­åˆ é™¤è¾¹*/
 void multigraph::deleteEdge(int a, int b) {
 	/*m_edge--;*/
 	map<int, int>::iterator it = adjlist_edge[a].begin();
