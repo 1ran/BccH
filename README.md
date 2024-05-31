@@ -7,7 +7,8 @@ This repository contains basic and advanced algorithms proposed in this article.
 * Movies：downloadable from https://www.aminer.cn/data-sna
 * Yelp：downloadable from https://www.yelp.com/dataset/download
 * DBLP：downloadable from https://www.aminer.org/billboard/citation
-* IMDb：downloadable from https://www.imdb.com/interfaces/ <br />
+* IMDb：downloadable from https://www.imdb.com/interfaces/
+* KEGG: downloadable from https://www.genome.jp/kegg/pathway.html<br />
 
 The preprocessed data used in our experiments can be found in the "data" folder. <br />
 ## Rreproduce major results
